@@ -1,0 +1,21 @@
+
+if example
+
+    <!-- {if="$variable=='SIM'"} -->
+    
+    <!-- {/if} -->
+
+
+loop example 
+
+        {loop="$arrayvariable"}
+
+        {/loop}
+
+paginator
+
+{loop="$pages"}
+    <div class="paginator-element">
+        <a href="{$value.link}" class="paginator-target">{$value.text}</a>
+    </div>
+{/loop}

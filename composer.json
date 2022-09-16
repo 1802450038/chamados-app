@@ -1,0 +1,18 @@
+{
+    "name": "unipampa/cochoapp",
+    "authors": [
+        {
+            "name": "Eduardo Vilhalba",
+            "email": "eduardovilhalba.aluno@unipampa.edu.br"
+        }
+    ],
+    "require": {
+    	"slim/slim":"2.0",
+    	"rain/raintpl":"3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "cocho\\": "vendor\\cocho\\php-classes\\src"
+        }
+    }
+}

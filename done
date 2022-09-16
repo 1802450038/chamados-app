@@ -1,0 +1,71 @@
+Animal Module {
+    Animal
+
+            Add         [100]
+            GetById     [100]
+            listAll     [100]
+            Delete      [100]
+
+    Species
+
+            Add         [100]
+            GetById     [---]
+            listAll     [---]
+            Delete      [---]
+}
+
+Board Module {
+    SoftwareVersion 
+
+            Add         [100]
+            GetById     [---]
+            listAll     [100]
+            Delete      [---]
+
+    Motor 
+
+            Add         [100]
+            GetById     [---]
+            listAll     [---]
+            Delete      [---]
+
+    BoardModel 
+
+            Add         [100]
+            GetById     [---]
+            listAll     [100]
+            Delete      [---]
+    Board
+
+            Create      [100]
+            GetById     [---]
+            listAll     [100]
+            Delete      [---]
+}
+
+Cocho Module {
+    Cocho
+
+            Add         [100]
+            GetById     [---]
+            listAll     [100]
+            Delete      [---]
+
+    Cocho Model
+
+            Add         [100]
+            GetById     [---]
+            listAll     [100]
+            Delete      [---]
+}
+
+User Module {
+    User
+
+            Add                     [100]
+            RequestPasswordReset    [---]
+            ResetPassword           [---]
+            Auth                    [100]
+}
+
+
