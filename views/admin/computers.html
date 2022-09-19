@@ -19,15 +19,17 @@
                             <th>Data registro</th>
                         </thead>
                         <tbody>
+                            {loop="$computers"}
                             <tr>
-                                <td>12415</td>
-                                <td>SEMUDE</td>
-                                <td>07/12/1996</td>
+                                <td>{$value.computer_patrimony}</td>
+                                <td>{$value.computer_sector}</td>
+                                <td>{$value.computer_dt_register}</td>
                                 <td>
-                                    <a href="/admin/computer/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
-                                    <a href="/admin/computer/update" class="small-action-btn update"><i class="fas fa-trash-can"></i></a>
+                                    <a href="/admin/computer/delete{$value.computer_id}" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
+                                    <a href="/admin/computer/update{$value.computer_id}" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
+                            {/loop}
                             
                         </tbody>
                     </table>

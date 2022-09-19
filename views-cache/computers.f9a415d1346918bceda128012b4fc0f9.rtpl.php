@@ -19,15 +19,17 @@
                             <th>Data registro</th>
                         </thead>
                         <tbody>
+                            <?php $counter1=-1;  if( isset($computers) && ( is_array($computers) || $computers instanceof Traversable ) && sizeof($computers) ) foreach( $computers as $key1 => $value1 ){ $counter1++; ?>
                             <tr>
-                                <td>12415</td>
-                                <td>SEMUDE</td>
-                                <td>07/12/1996</td>
+                                <td><?php echo htmlspecialchars( $value1["computer_patrimony"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["computer_sector"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["computer_dt_register"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                 <td>
-                                    <a href="/admin/computer/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
-                                    <a href="/admin/computer/update" class="small-action-btn update"><i class="fas fa-trash-can"></i></a>
+                                    <a href="/admin/computer/delete<?php echo htmlspecialchars( $value1["computer_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
+                                    <a href="/admin/computer/update<?php echo htmlspecialchars( $value1["computer_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
+                            <?php } ?>
                             
                         </tbody>
                     </table>

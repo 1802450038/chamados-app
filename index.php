@@ -18,6 +18,7 @@ require_once("admin-user-actions.php");
 require_once("admin-users.php");
 require_once("admin-computers.php");
 require_once("admin-os-computers.php");
+require_once("admin-calls.php");
 
 
 

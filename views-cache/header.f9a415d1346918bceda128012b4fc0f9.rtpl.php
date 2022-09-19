@@ -45,24 +45,24 @@
 
         <div class="logo">
             <a href="/admin">
-                <img src="../../res/_assets/_contentimg/logo.png" alt="" srcset="" class="logo-img">
+                <!-- <img src="../../res/_assets/_contentimg/logo.png" alt="" srcset="" class="logo-img"> -->
             </a>
         </div>
         <div class="title">
-            <h1 class="title-page">Cocho</h1>
+            <h1 class="title-page">Chamados</h1>
             <h3 class="sub-title-page">App</h3>
         </div>
     </div>
 
     <div class="mobile-nav">
         <div>
-            <a href="/admin/animals">
-                <i class="fas fa-horse-head"></i>
+            <a href="/admin/calls">
+                <i class="fas fa-phone-volume"></i>
             </a>
         </div>
         <div>
-            <a href="/admin/boards">
-                <i class="fab fa-unity"></i>
+            <a href="/admin/computers">
+                <i class="fas fa-desktop"></i>
             </a>
         </div>
         <div>
@@ -71,8 +71,8 @@
             </a>
         </div>
         <div>
-            <a class="user" href="/admin/motor/create">
-                <i class="fas fa-gears"></i>
+            <a class="user" href="/admin/os-computers">
+                <i class="fas fa-list-check"></i>
             </a>
         </div>
         <div>

@@ -2,6 +2,7 @@
 
 namespace cocho;
 use cocho\Model\User;
+use cocho\Model\Computer;
 
 
 
@@ -11,9 +12,12 @@ $app->get('/admin/computers', function () {
 
 	$page = new PageAdmin();
 
+	$computers = Computer::listAll();
+
 	// $users = User::listAll();
 
 	$page->setTpl("computers", array(
+		"computers"=>$computers
 		
 	));
 });
@@ -40,10 +44,13 @@ $app->get('/admin/computer/update:id', function ($id) {
 
 	$page = new PageAdmin();
 
+	$computer = new Computer;
+
+	$computer = $computer->get($id);
 	// $users = User::listAll();
 
 	$page->setTpl("computer-update", array(
-s
+		"computer"=>$computer
 	));
 });
 
@@ -52,17 +59,27 @@ $app->post('/admin/computer/create', function () {
 
 	// User::verifyLogin();
 
-	User::create($_POST);
+	$computer = new Computer();
+
+	$computer->setData($_POST);
+
+	$computer->create();
 	
 	header("location: /admin/computers");
 	exit;
 });
 
-$app->post('/admin/computer/update', function () {
+$app->post('/admin/computer/update:id', function ($id) {
 
 	// User::verifyLogin();
 
-	User::update($_POST);
+	$computer=  new Computer();
+
+	$computer->setData(Computer::get($id));
+
+	$computer->setData($_POST);
+
+	$computer->update();
 	
 	header("location: /admin/computers");
 	exit;

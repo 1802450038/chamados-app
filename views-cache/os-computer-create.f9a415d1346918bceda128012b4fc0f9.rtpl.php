@@ -6,17 +6,25 @@
         </div>
         <div class="content-box">
             <form method="post" action="/admin/computer/create" class="form-group" enctype="multipart/form-data">
+
+
                 <div class="input-group">
                     <label for="user_technical_one_id" class="label-input">1º Tecnico Responsavel <span class="mandatory">*</span></label>
-                    <input type="text" class="text-input" id="user_technical_one_id" name="user_technical_one_id">
+                    <select type="text" class="text-input" id="user_technical_one_id" name="user_technical_one_id">
+                        <option value="true" selected>Gabriel Pereira Bellagamba</option>
+                    </select>
                 </div>
                 <div class="input-group">
                     <label for="user_technical_two_id" class="label-input">2º Tecnico Responsavel <span class="mandatory">*</span></label>
-                    <input type="text" class="text-input" id="user_technical_two_id" name="user_technical_two_id">
+                    <select type="text" class="text-input" id="user_technical_two_id" name="user_technical_two_id">
+                        <option value="true" selected>Gabriel Pereira Bellagamba</option>
+                    </select>
                 </div>
                 <div class="input-group">
                     <label for="user_technical_three_id" class="label-input">3º Tecnico Responsavel <span class="mandatory">*</span></label>
-                    <input type="text" class="text-input" id="user_technical_three_id" name="user_technical_three_id">
+                    <select type="text" class="text-input" id="user_technical_three_id" name="user_technical_three_id">
+                        <option value="true" selected>Gabriel Pereira Bellagamba</option>
+                    </select>
                 </div>
                 <div class="input-group">
                     <label for="os_defect" class="label-input">Defeito <span class="mandatory">*</span></label>
@@ -60,10 +68,6 @@
                         <option value="true">SDD</option>
                         <option value="false" selected>HDD</option>
                     </select>
-                </div>
-                <div class="input-group">
-                    <label for="computer_note" class="label-input">Observação <span class="mandatory">*</span></label>
-                    <input type="text" class="text-input" id="computer_note" name="computer_note">
                 </div>
                 <div class="input-group">
                     <label for="computer_hd_type" class="label-input">Estado<span class="mandatory">*</span></label>

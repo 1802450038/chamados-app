@@ -1,4 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Registrar usuario</title>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Registrar computador</title>
 <div class="content-body">
     <div class="register-box">
         <div class="title-box">
@@ -6,10 +6,6 @@
         </div>
         <div class="content-box">
             <form method="post" action="/admin/computer/create" class="form-group" enctype="multipart/form-data">
-                <div class="input-group">
-                    <label for="user_register_id" class="label-input">Nome <span class="mandatory">*</span></label>
-                    <input type="text" class="text-input" id="user_register_id" name="user_register_id">
-                </div>
                 <div class="input-group">
                     <label for="computer_sector" class="label-input">Setor <span class="mandatory">*</span></label>
                     <input type="text" class="text-input" id="computer_sector" name="computer_sector">
@@ -41,36 +37,29 @@
                 <div class="input-group">
                     <label for="computer_video_card" class="label-input">Placa de video<span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="computer_video_card" name="computer_video_card">
-                        <option value="true">SIM</option>
-                        <option value="false" selected>NÃO</option>
+                        <option value="1">SIM</option>
+                        <option value="0" selected>NÃO</option>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="computer_network_card" class="label-input">Placa de rede<span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="computer_network_card" name="computer_network_card">
-                        <option value="true">SIM</option>
-                        <option value="false" selected>NÃO</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="computer_network_card" class="label-input">Placa de rede<span class="mandatory">*</span></label>
-                    <select type="text" class="text-input" id="computer_network_card" name="computer_network_card">
-                        <option value="true">SIM</option>
-                        <option value="false" selected>NÃO</option>
+                        <option value="1">SIM</option>
+                        <option value="0" selected>NÃO</option>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="computer_hd" class="label-input">HD<span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="computer_hd" name="computer_hd">
-                        <option value="true">SIM</option>
-                        <option value="false" selected>NÃO</option>
+                        <option value="1">SIM</option>
+                        <option value="0" selected>NÃO</option>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="computer_hd_type" class="label-input">Tipo de disco<span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="computer_hd_type" name="computer_hd_type">
-                        <option value="true">SDD</option>
-                        <option value="false" selected>HDD</option>
+                        <option value="SSD">SDD</option>
+                        <option value="HDD" selected>HDD</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -80,11 +69,11 @@
                 <div class="input-group">
                     <label for="computer_hd_type" class="label-input">Estado<span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="computer_hd_type" name="computer_hd_type">
-                        <option value="true" selected>BOM</option>
-                        <option value="true">MEDIO</option>
-                        <option value="true">RUIM</option>
-                        <option value="true">PEÇAS FALTANDO</option>
-                        <option value="true">CONDENADO</option>
+                        <option value="BOM" selected>BOM</option>
+                        <option value="MEDIO">MEDIO</option>
+                        <option value="RUIM">RUIM</option>
+                        <option value="PEÇAS FALTANDO">PEÇAS FALTANDO</option>
+                        <option value="CONDENADO">CONDENADO</option>
                     </select>
                 </div>
                 <div class="form-mandatory">

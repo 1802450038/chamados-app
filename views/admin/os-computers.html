@@ -17,7 +17,7 @@
                             <th>Patrimonio</th>
                             <th>Setor</th>
                             <th>Responsável</th>
-                            <th>Status</th>
+                            <th>Situação</th>
                             <th>Data registro</th>
                             <th>Ações</th>
                         </thead>
@@ -26,12 +26,12 @@
                                 <td>12415</td>
                                 <td>SEMUDE</td>
                                 <td>Gabriel Bellagamba</td>
-                                <td>CONCLUIDO</td>
+                                <td>EM MANUTENÇÃO</td>
                                 <td>07/12/1996</td>
                                 <td>
-                                    <a href="/admin/computer/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
-                                    <a href="/admin/computer/update" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
-                                    <a href="/admin/computer/update" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
+                                    <a href="/admin/os-computer/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
+                                    <a href="/admin/os-computer/update" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
+                                    <a href="/admin/os-computer/profile" class="small-action-btn view"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
                             

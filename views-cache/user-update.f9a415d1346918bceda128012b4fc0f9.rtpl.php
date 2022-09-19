@@ -1,34 +1,27 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Registrar usuario</title>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Atualizar usuario</title>
 <div class="content-body">
     <div class="register-box">
         <div class="title-box">
-            <h3>Registrar usuario</h3>
+            <h3>Atualizar usuario</h3>
         </div>
         <div class="content-box">
-            <form method="post" action="/admin/user/create" class="form-group" enctype="multipart/form-data">
+            <form method="post" action="/admin/user/update<?php echo htmlspecialchars( $user["user_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="form-group" enctype="multipart/form-data">
                 <div class="input-group">
                     <label for="user_name" class="label-input">Nome <span class="mandatory">*</span></label>
-                    <input type="text" class="text-input" id="user_name" name="user_name">
+                    <input type="text" class="text-input" id="user_name" name="user_name" value="<?php echo htmlspecialchars( $user["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                 </div>
                 <div class="input-group">
-                    <label for="user_email" class="label-input">Email <span class="mandatory">*</span></label>
-                    <input type="email" class="text-input" id="user_email" name="user_email">
+                    <label for="user_email" class="label-input">Email<span class="mandatory">*</span></label>
+                    <input type="email" class="text-input" id="user_email" name="user_email" value="<?php echo htmlspecialchars( $user["user_email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                 </div>
                 <div class="input-group">
                     <label for="user_login" class="label-input">Login <span class="mandatory">*</span></label>
-                    <input type="text" class="text-input" id="user_login" name="user_login">
-                </div>
-                <div class="input-group">
-                    <label for="user_password" class="label-input">Senha <span class="mandatory">*</span></label>
-                    <input type="password" class="text-input" id="user_password" name="user_password">
-                </div>
-                <div class="input-group">
-                    <label for="user_verify_password" class="label-input">Senha novamente <span class="mandatory">*</span></label>
-                    <input type="password" class="text-input" id="user_verify_password" name="user_verify_password">
+                    <input type="text" class="text-input" id="user_login" name="user_login" value="<?php echo htmlspecialchars( $user["user_login"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                 </div>
                 <div class="input-group">
                     <label for="user_type" class="label-input">Tipo de usuario<span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_type" name="user_type">
+                        <option value="<?php echo htmlspecialchars( $user["user_type"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" selected><?php echo htmlspecialchars( $user["user_type"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                         <option value="tecnico">Tecnico</option>
                         <option value="atendimento">Atendimento</option>
                         <option value="estagiario">Estagiario</option>
@@ -38,6 +31,13 @@
                 <div class="input-group">
                     <label for="user_is_admin" class="label-input">Administrador<span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_is_admin" name="user_is_admin">
+                        <option value="<?php echo htmlspecialchars( $user["user_is_admin"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" selected>
+                            <?php if( $user["user_is_admin"] == '1' ){ ?>
+                            SIM
+                            <?php }else{ ?>
+                            NÃO
+                            <?php } ?>
+                        </option>
                         <option value="1">SIM</option>
                         <option value="0">NÃO</option>
                     </select>

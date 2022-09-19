@@ -5,7 +5,7 @@
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
-                <div class="card-ico"><span><i class="fas fa-horse-head"></i></span></div>
+                <div class="card-ico"><span><i class="fas fa-phone-volume"></i></span></div>
                 <div class="card-title">
                     <h3>Chamados</h3>
                 </div>
@@ -18,7 +18,7 @@
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
-                <div class="card-ico"><span><i class="fas fa-paw"></i></span></div>
+                <div class="card-ico"><span><i class="fas fa-desktop"></i></span></div>
                 <div class="card-title">
                     <h3>Computadores</h3>
                 </div>
@@ -31,7 +31,7 @@
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
-                <div class="card-ico"><span><i class="fab fa-unity"></i></span></div>
+                <div class="card-ico"><span><i class="fas fa-list-check"></i></span></div>
                 <div class="card-title">
                     <h3>OS Computadores</h3>
                 </div>
