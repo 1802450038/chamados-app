@@ -7,11 +7,12 @@ OS COMPUTER {
 }
 
 COMPUTER {
-        Add                     [---]
-        GetById                 [---]
-        listAll                 [---]
-        Update                  [---]
-        Delete                  [---]
+        Add                     [100]
+        GetById                 [090] -> PHOTOS
+        listAll                 [100]
+        Update                  [090] -> PHOTOS
+        Delete                  [100]
+        OS History              [000]
 }
 
 USER {

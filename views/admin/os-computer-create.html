@@ -5,24 +5,40 @@
             <h3>Registrar OS Computador</h3>
         </div>
         <div class="content-box">
-            <form method="post" action="/admin/computer/create" class="form-group" enctype="multipart/form-data">
+            <form method="post" action="/admin/os-computer/create" class="form-group" enctype="multipart/form-data">
 
                 <div class="input-group">
                     <label for="user_technical_one_id" class="label-input">1º Tecnico Responsavel <span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_technical_one_id" name="user_technical_one_id">
-                        <option value="true" selected>Gabriel Pereira Bellagamba</option>
+                        {loop="$tecs"}
+                        <option value="{$value.user_id}">{$value.user_name}</option>
+                        {/loop}
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="user_technical_two_id" class="label-input">2º Tecnico Responsavel <span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_technical_two_id" name="user_technical_two_id">
-                        <option value="true" selected>Gabriel Pereira Bellagamba</option>
+                        <option value="0">Nenhum</option>
+                        {loop="$tecs"}
+                        <option value="{$value.user_id}">{$value.user_name}</option>
+                        {/loop}
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="user_technical_three_id" class="label-input">3º Tecnico Responsavel <span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_technical_three_id" name="user_technical_three_id">
-                        <option value="true" selected>Gabriel Pereira Bellagamba</option>
+                        <option value="0">Nenhum</option>
+                        {loop="$tecs"}
+                        <option value="{$value.user_id}">{$value.user_name}</option>
+                        {/loop}
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="computer_id" class="label-input">Computador <span class="mandatory">*</span></label>
+                    <select type="text" class="text-input" id="computer_id" name="computer_id">
+                        {loop="$computers"}
+                        <option value="{$value.computer_id}">{$value.computer_patrimony} - {$value.computer_dt_register}</option>
+                        {/loop}
                     </select>
                 </div>
                 <div class="input-group">
@@ -30,54 +46,22 @@
                     <input type="text" class="text-input" id="os_defect" name="os_defect">
                 </div>
                 <div class="input-group">
+                    <label for="os_fix" class="label-input">Reparo <span class="mandatory">*</span></label>
+                    <input type="text" class="text-input" id="os_fix" name="os_fix">
+                </div>
+                <div class="input-group">
                     <label for="os_note" class="label-input">Observação <span class="mandatory">*</span></label>
                     <input type="text" class="text-input" id="os_note" name="os_note">
                 </div>  
                 <div class="input-group">
-                    <label for="computer_video_card" class="label-input">Placa de video<span class="mandatory">*</span></label>
-                    <select type="text" class="text-input" id="computer_video_card" name="computer_video_card">
-                        <option value="true">SIM</option>
-                        <option value="false" selected>NÃO</option>
+                    <label for="os_status" class="label-input">Status <span class="mandatory">*</span></label>
+                    <select type="text" class="text-input" id="os_status" name="os_status">
+                        <option value="ABERTO">ABERTO</option>
+                        <option value="CONCLUIDO">CONCLUIDO</option>
+                        <option value="AGUARDANDO PEÇAS">AGUARDANDO PEÇAS</option>
                     </select>
-                </div>
-                <div class="input-group">
-                    <label for="computer_network_card" class="label-input">Placa de rede<span class="mandatory">*</span></label>
-                    <select type="text" class="text-input" id="computer_network_card" name="computer_network_card">
-                        <option value="true">SIM</option>
-                        <option value="false" selected>NÃO</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="computer_network_card" class="label-input">Placa de rede<span class="mandatory">*</span></label>
-                    <select type="text" class="text-input" id="computer_network_card" name="computer_network_card">
-                        <option value="true">SIM</option>
-                        <option value="false" selected>NÃO</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="computer_hd" class="label-input">HD<span class="mandatory">*</span></label>
-                    <select type="text" class="text-input" id="computer_hd" name="computer_hd">
-                        <option value="true">SIM</option>
-                        <option value="false" selected>NÃO</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="computer_hd_type" class="label-input">Tipo de disco<span class="mandatory">*</span></label>
-                    <select type="text" class="text-input" id="computer_hd_type" name="computer_hd_type">
-                        <option value="true">SDD</option>
-                        <option value="false" selected>HDD</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="computer_hd_type" class="label-input">Estado<span class="mandatory">*</span></label>
-                    <select type="text" class="text-input" id="computer_hd_type" name="computer_hd_type">
-                        <option value="true" selected>BOM</option>
-                        <option value="true">MEDIO</option>
-                        <option value="true">RUIM</option>
-                        <option value="true">PEÇAS FALTANDO</option>
-                        <option value="true">CONDENADO</option>
-                    </select>
-                </div>
+                </div>  
+             
                 <div class="form-mandatory">
                     <p><span class="mandatory">*</span> Campos obrigatorios</p>
                 </div>

@@ -184,3 +184,40 @@ body {
   top: 39px;
   left: 8px;
 }
+
+
+
+
+
+@media only screen and (max-width: 350px) {
+    .logo {
+        display: none;
+    }
+
+    .title {
+        width: 100%;
+    }
+    
+}
+
+
+
+
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    border: 1px solid #d5d5d5;
+  }
+  
+  ::-webkit-scrollbar-track {
+    border-radius: 0;
+    background: #eeeeee;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background: #b0b0b0;
+  }
+
+

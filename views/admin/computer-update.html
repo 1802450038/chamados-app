@@ -36,6 +36,11 @@
                         name="computer_user_registration" value="{$computer.computer_user_registration}">
                 </div>
                 <div class="input-group">
+                    <label for="computer_brand" class="label-input">Marca <span class="mandatory">*</span></label>
+                    <input type="text" class="text-input" id="computer_brand" name="computer_brand"
+                        value="{$computer.computer_brand}">
+                </div>
+                <div class="input-group">
                     <label for="computer_soc" class="label-input">Processador <span class="mandatory">*</span></label>
                     <input type="text" class="text-input" id="computer_soc" name="computer_soc"
                         value="{$computer.computer_soc}">
@@ -107,12 +112,16 @@
                     </select>
                 </div>
                 <div class="input-group">
+                    <label for="computer_issue"  class="label-input">Defeito <span class="mandatory">*</span></label>
+                    <input type="text" class="text-input" id="computer_issue"  name="computer_issue" value="{$computer.computer_issue}">
+                </div>
+                <div class="input-group">
                     <label for="computer_note" class="label-input">Observação <span class="mandatory">*</span></label>
                     <input type="text" class="text-input" id="computer_note" name="computer_note" value="{$computer.computer_note}">
                 </div>
                 <div class="input-group">
-                    <label for="computer_hd_type" class="label-input">Estado<span class="mandatory">*</span></label>
-                    <select type="text" class="text-input" id="computer_hd_type" name="computer_hd_type">
+                    <label for="computer_state" class="label-input">Estado<span class="mandatory">*</span></label>
+                    <select type="text" class="text-input" id="computer_state" name="computer_state">
                         <option value="{$computer.computer_state}" selected>
                             {$computer.computer_state}
                         </option>

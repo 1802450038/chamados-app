@@ -57,6 +57,19 @@
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
+                <div class="card-ico"><span><i class="fas fa-magnifying-glass"></i></span></div>
+                <div class="card-title">
+                    <h3>Buscar Computador</h3>
+                </div>
+                <div class="card-middle">
+                    <p>Buscar PC pelo Patrimonio</p>
+                </div>
+                <div class="card-bottom"><a class="card-buttom" href="admin/computer/barcode">Buscar</a></div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-bg"></div>
+            <div class="card-content">
                 <div class="card-ico"><span><i class="fas fa-door-open"></i></span></div>
                 <div class="card-title">
                     <h3>Sair</h3>

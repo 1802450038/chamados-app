@@ -14,7 +14,7 @@ class Computer extends Model
     {
 
         $sql = new Sql();
-        $result = $sql->select("SELECT * FROM tb_computer");
+        $result = $sql->select("SELECT * FROM tb_computer ORDER BY computer_dt_register DESC");
 
         if ($result) {
             return $result;
@@ -37,6 +37,7 @@ class Computer extends Model
                 computer_ip,
                 computer_user_name,
                 computer_user_registration,
+                computer_brand,
                 computer_soc,
                 computer_mem,
                 computer_video_card,
@@ -44,6 +45,7 @@ class Computer extends Model
                 computer_hd,
                 computer_hd_type,
                 computer_state,
+                computer_issue,
                 computer_note
                 ) VALUES(
                     '{$id_user}',
@@ -52,6 +54,7 @@ class Computer extends Model
                     '{$this->getcomputer_ip()}',
                     '{$this->getcomputer_user_name()}',
                     '{$this->getcomputer_user_registration()}',
+                    '{$this->getcomputer_brand()}',
                     '{$this->getcomputer_soc()}',
                     '{$this->getcomputer_mem()}',
                     '{$this->getcomputer_video_card()}',
@@ -59,6 +62,7 @@ class Computer extends Model
                     '{$this->getcomputer_hd()}',
                     '{$this->getcomputer_hd_type()}',
                     'EM AVALIAÇÃO',
+                    '{$this->getcomputer_issue()}',
                     '{$this->getcomputer_note()}'
                     )",
             );      
@@ -69,8 +73,6 @@ class Computer extends Model
     {
         $sql = new Sql();
 
-        var_dump($this);
-
         $sql->query(
             "UPDATE tb_computer SET
             computer_sector = '{$this->getcomputer_sector()}',
@@ -78,17 +80,17 @@ class Computer extends Model
             computer_ip = '{$this->getcomputer_ip()}',
             computer_user_name = '{$this->getcomputer_user_name()}',
             computer_user_registration = '{$this->getcomputer_user_registration()}',
+            computer_brand = '{$this->getcomputer_brand()}',
             computer_soc = '{$this->getcomputer_soc()}',
             computer_mem = '{$this->getcomputer_mem()}',
             computer_video_card = '{$this->getcomputer_video_card()}',
             computer_network_card = '{$this->getcomputer_network_card()}',
             computer_hd = '{$this->getcomputer_hd()}',
             computer_hd_type = '{$this->getcomputer_hd_type()}',
-            computer_state = 'EM AVALIAÇÃO',
+            computer_state = '{$this->getcomputer_state()}',
             computer_note = '{$this->getcomputer_note()}'
             WHERE computer_id= '{$this->getcomputer_id()}'");   
     }
-
 
     // 
     public static  function get($id)
@@ -103,12 +105,36 @@ class Computer extends Model
         }
     }
 
+    public static  function getPatrimony($id)
+    {
+        $sql = new Sql();
+        $result = $sql->select("SELECT computer_patrimony FROM tb_computer WHERE computer_id = '$id'");
+
+        if ($result) {
+            return $result[0];
+        } else {
+            return 0;
+        }
+    }
+
+    public static  function getIdByPatrimony($patrimony)
+    {
+        $sql = new Sql();
+        $result = $sql->select("SELECT computer_id FROM tb_computer WHERE computer_patrimony = '$patrimony'");
+
+        if ($result) {
+            return $result[0];
+        } else {
+            return 0;
+        }
+    }
+
     // 
     public static function delete($id)
     {
         $sql = new Sql();
 
-        $sql->query("DELETE FROM tb_user  WHERE user_id='{$id}'");
+        $sql->query("DELETE FROM tb_computer  WHERE computer_id='{$id}'");
     }
 
 }

@@ -1,0 +1,169 @@
+<title>Perfil da OS</title>
+<div class="content-body">
+    <div class="entity-profile-card">
+        <div class="entity-profile-card-middle card-category">
+            <div class="entity-info sub-card-category">
+                <div class="row card-category-title">
+                    <h3>Ordem de serviço {$os.os_id}</h3>
+                </div>
+                <div class="info-items">
+                    <div class="info-box">
+                        <h3 class="info-title">Patrimonio</h3>
+                        <h3 class="info-value">{$os.computer_patrimony}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">1º Tecnico Responsavel</h3>
+                        <h3 class="info-value">{$os.tec1}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">2º Tecnico Responsavel</h3>
+                        <h3 class="info-value">
+                            {if="$os.tec2 == null"}
+                            Não informado
+                            {else}
+                            {$os.tec2}
+                            {/if}
+                        </h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">3º Tecnico Responsavel</h3>
+                        <h3 class="info-value">
+                            {if="$os.tec3 == null"}
+                            Não informado
+                            {else}
+                            {$os.tec3}
+                            {/if}
+                        </h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Defeito</h3>
+                        <h3 class="info-value">{$os.os_defect}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Reparo</h3>
+                        <h3 class="info-value">{$os.os_fix}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Status</h3>
+                        <h3 class="info-value">{$os.os_status}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Observação</h3>
+                        <h3 class="info-value">{$os.os_note}</h3>
+                    </div>
+                   
+                    <div class="info-box">
+                        <h3 class="info-title">Data de registro</h3>
+                        <h3 class="info-value">{function="date('Y-m-d',strtotime($os.os_dt_register))"}</h3>
+                    </div>
+
+                    <div class="info-box">
+                        <h3 class="info-title">Data de atualização</h3>
+                        <h3 class="info-value">{function="date('Y-m-d',strtotime($os.os_dt_last_update))"}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Data de conclusão</h3>
+                        <h3 class="info-value">
+                            {if="$os.os_status != 'CONCLUIDO'"}
+                            Em andamento
+                            {else}
+                            {function="date('Y-m-d',strtotime($os.os_dt_conclusion))"}
+                            {/if}
+                        </h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Registrado por</h3>
+                        <h3 class="info-value">{$os.user_name}</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="list-body">
+        <div class="list-body-content">
+            <div class="list-body-middle">
+                <div class="list-category-title">
+                    <h3 class="list-title">Atualizar</h3>
+                </div>
+                <div class="list-category-sub-title">
+                    <p class="list-sub-title">Atualizar status da os</p>
+                </div>
+                <div class="content-box" style="box-shadow: none; margin-top:0">
+                    <form method="post" action="/admin/os-computer/status{$os.os_id}" class="form-group" enctype="multipart/form-data" style="padding-top: 0;">
+                        <div class="input-group">
+                            <label for="user_technical_one_id" class="label-input">1º Tecnico Responsavel <span class="mandatory">*</span></label>
+                            <select type="text" class="text-input" id="user_technical_one_id" name="user_technical_one_id">
+                                {loop="$tecs"}
+                                <option value="{$value.user_id}">{$value.user_name}</option>
+                                {/loop}
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="user_technical_two_id" class="label-input">2º Tecnico Responsavel <span class="mandatory">*</span></label>
+                            <select type="text" class="text-input" id="user_technical_two_id" name="user_technical_two_id">
+                                {if="$os.tec2 == null"}
+                                    <option value="0">Não informado</option>
+                                    {loop="$tecs"}
+                                    <option value="{$value.user_id}">{$value.user_name}</option>
+                                    {/loop}
+                                {else}
+                                    <option value="{$os.user_technical_two_id}">{$os.tec2}</option>
+                                    {loop="$tecs"}
+                                    <option value="{$value.user_id}">{$value.user_name}</option>
+                                    {/loop}
+                                {/if}
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="user_technical_three_id" class="label-input">3º Tecnico Responsavel <span class="mandatory">*</span></label>
+                            <select type="text" class="text-input" id="user_technical_three_id" name="user_technical_three_id">
+                                {if="$os.tec3 == null"}
+                                    <option value="0">Não informado</option>
+                                    {loop="$tecs"}
+                                    <option value="{$value.user_id}">{$value.user_name}</option>
+                                    {/loop}
+                                {else}
+                                    <option value="{$os.user_technical_three_id}">{$os.tec3}</option>
+                                    {loop="$tecs"}
+                                    <option value="{$value.user_id}">{$value.user_name}</option>
+                                    {/loop}
+                                {/if}
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="os_defect" class="label-input">Defeito <span class="mandatory">*</span></label>
+                            <input type="text" class="text-input" id="os_defect" name="os_defect" value="{$os.os_defect}">
+                        </div>
+                        <div class="input-group">
+                            <label for="os_fix" class="label-input">Reparo <span class="mandatory">*</span></label>
+                            <input type="text" class="text-input" id="os_fix" name="os_fix" value="{$os.os_fix}">
+                        </div>
+                        <div class="input-group">
+                            <label for="os_note" class="label-input">Observação <span class="mandatory">*</span></label>
+                            <input type="text" class="text-input" id="os_note" name="os_note" value="{$os.os_note}">
+                        </div>  
+                        <div class="input-group">
+                            <label for="os_status" class="label-input">Status <span class="mandatory">*</span></label>
+                            <select type="text" class="text-input" id="os_status" name="os_status">
+                                <option value="{$os.os_status}">{$os.os_status}</option>
+                                <option value="ABERTO">ABERTO</option>
+                                <option value="CONCLUIDO">CONCLUIDO</option>
+                                <option value="AGUARDANDO PEÇAS">AGUARDANDO PEÇAS</option>
+                            </select>
+                        </div>  
+                     
+                        <div class="form-mandatory">
+                            <p><span class="mandatory">*</span> Campos obrigatorios</p>
+                        </div>
+                        <div class="form-action">
+                            <button class="action-reset" type="reset">Cancelar</button>
+                            <button class="action-submit" type="submit">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

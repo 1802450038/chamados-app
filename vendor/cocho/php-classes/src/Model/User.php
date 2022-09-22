@@ -146,6 +146,19 @@ class User extends Model
     }
 
     // OK
+    public static  function getUserName($id)
+    {
+        $sql = new Sql();
+        $result = $sql->select("SELECT user_name FROM tb_user WHERE user_id = '$id'");
+
+        if ($result) {
+            return $result[0]["user_name"];
+        } else {
+            return 0;
+        }
+    }
+
+    // OK
     public static function delete($id)
     {
         $sql = new Sql();

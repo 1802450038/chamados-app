@@ -3,8 +3,7 @@
 namespace cocho;
 use cocho\Model\User;
 use cocho\Model\Computer;
-
-
+use cocho\Model\Os;
 
 $app->get('/admin/computers', function () {
 
@@ -24,6 +23,7 @@ $app->get('/admin/computers', function () {
 
 $app->get('/admin/computer/delete:id', function ($id) {
 	
+	Computer::delete($id);
 
 	header("location: /admin/computers");
 	exit;
@@ -54,6 +54,50 @@ $app->get('/admin/computer/update:id', function ($id) {
 	));
 });
 
+$app->get('/admin/computer/profile:id', function ($id) {
+
+	// User::verifyLogin();
+
+	$page = new PageAdmin();
+
+	$computer = new Computer;
+
+	$computer = $computer->get($id);
+
+	$os = Os::getByComputerId($id);
+
+	$computer["userRegister"] = $userRegister = User::getUserName($computer["user_register_id"]);
+
+	$page->setTpl("computer-profile", array(
+		"computer"=>$computer,
+		"os"=>$os
+	));
+});
+
+
+
+$app->get('/admin/computer/barcode', function () {
+
+	$page = new PageAdmin();
+
+	$page->setTpl("computer-barcode", array(
+		
+	));
+});
+
+
+$app->post('/admin/computer/barcode', function () {
+
+
+	
+	$id = Computer::getIdByPatrimony($_POST['computer_patrimony'])["computer_id"];
+	
+
+	
+	header("location: /admin/computer/profile$id");
+	exit;
+});
+
 
 $app->post('/admin/computer/create', function () {
 
@@ -64,6 +108,7 @@ $app->post('/admin/computer/create', function () {
 	$computer->setData($_POST);
 
 	$computer->create();
+
 	
 	header("location: /admin/computers");
 	exit;

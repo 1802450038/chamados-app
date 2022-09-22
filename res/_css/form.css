@@ -371,6 +371,29 @@ input.input-photo {
     font-size: 13pt;
 }
 
+
+
+@media only screen and (max-width: 350px) {
+    .register-box {
+        width: 100%;
+    }
+    .title-box {
+        margin-bottom: 0px;
+        box-shadow: none;
+        box-shadow: none;
+    }
+    
+    .title-box h3{
+        font-size: 16pt;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    .form-group {
+        box-shadow: none;
+        padding-bottom: 10px;
+    }
+}
+
 @media only screen and (min-width: 600px) {
     .register-box {
         width: 400px;

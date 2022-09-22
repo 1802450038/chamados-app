@@ -14,27 +14,30 @@
                 <div class="list-table-body">
                     <table>
                         <thead>
+                            <th>ID</th>
                             <th>Patrimonio</th>
-                            <th>Setor</th>
                             <th>Responsável</th>
-                            <th>Situação</th>
+                            <th>Defeito</th>
+                            <th>Status</th>
                             <th>Data registro</th>
                             <th>Ações</th>
                         </thead>
                         <tbody>
+                            <?php $counter1=-1;  if( isset($os) && ( is_array($os) || $os instanceof Traversable ) && sizeof($os) ) foreach( $os as $key1 => $value1 ){ $counter1++; ?>
                             <tr>
-                                <td>12415</td>
-                                <td>SEMUDE</td>
-                                <td>Gabriel Bellagamba</td>
-                                <td>EM MANUTENÇÃO</td>
-                                <td>07/12/1996</td>
+                                <td><?php echo htmlspecialchars( $value1["os_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["computer_patrimony"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["tec1"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["os_defect"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["os_status"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["os_dt_register"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                 <td>
-                                    <a href="/admin/os-computer/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
-                                    <a href="/admin/os-computer/update" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
-                                    <a href="/admin/os-computer/profile" class="small-action-btn view"><i class="fas fa-eye"></i></a>
+                                    <a href="/admin/os-computer/delete<?php echo htmlspecialchars( $value1["os_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
+                                    <a href="/admin/os-computer/update<?php echo htmlspecialchars( $value1["os_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
+                                    <a href="/admin/os-computer/profile<?php echo htmlspecialchars( $value1["os_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="small-action-btn view"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
-                            
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

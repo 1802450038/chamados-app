@@ -16,6 +16,7 @@
                         <thead>
                             <th>Patrimonio</th>
                             <th>Setor</th>
+                            <th>Estado</th>
                             <th>Data registro</th>
                         </thead>
                         <tbody>
@@ -23,10 +24,12 @@
                             <tr>
                                 <td><?php echo htmlspecialchars( $value1["computer_patrimony"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                 <td><?php echo htmlspecialchars( $value1["computer_sector"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["computer_state"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                 <td><?php echo htmlspecialchars( $value1["computer_dt_register"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                 <td>
                                     <a href="/admin/computer/delete<?php echo htmlspecialchars( $value1["computer_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
                                     <a href="/admin/computer/update<?php echo htmlspecialchars( $value1["computer_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
+                                    <a href="/admin/computer/profile<?php echo htmlspecialchars( $value1["computer_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="small-action-btn view"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
                             <?php } ?>
