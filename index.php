@@ -27,7 +27,7 @@ require_once("admin-calls.php");
 
 $app->get('/', function () {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
@@ -36,11 +36,19 @@ $app->get('/', function () {
 
 $app->get('/admin', function () {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
-	$page->setTpl("index", array());
+	$user_name = $_SESSION[User::SESSION]["user_name"];
+	$user_id = $_SESSION[User::SESSION]["user_id"];
+	$is_admin = $_SESSION[User::SESSION]["user_is_admin"];
+
+	$page->setTpl("index", array(
+		"user_id"=>$user_id,
+		"user_name"=>$user_name,
+		"is_admin"=>$is_admin
+	));
 
 });
 

@@ -84,7 +84,7 @@
             </a>
         </div>
         <div>
-            <a href="admin/computer/barcode">
+            <a href="/admin/computer/barcode">
                 <i class="fas fa-barcode"></i>
             </a>
         </div>

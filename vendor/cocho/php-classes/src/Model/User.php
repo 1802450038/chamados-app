@@ -54,9 +54,7 @@ class User extends Model
         if (
             !isset($_SESSION[User::SESSION])
             ||
-            !$_SESSION[User::SESSION]
-            ||
-            !isset($_SESSION[User::SESSION]["token"])
+            !$_SESSION[User::SESSION]["user_id"]
         ) {
             header("Location:/login");
             exit;
@@ -74,6 +72,19 @@ class User extends Model
 
         $sql = new Sql();
         $result = $sql->select("SELECT * FROM tb_user");
+
+        if ($result) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+    // OK
+    public static function listForTemplate()
+    {
+
+        $sql = new Sql();
+        $result = $sql->select("SELECT user_id, user_name FROM tb_user");
 
         if ($result) {
             return $result;

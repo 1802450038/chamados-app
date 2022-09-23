@@ -39,6 +39,11 @@ table tbody td .small-action-btn {
     color: white !important;
 }
 
+.small-action-btn.confirm {
+    background-color: rgb(70, 247, 34);
+    color: white;
+}
+
 .small-action-btn.update {
     background-color: rgb(247, 244, 34);
     color: white;
@@ -180,4 +185,3 @@ table tbody tr td:hover {
         text-decoration: none;
         box-shadow: var(--box-shadow-1);
     }
-}

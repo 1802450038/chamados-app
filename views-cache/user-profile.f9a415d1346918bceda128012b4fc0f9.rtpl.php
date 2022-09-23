@@ -1,4 +1,4 @@
-<title>Perfil do Usuario</title>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Perfil do Usuario</title>
 <div class="content-body">
     <div class="entity-profile-card">
         <div class="entity-profile-card-middle card-category">
@@ -9,38 +9,38 @@
                 <div class="info-items">
                     <div class="info-box">
                         <h3 class="info-title">Nome</h3>
-                        <h3 class="info-value">{$user.user_name}</h3>
+                        <h3 class="info-value"><?php echo htmlspecialchars( $user["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
                     </div>
                     <div class="info-box">
                         <h3 class="info-title">Email</h3>
-                        <h3 class="info-value">{$user.user_email}</h3>
+                        <h3 class="info-value"><?php echo htmlspecialchars( $user["user_email"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
                     </div>
                     <div class="info-box">
                         <h3 class="info-title">Login</h3>
-                        <h3 class="info-value">{$user.user_login}</h3>
+                        <h3 class="info-value"><?php echo htmlspecialchars( $user["user_login"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
                     </div>
                     <div class="info-box">
                         <h3 class="info-title">Tipo</h3>
-                        <h3 class="info-value">{$user.user_type}</h3>
+                        <h3 class="info-value"><?php echo htmlspecialchars( $user["user_type"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
                     </div>
                     <div class="info-box">
                         <h3 class="info-title">Admin</h3>
                         <h3 class="info-value">
-                            {if="$user.user_is_admin == '1'"}
+                            <?php if( $user["user_is_admin"] == '1' ){ ?>
                             SIM
-                            {else}
+                            <?php }else{ ?>
                             NÃO
-                            {/if}
+                            <?php } ?>
                         </h3>
                     </div>
                     <div class="info-box">
                         <h3 class="info-title">Data de registro</h3>
-                        <h3 class="info-value">{function="date('Y-m-d',strtotime($user.user_dt_register))"}</h3>
+                        <h3 class="info-value"><?php echo date('Y-m-d',strtotime($user["user_dt_register"])); ?></h3>
                     </div>
 
                     <div class="info-box">
                         <h3 class="info-title">Data de atualização</h3>
-                        <h3 class="info-value">{function="date('Y-m-d',strtotime($user.user_dt_last_update))"}</h3>
+                        <h3 class="info-value"><?php echo date('Y-m-d',strtotime($user["user_dt_last_update"])); ?></h3>
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                 <div class="list-category-title">
                     <h3 class="list-title">Atribuições</h3>
                 </div>
-                {if="$calls"}
+                <?php if( $calls ){ ?>
                 <div class="list-category-sub-title">
                     <p class="list-sub-title">lista de chamados do usuario</p>
                 </div>
@@ -71,54 +71,54 @@
                             <th>Ação</th>
                         </thead>
                         <tbody>
-                            {loop="$calls"}
+                            <?php $counter1=-1;  if( isset($calls) && ( is_array($calls) || $calls instanceof Traversable ) && sizeof($calls) ) foreach( $calls as $key1 => $value1 ){ $counter1++; ?>
                             <tr>
-                                <td>{$value.call_id}</td>
-                                <td>{$value.call_sector}</td>
-                                <td>{$value.call_departament}</td>
-                                <td>{$value.call_issue}</td>
+                                <td><?php echo htmlspecialchars( $value1["call_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["call_sector"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["call_departament"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo htmlspecialchars( $value1["call_issue"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
 
-                                {if="$value.call_status == 'CONCLUIDO'"}
+                                <?php if( $value1["call_status"] == 'CONCLUIDO' ){ ?>
                                     <td><div class="small-action-btn confirm">Concluido</div></td>
-                                {else}
-                                    {if="$value.user_name"}
-                                        {if="$value.user_one_id == $user"}
-                                        <td><a href="/admin/call{$value.call_id}/decline"
+                                <?php }else{ ?>
+                                    <?php if( $value1["user_name"] ){ ?>
+                                        <?php if( $value1["user_one_id"] == $user ){ ?>
+                                        <td><a href="/admin/call<?php echo htmlspecialchars( $value1["call_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/decline"
                                                 onclick="return confirm('Deseja realmente cancelar a inscrição?')"
                                                 class="small-action-btn delete">Cancelar</a></td>
-                                        {else}
-                                        <td><button class="small-action-btn view">{$value.user_name} <i class="fas fa-check">
+                                        <?php }else{ ?>
+                                        <td><button class="small-action-btn view"><?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <i class="fas fa-check">
                                                 </i></button></td>
-                                        {/if}
-                                    {else}
-                                    <td><a href="/admin/call{$value.call_id}/accept{$user}"
+                                        <?php } ?>
+                                    <?php }else{ ?>
+                                    <td><a href="/admin/call<?php echo htmlspecialchars( $value1["call_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/accept<?php echo htmlspecialchars( $user, ENT_COMPAT, 'UTF-8', FALSE ); ?>"
                                             onclick="return confirm('Deseja realmente aceitar essa solicitação?')"
                                             class="small-action-btn done">Aceitar</a></td>
-                                    {/if}
-                                {/if}
-                                <td>{function="date('H:m',strtotime($value.call_dt_register))"}</td>
-                                <td>{function="date('d/m/y',strtotime($value.call_dt_register))"}</td>
+                                    <?php } ?>
+                                <?php } ?>
+                                <td><?php echo date('H:m',strtotime($value1["call_dt_register"])); ?></td>
+                                <td><?php echo date('d/m/y',strtotime($value1["call_dt_register"])); ?></td>
 
                                 <td>
-                                    {if="!$value.call_status == 'CONCLUIDO'"}
-                                    <a href="/admin/call{$value.call_id}/done{$user_id}"
+                                    <?php if( !$value1["call_status"] == 'CONCLUIDO' ){ ?>
+                                    <a href="/admin/call<?php echo htmlspecialchars( $value1["call_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/done<?php echo htmlspecialchars( $user_id, ENT_COMPAT, 'UTF-8', FALSE ); ?>"
                                         onclick="return confirm('Deseja realmente finalizar este chamado ?')"
                                         class="small-action-btn confirm"><i class="fas fa-check"></i></a>
                                    
-                                    {/if}
-                                    <a href="/admin/call/view{$value.call_id}" class="small-action-btn view"><i
+                                    <?php } ?>
+                                    <a href="/admin/call/view<?php echo htmlspecialchars( $value1["call_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="small-action-btn view"><i
                                             class="fas fa-eye"></i></a>
                                 </td>
 
                             </tr>
-                            {/loop}
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
-                {else}
+                <?php }else{ ?>
                 <p class="list-message">Nenhum chamado encontrado</p>
-                {/if}
-                {if="$os"}
+                <?php } ?>
+                <?php if( $os ){ ?>
                 <div class="list-category-sub-title">
                     <p class="list-sub-title">lista de ordem de serviço do usuario</p>
                 </div>
@@ -131,27 +131,27 @@
                             <th style="font-weight: bolder;">Ação</th>
                         </thead>
                         <tbody>
-                            {loop="$os"}
+                            <?php $counter1=-1;  if( isset($os) && ( is_array($os) || $os instanceof Traversable ) && sizeof($os) ) foreach( $os as $key1 => $value1 ){ $counter1++; ?>
 
                             <tr>
-                                <td style="font-weight: bolder;">{$value.model.model}</td>
-                                <td style="font-weight: bolder;">{$value.version.version}</td>
-                                <td>{function="date('Y-m-d',strtotime($value.created_at))"}</td>
+                                <td style="font-weight: bolder;"><?php echo htmlspecialchars( $value1["model"]["model"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td style="font-weight: bolder;"><?php echo htmlspecialchars( $value1["version"]["version"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                <td><?php echo date('Y-m-d',strtotime($value1["created_at"])); ?></td>
                                 <td>
-                                    <a href="/admin/board/{$value.id}" class="small-action-btn view"><i
+                                    <a href="/admin/board/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="small-action-btn view"><i
                                             class="fas fa-eye"></i></a>
                                     <div class="large-buttons">
-                                        <a href="/admin/board/{$value.id}" class="action-btn view">Visulizar</a>
+                                        <a href="/admin/board/<?php echo htmlspecialchars( $value1["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="action-btn view">Visulizar</a>
                                     </div>
                                 </td>
                             </tr>
-                            {/loop}
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
-                {else}
+                <?php }else{ ?>
                 <p class="list-message">Nenhuma ordem de serviço encontrada</p>
-                {/if}
+                <?php } ?>
             </div>
         </div>
     </div>

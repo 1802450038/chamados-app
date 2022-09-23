@@ -1,13 +1,15 @@
 <?php
 
 namespace cocho;
+
+use cocho\Model\Call;
 use cocho\Model\User;
 
 
 
 $app->get('/admin/users', function () {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
@@ -19,7 +21,7 @@ $app->get('/admin/users', function () {
 });
 
 $app->get('/admin/user/delete:id', function ($id) {
-	
+
 	User::delete($id);
 
 	header("location: /admin/users");
@@ -28,7 +30,7 @@ $app->get('/admin/user/delete:id', function ($id) {
 
 $app->get('/admin/user/create', function () {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
@@ -37,39 +39,70 @@ $app->get('/admin/user/create', function () {
 
 $app->get('/admin/user/update:id', function ($id) {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
 	$user = User::get($id);
 
 	$page->setTpl("user-update", array(
-		"user"=> $user
+		"user" => $user
 	));
 });
 
 $app->get('/admin/user/profile:id', function ($id) {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
 	$user = User::get($id);
 
-	$chamados = "";
+	$calls = Call::getByUserId($id);
+
+	$user_name = $_SESSION[User::SESSION]["user_name"];
+	$user_id = $_SESSION[User::SESSION]["user_id"];
+	$is_admin = $_SESSION[User::SESSION]["user_is_admin"];
+
+	// foreach ($calls as $index => $call) {
+	// 	if($user_name == $call["tec1"]){
+	// 		$calls[$index]["user_name"] = $call["tec1"];
+	// 	}
+	// 	if($user_name == $call["tec2"]){
+	// 		$calls[$index]["user_name"] = $call["tec2"];
+	// 	}
+	// 	if($user_name == $call["tec3"]){
+	// 		$calls[$index]["user_name"] = $call["tec3"];
+	// 	}
+		
+	// }
+
+		foreach ($calls as $index => $call) {
+		
+			$calls[$index]["user_name"] = $call["tec1"];
+		
+		}
+		
+	
+
+
 	$osComputers = "";
 
 	$page->setTpl("user-profile", array(
-		"user"=>$user,
-		"calls"=>$chamados,
-		"os"=>$osComputers
+		"user_id" => $user_id,
+		"user_name" => $user_name,
+		"is_admin" => $is_admin,
+		"user" => $user,
+		"calls" => $calls,
+		"os" => $osComputers
 	));
 });
 
 
 $app->post('/admin/user/create', function () {
 
-	// User::verifyLogin();
+	User::verifyLogin();
+
 	$user = new User();
 
 	$user->setData($_POST);
@@ -82,7 +115,7 @@ $app->post('/admin/user/create', function () {
 
 $app->post('/admin/user/update:id', function ($id) {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$user = new User();
 
@@ -91,12 +124,7 @@ $app->post('/admin/user/update:id', function ($id) {
 	$user->setData($_POST);
 
 	$user->update();
-	
+
 	header("location: /admin/user/profile$id");
 	exit;
 });
-
-
-
-
-?>

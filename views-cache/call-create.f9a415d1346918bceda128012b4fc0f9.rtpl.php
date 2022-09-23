@@ -1,4 +1,4 @@
-<title>Registrar chamado</title>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Registrar chamado</title>
 <div class="content-body">
     <div class="register-box">
         <div class="title-box">
@@ -11,27 +11,27 @@
                     <label for="user_one_id" class="label-input">1º Tecnico Responsavel</span></label>
                     <select type="text" class="text-input" id="user_one_id" name="user_one_id">
                         <option value="0">Nenhum</option>
-                        {loop="$users"}
-                        <option value="{$value.user_id}">{$value.user_name}</option>
-                        {/loop}
+                        <?php $counter1=-1;  if( isset($users) && ( is_array($users) || $users instanceof Traversable ) && sizeof($users) ) foreach( $users as $key1 => $value1 ){ $counter1++; ?>
+                        <option value="<?php echo htmlspecialchars( $value1["user_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="user_two_id" class="label-input">2º Tecnico Responsavel</span></label>
                     <select type="text" class="text-input" id="user_two_id" name="user_two_id">
                         <option value="0">Nenhum</option>
-                        {loop="$users"}
-                        <option value="{$value.user_id}">{$value.user_name}</option>
-                        {/loop}
+                        <?php $counter1=-1;  if( isset($users) && ( is_array($users) || $users instanceof Traversable ) && sizeof($users) ) foreach( $users as $key1 => $value1 ){ $counter1++; ?>
+                        <option value="<?php echo htmlspecialchars( $value1["user_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="user_three_id" class="label-input">3º Tecnico Responsavel</span></label>
                     <select type="text" class="text-input" id="user_three_id" name="user_three_id">
                         <option value="0">Nenhum</option>
-                        {loop="$users"}
-                        <option value="{$value.user_id}">{$value.user_name}</option>
-                        {/loop}
+                        <?php $counter1=-1;  if( isset($users) && ( is_array($users) || $users instanceof Traversable ) && sizeof($users) ) foreach( $users as $key1 => $value1 ){ $counter1++; ?>
+                        <option value="<?php echo htmlspecialchars( $value1["user_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="input-group">

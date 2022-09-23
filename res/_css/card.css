@@ -140,11 +140,10 @@
         flex-wrap: wrap;
         justify-content: left !important;
         align-items: center;
-        width: 100%;
+        width: 80%;
     }
     .card-body {
-        flex-grow: 10;
-        width: 30%;
+        width: calc(100% / 3);
     }
 
 }
