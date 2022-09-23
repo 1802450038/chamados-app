@@ -34,8 +34,16 @@
     color: white;
 }
 
-.card-body:hover span i{
+/* .card-body:hover span i{
     color: var(--blue-l-2) !important;
+} */
+
+.card-body:hover .card-ico {
+    background-color: var(--blue-d-1);
+}
+
+.card-buttom:hover {
+    background-color: var(--blue-d-1);
 }
 
 .card-title {

@@ -44,7 +44,7 @@
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
-                <div class="card-ico"><span><i class="fas fa-gears"></i></span></div>
+                <div class="card-ico"><span><i class="fas fa-users"></i></span></div>
                 <div class="card-title">
                     <h3>Usuarios</h3>
                 </div>
@@ -57,7 +57,7 @@
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
-                <div class="card-ico"><span><i class="fas fa-magnifying-glass"></i></span></div>
+                <div class="card-ico"><span><i class="fas fa-barcode"></i></span></div>
                 <div class="card-title">
                     <h3>Buscar Computador</h3>
                 </div>

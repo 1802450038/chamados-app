@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../res/_css/index.css">
     <link rel="stylesheet" href="../../res/_css/response.css">
     <link rel="stylesheet" href="../../res/_css/simple-grid.min.css">
-    <title>{$tipo}</title>
+    <title><?php echo htmlspecialchars( $tipo, ENT_COMPAT, 'UTF-8', FALSE ); ?></title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
             <div class="input-box-header">
                 <div class="input-box-title">
                     <div class="box-title">
-                        {$tipo}
+                        <?php echo htmlspecialchars( $tipo, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
                     <div class="box-sub-title">
                         Chamados-APP
@@ -27,15 +27,15 @@
             <div class="input-box-body">
 
 
-                {if="$sucesso==1"}
+                <?php if( $sucesso==1 ){ ?>
                 <p class="message success">
-                    {$resposta}
+                    <?php echo htmlspecialchars( $resposta, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </p>
-                {else}
+                <?php }else{ ?>
                 <p class="message error">
-                    {$resposta}
+                    <?php echo htmlspecialchars( $resposta, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </p>
-                {/if}
+                <?php } ?>
                 <div class="input-box-action">
                     <a href="#" class="back" onclick="history.go(-1)">Voltar</a>
 

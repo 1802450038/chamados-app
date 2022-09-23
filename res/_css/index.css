@@ -9,38 +9,38 @@ body {
     /* green  #22bdb7 */
     /* grey  #374d58 */
 
-    --white-r: #fcfcfc;
-    --white: #f5fffe;
-    --white-b-s: #f7fffede;
-    --white-b: rgb(228, 255, 251);
-    --white-g-l: #82b3b5;
-    --white-g-l-2: #658f8d;
-    --white-g: #2a3c3d;
-    --blue-l-3: #00ffc8;
-    --blue-l-2: #009eba;
-    --blue-l-1: #22a6bd;
-    --blue: #374d58;
+    --white-r: #ffffff;
+    --white: #f5f7ff;
+    --white-b-s: #f7f9ffde;
+    --white-b: #e4f2ff;
+    --white-g-l: #829ab5;
+    --white-g-l-2: #657b8f;
+    --white-g: #2a2c3d;
+    --blue-l-3: #00a2ff;
+    --blue-l-2: #0076ba;
+    --blue-l-1: #2253bd;
+    --blue: #2836a6;
 
-    --blue-d-1: #002a3b;
-    --blue-d-2: #000f21;
+    --blue-d-1: #00093b;
+    --blue-d-2: #000321;
     --blue-d-3: #000714;
     --box-shadow-1: 0px 0px 6px 0px rgba(206, 206, 206, 0.219);
-    --box-shadow-2: 0px 0px 20px 0px rgba(122, 122, 122, 0.123);
-    --box-shadow-3: 0px 0px 10px 0px rgba(122, 122, 122, 0.192);
+    --box-shadow-2: 0px 0px 10px 0px rgba(156, 156, 156, 0.123);
+    --box-shadow-3: 0px 0px 5px 0px rgba(122, 122, 122, 0.192);
 }
 
 .header {
     display: flex;
     flex-direction: row;
     height: 15vh;
-    border-bottom: 1px solid var(--blue-d-1);
+    border-bottom: 1px solid var(--white-r);
     padding: 0 !important;
     background-color: white;
 }
 
 .logo {
     width: 40%;
-    background-color: var(--white-g-lb);
+    background-color: var(--white-r);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,9 +62,13 @@ body {
 }
 
 .logo a img {
-    height: 200px;
+    height: 12vh;
     width: auto;
     position: relative;
+}
+
+.logo-mobile {
+    display: none;
 }
 
 .title {
@@ -102,9 +106,11 @@ body {
     .logo img {
         width: 180px;
     }
+
     .logo {
         width: 20%;
     }
+
     .title {
         width: 80%;
     }
@@ -114,9 +120,11 @@ body {
     .logo img {
         width: 180px;
     }
+
     .logo {
         width: 20%;
     }
+
     .title {
         width: 80%;
     }
@@ -127,62 +135,10 @@ body {
 }
 
 @media (max-width: 1200px) {
-   .hide-on-med-down {
-    display: none;
-   }
+    .hide-on-med-down {
+        display: none;
+    }
 
-}
-
-
-
-#nav-icon4 {
-}
-
-#nav-icon4 span:nth-child(1) {
-  top: 0px;
-  -webkit-transform-origin: left center;
-  -moz-transform-origin: left center;
-  -o-transform-origin: left center;
-  transform-origin: left center;
-}
-
-#nav-icon4 span:nth-child(2) {
-  top: 18px;
-  -webkit-transform-origin: left center;
-  -moz-transform-origin: left center;
-  -o-transform-origin: left center;
-  transform-origin: left center;
-}
-
-#nav-icon4 span:nth-child(3) {
-  top: 36px;
-  -webkit-transform-origin: left center;
-  -moz-transform-origin: left center;
-  -o-transform-origin: left center;
-  transform-origin: left center;
-}
-
-#nav-icon4.open span:nth-child(1) {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-  top: -3px;
-  left: 8px;
-}
-
-#nav-icon4.open span:nth-child(2) {
-  width: 0%;
-  opacity: 0;
-}
-
-#nav-icon4.open span:nth-child(3) {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  top: 39px;
-  left: 8px;
 }
 
 
@@ -190,14 +146,37 @@ body {
 
 
 @media only screen and (max-width: 350px) {
+    .header {
+        position: relative;
+    }
+
     .logo {
         display: none;
     }
 
+    .logo-mobile {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: calc(100% - 30px);
+        transform: translate(-100%, -50%);
+    }
+
+    .logo-mobile img {
+        height: 9vh !important;
+
+
+    }
+
     .title {
         width: 100%;
+
     }
-    
+
+    .title h1 {
+        font-size: 22pt;
+    }
+
 }
 
 
@@ -208,16 +187,14 @@ body {
     width: 4px;
     height: 4px;
     border: 1px solid #d5d5d5;
-  }
-  
-  ::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-track {
     border-radius: 0;
     background: #eeeeee;
-  }
-  
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     border-radius: 0;
     background: #b0b0b0;
-  }
-
-
+}

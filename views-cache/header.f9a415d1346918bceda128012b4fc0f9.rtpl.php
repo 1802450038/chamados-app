@@ -45,7 +45,15 @@
 
         <div class="logo">
             <a href="/admin">
-                <!-- <img src="../../res/_assets/_contentimg/logo.png" alt="" srcset="" class="logo-img"> -->
+                <img src="../../res/_assets/_contentimg/logo_mobile.png" alt="" srcset="" class="logo-img">
+                
+            </a>
+        </div>
+
+        <div class="logo-mobile">
+            <a href="/admin">
+                <img src="../../res/_assets/_contentimg/logo_branca.png" alt="" srcset="" class="logo-img">
+                
             </a>
         </div>
         <div class="title">
@@ -76,8 +84,8 @@
             </a>
         </div>
         <div>
-            <a href="/admin/cocho">
-                <i class="fab fa-codepen"></i>
+            <a href="admin/computer/barcode">
+                <i class="fas fa-barcode"></i>
             </a>
         </div>
     </div>

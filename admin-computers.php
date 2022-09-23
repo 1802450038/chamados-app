@@ -3,6 +3,7 @@
 namespace cocho;
 use cocho\Model\User;
 use cocho\Model\Computer;
+use cocho\Model\Message;
 use cocho\Model\Os;
 
 $app->get('/admin/computers', function () {
@@ -88,14 +89,14 @@ $app->get('/admin/computer/barcode', function () {
 
 $app->post('/admin/computer/barcode', function () {
 
-
-	
-	$id = Computer::getIdByPatrimony($_POST['computer_patrimony'])["computer_id"];
-	
-
-	
-	header("location: /admin/computer/profile$id");
-	exit;
+	$id = Computer::getIdByPatrimony($_POST['computer_patrimony']);
+	if($id != "0"){
+		$id = $id["computer_id"];
+		header("location: /admin/computer/profile$id");
+		exit;
+	} else {
+		Message::throwMessage("404",0,"Computador não encontrado !");
+	}
 });
 
 
