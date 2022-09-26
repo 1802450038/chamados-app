@@ -1,4 +1,4 @@
-<title>Registrar OS</title>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><title>Registrar OS</title>
 <div class="content-body">
     <div class="register-box">
         <div class="title-box">
@@ -10,33 +10,33 @@
                 <div class="input-group">
                     <label for="user_technical_one_id" class="label-input">1º Tecnico Responsavel <span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_technical_one_id" name="user_technical_one_id">
-                        <option value="{$user_id}">{$user_name}</option>
+                        <option value="<?php echo htmlspecialchars( $user_id, ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $user_name, ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="user_technical_two_id" class="label-input">2º Tecnico Responsavel <span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_technical_two_id" name="user_technical_two_id">
                         <option value="0">Nenhum</option>
-                        {loop="$tecs"}
-                        <option value="{$value.user_id}">{$value.user_name}</option>
-                        {/loop}
+                        <?php $counter1=-1;  if( isset($tecs) && ( is_array($tecs) || $tecs instanceof Traversable ) && sizeof($tecs) ) foreach( $tecs as $key1 => $value1 ){ $counter1++; ?>
+                        <option value="<?php echo htmlspecialchars( $value1["user_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="user_technical_three_id" class="label-input">3º Tecnico Responsavel <span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_technical_three_id" name="user_technical_three_id">
                         <option value="0">Nenhum</option>
-                        {loop="$tecs"}
-                        <option value="{$value.user_id}">{$value.user_name}</option>
-                        {/loop}
+                        <?php $counter1=-1;  if( isset($tecs) && ( is_array($tecs) || $tecs instanceof Traversable ) && sizeof($tecs) ) foreach( $tecs as $key1 => $value1 ){ $counter1++; ?>
+                        <option value="<?php echo htmlspecialchars( $value1["user_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="computer_id" class="label-input">Computador <span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="computer_id" name="computer_id">
-                        {loop="$computers"}
-                        <option value="{$value.computer_id}">{$value.computer_patrimony} - {$value.computer_dt_register}</option>
-                        {/loop}
+                        <?php $counter1=-1;  if( isset($computers) && ( is_array($computers) || $computers instanceof Traversable ) && sizeof($computers) ) foreach( $computers as $key1 => $value1 ){ $counter1++; ?>
+                        <option value="<?php echo htmlspecialchars( $value1["computer_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["computer_patrimony"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $value1["computer_dt_register"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="input-group">

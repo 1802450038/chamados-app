@@ -3,6 +3,7 @@
 namespace cocho;
 
 use cocho\Model\Call;
+use cocho\Model\Os;
 use cocho\Model\User;
 
 
@@ -60,33 +61,18 @@ $app->get('/admin/user/profile:id', function ($id) {
 
 	$calls = Call::getByUserId($id);
 
+	$oss = Os::getByUserId($id);
+
 	$user_name = $_SESSION[User::SESSION]["user_name"];
 	$user_id = $_SESSION[User::SESSION]["user_id"];
 	$is_admin = $_SESSION[User::SESSION]["user_is_admin"];
 
-	// foreach ($calls as $index => $call) {
-	// 	if($user_name == $call["tec1"]){
-	// 		$calls[$index]["user_name"] = $call["tec1"];
-	// 	}
-	// 	if($user_name == $call["tec2"]){
-	// 		$calls[$index]["user_name"] = $call["tec2"];
-	// 	}
-	// 	if($user_name == $call["tec3"]){
-	// 		$calls[$index]["user_name"] = $call["tec3"];
-	// 	}
-		
-	// }
-
 		foreach ($calls as $index => $call) {
-		
 			$calls[$index]["user_name"] = $call["tec1"];
-		
 		}
-		
-	
-
-
-	$osComputers = "";
+		foreach ($oss as $index => $os) {
+			$oss[$index]["user_name"] = $os["tec1"];
+		}
 
 	$page->setTpl("user-profile", array(
 		"user_id" => $user_id,
@@ -94,8 +80,19 @@ $app->get('/admin/user/profile:id', function ($id) {
 		"is_admin" => $is_admin,
 		"user" => $user,
 		"calls" => $calls,
-		"os" => $osComputers
+		"os" => $oss
 	));
+});
+
+
+$app->get('/admin/user/call:idcall/decline:iduser', function ($id_call, $id_user) {
+
+	User::verifyLogin();	
+
+	Call::unsubscribe($id_call);
+
+	header("location: /admin/user/profile$id_user");
+	exit;
 });
 
 

@@ -79,35 +79,46 @@
                                 <td>{$value.call_issue}</td>
 
                                 {if="$value.call_status == 'CONCLUIDO'"}
-                                    <td><div class="small-action-btn confirm">Concluido</div></td>
+                                <td>
+                                    <div class="small-action-btn confirm">Concluido</div>
+                                </td>
                                 {else}
                                     {if="$value.user_name"}
-                                        {if="$value.user_one_id == $user"}
-                                        <td><a href="/admin/call{$value.call_id}/decline"
+
+                                        {if="$value.user_one_id == $user_id"}
+                                        <td><a href="/admin/user/call{$value.call_id}/decline{$user_id}"
                                                 onclick="return confirm('Deseja realmente cancelar a inscrição?')"
                                                 class="small-action-btn delete">Cancelar</a></td>
                                         {else}
                                         <td><button class="small-action-btn view">{$value.user_name} <i class="fas fa-check">
                                                 </i></button></td>
                                         {/if}
+
                                     {else}
                                     <td><a href="/admin/call{$value.call_id}/accept{$user}"
                                             onclick="return confirm('Deseja realmente aceitar essa solicitação?')"
                                             class="small-action-btn done">Aceitar</a></td>
                                     {/if}
+
                                 {/if}
+
                                 <td>{function="date('H:m',strtotime($value.call_dt_register))"}</td>
                                 <td>{function="date('d/m/y',strtotime($value.call_dt_register))"}</td>
 
                                 <td>
                                     {if="!$value.call_status == 'CONCLUIDO'"}
-                                    <a href="/admin/call{$value.call_id}/done{$user_id}"
-                                        onclick="return confirm('Deseja realmente finalizar este chamado ?')"
-                                        class="small-action-btn confirm"><i class="fas fa-check"></i></a>
-                                   
+                                        {if="$value.user_one_id == $user_id"}
+                                        <a href="/admin/call{$value.call_id}/done{$user_id}"
+                                            onclick="return confirm('Deseja realmente finalizar este chamado ?')"
+                                            class="small-action-btn confirm"><i class="fas fa-check"></i></a>
+                                        {/if}
                                     {/if}
                                     <a href="/admin/call/view{$value.call_id}" class="small-action-btn view"><i
                                             class="fas fa-eye"></i></a>
+                                    {if="$value.user_one_id == $user_id"}
+                                    <a href="/admin/call/update{$value.call_id}" class="small-action-btn update"><i
+                                            class="fas fa-pen-to-square"></i></a>
+                                    {/if}
                                 </td>
 
                             </tr>
@@ -125,24 +136,28 @@
                 <div class="list-table-body">
                     <table>
                         <thead>
-                            <th style="font-weight: bolder;">Identificador</th>
-                            <th style="font-weight: bolder;">Versão do software</th>
-                            <th style="font-weight: bolder;">Criado em</th>
-                            <th style="font-weight: bolder;">Ação</th>
+                            <th style="font-weight: bolder;">ID</th>
+                            <th >Patrimonio</th>
+                            <th >Responsavel</th>
+                            <th >Defeito</th>
+                            <th >Status</th>
+                            <th >Data registro</th>
+                            <th >Ações</th>
+
                         </thead>
                         <tbody>
                             {loop="$os"}
 
                             <tr>
-                                <td style="font-weight: bolder;">{$value.model.model}</td>
-                                <td style="font-weight: bolder;">{$value.version.version}</td>
-                                <td>{function="date('Y-m-d',strtotime($value.created_at))"}</td>
+                                <td style="font-weight: bolder;">{$value.os_id}</td>
+                                <td >{$value.computer_patrimony}</td>
+                                <td >{$value.user_name}</td>
+                                <td >{$value.os_defect}</td>
+                                <td >{$value.os_status}</td>
+                                <td>{function="date('Y-m-d',strtotime($value.os_dt_register))"}</td>
                                 <td>
-                                    <a href="/admin/board/{$value.id}" class="small-action-btn view"><i
+                                    <a href="/admin/os-computer/profile{$value.os_id}" class="small-action-btn view"><i
                                             class="fas fa-eye"></i></a>
-                                    <div class="large-buttons">
-                                        <a href="/admin/board/{$value.id}" class="action-btn view">Visulizar</a>
-                                    </div>
                                 </td>
                             </tr>
                             {/loop}

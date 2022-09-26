@@ -92,6 +92,35 @@ class Os extends Model
         }
     }
 
+
+    public static  function getByUserId($id)
+    {
+        $sql = new Sql();
+        $result = $sql->select("SELECT 
+        o.*,
+        u.user_name AS user,
+        t1.user_name AS tec1,
+        t2.user_name AS tec2,
+        t3.user_name AS tec3,
+        c.computer_patrimony
+        FROM tb_os_computer o
+        LEFT JOIN tb_user u ON u.user_id = o.user_id
+        LEFT JOIN tb_user t1 ON t1.user_id = o.user_technical_one_id
+        LEFT JOIN tb_user t2 ON t2.user_id = o.user_technical_two_id
+        LEFT JOIN tb_user t3 ON t2.user_id = o.user_technical_three_id
+        LEFT JOIN tb_computer c ON c.computer_id = o.computer_id
+        WHERE o.user_technical_one_id = {$id}
+        OR o.user_technical_two_id = {$id}
+        OR o.user_technical_three_id = {$id}
+        ORDER BY os_dt_register DESC");
+
+        if ($result) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
+
     // OK
     public function create()
     {
@@ -199,7 +228,7 @@ class Os extends Model
     {
         $sql = new Sql();
 
-        $sql->query("DELETE FROM tb_computer  WHERE computer_id='{$id}'");
+        $sql->query("DELETE FROM tb_os_computer  WHERE os_id='{$id}'");
     }
 
 }

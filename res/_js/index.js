@@ -1,28 +1,11 @@
-function toggleMenu() {
-    let open = document.getElementById("open");
-    let close = document.getElementById("close");
-    let menu = document.getElementById("menu-body")
-    if (menuState == false) {
-        open.classList.remove("hide")
-        close.classList.add("hide")
-        menu.classList.remove("menu-open")
-        menuState = true;
-    } else {
-        close.classList.remove("hide")
-        open.classList.add("hide")
-        menu.classList.add("menu-open")
-        menuState = false;
-    }
-}
 
-
-function toggleCollapse(elem){
+function toggleCollapse(elem) {
     // console.log(elem);
 
     let contentBoxcollapse = document.getElementById("collapse");
     let open = document.getElementById("open-collapse");
     let close = document.getElementById("close-collapse");
-    
+
 
     console.log(contentBoxcollapse);
 
@@ -59,18 +42,18 @@ function ValidaCPF() {
     }
 } -
 
-jQuery("input.cpf")
-    .mask("999.999.999-99")
-    .focusout(function(event) {
-        var target, cpf, element;
-        target = (event.currentTarget) ? event.currentTarget : event.srcElement;
-        cpf = target.value.replace(/\D/g, '');
-        element = $(target);
-        element.unmask();
+    jQuery("input.cpf")
+        .mask("999.999.999-99")
+        .focusout(function (event) {
+            var target, cpf, element;
+            target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+            cpf = target.value.replace(/\D/g, '');
+            element = $(target);
+            element.unmask();
 
-        element.mask("999.999.999-99");
+            element.mask("999.999.999-99");
 
-    });
+        });
 
 $("input.renda").maskMoney({
     prefix: 'R$ ',
@@ -84,7 +67,7 @@ $("input.renda").maskMoney({
 
 jQuery("input.telefone")
     .mask("(99) 9999-9999?9")
-    .focusout(function(event) {
+    .focusout(function (event) {
         var target, phone, element;
         target = (event.currentTarget) ? event.currentTarget : event.srcElement;
         phone = target.value.replace(/\D/g, '');
@@ -99,7 +82,7 @@ jQuery("input.telefone")
 
 jQuery("input.residencial")
     .mask("(99) 9999-9999")
-    .focusout(function(event) {
+    .focusout(function (event) {
         var target, phone, element;
         target = (event.currentTarget) ? event.currentTarget : event.srcElement;
         phone = target.value.replace(/\D/g, '');
@@ -133,3 +116,10 @@ function toggleCheck(receviedElement) {
 
     });
 }
+
+$(document).ready(function(){
+    id = document.getElementById("hide-info").innerText;
+    link = document.getElementById("user-link");
+    link.href = id
+});
+

@@ -18,29 +18,6 @@
 </head>
 
 <body>
-    <div class="nav hidden">
-        <div class="nav-trigger">
-            <div class="close">
-                <div id="nav-icon4">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-            </div>
-        </div>
-        <div class="nav-body">
-            <a href="#"><div class="nav-item">Animais</div></a>
-            <a href="#"><div class="nav-item">Espécies</div></a>
-            <a href="#"><div class="nav-item">Usuarios</div></a>
-            <a href="#"><div class="nav-item">Software</div></a>
-            <a href="#"><div class="nav-item">Modelos de placas</div></a>
-            <a href="#"><div class="nav-item">Placas</div></a>
-            <a href="#"><div class="nav-item">Motores</div></a>
-            <a href="#"><div class="nav-item">Modelos de cocho</div></a>
-            <a href="#"><div class="nav-item">Cochos</div></a>
-        </div>
-    </div>
-
     <div class="header">
 
         <div class="logo">
@@ -88,4 +65,16 @@
                 <i class="fas fa-barcode"></i>
             </a>
         </div>
+        <div>
+            <a href="" id="user-link">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
     </div>
+
+
+    <div class="hide-info" id="hide-info">
+        <?php echo getUserId(); ?>  
+    </div>
+
+

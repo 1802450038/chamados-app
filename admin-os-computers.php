@@ -16,7 +16,6 @@ $app->get('/admin/os-computers', function () {
 
 	$os = Os::listAll();
 
-
 	$page->setTpl("os-computers", array(
 		"os"=> $os
 	));
@@ -25,8 +24,27 @@ $app->get('/admin/os-computers', function () {
 $app->get('/admin/os-computer/delete:id', function ($id) {
 	
 
+	Os::delete($id);
+
 	header("location: /admin/os-computers");
 	exit;
+});
+
+$app->get('/admin/os-computer/create:id', function () {
+
+	$page = new PageAdmin();
+
+	$tecs = User::listAll();
+	$computers = Computer::listAll();
+	$user_id = $_SESSION[User::SESSION]["user_id"];
+	$user_name = $_SESSION[User::SESSION]["user_name"];
+
+	$page->setTpl("os-computer-create", array(
+		"computers" =>$computers,
+		"tecs" => $tecs,
+		"user_id" => $user_id,
+		"user_name" => $user_name
+	));
 });
 
 $app->get('/admin/os-computer/create', function () {
@@ -35,26 +53,14 @@ $app->get('/admin/os-computer/create', function () {
 
 	$tecs = User::listAll();
 	$computers = Computer::listAll();
+	$user_id = $_SESSION[User::SESSION]["user_id"];
+	$user_name = $_SESSION[User::SESSION]["user_name"];
 
 	$page->setTpl("os-computer-create", array(
 		"computers" =>$computers,
-		"tecs" => $tecs
-	));
-});
-
-$app->get('/admin/os-computer/create:id', function ($computer_id) {
-
-	$page = new PageAdmin();
-
-	$tecs = User::listAll();
-
-	$computer = Computer::get($computer_id);
-
-	var_dump($computer);
-
-	$page->setTpl("os-computer-create-id", array(
-		"computer" =>$computer,
-		"tecs" => $tecs
+		"tecs" => $tecs,
+		"user_id" => $user_id,
+		"user_name" => $user_name
 	));
 });
 

@@ -105,30 +105,20 @@ class Call extends Model
         );
     }
 
-
-
     // 
     public function update()
     {
         $sql = new Sql();
 
         $sql->query(
-            "UPDATE tb_computer SET
-            computer_sector = '{$this->getcomputer_sector()}',
-            computer_patrimony = '{$this->getcomputer_patrimony()}',
-            computer_ip = '{$this->getcomputer_ip()}',
-            computer_user_name = '{$this->getcomputer_user_name()}',
-            computer_user_registration = '{$this->getcomputer_user_registration()}',
-            computer_brand = '{$this->getcomputer_brand()}',
-            computer_soc = '{$this->getcomputer_soc()}',
-            computer_mem = '{$this->getcomputer_mem()}',
-            computer_video_card = '{$this->getcomputer_video_card()}',
-            computer_network_card = '{$this->getcomputer_network_card()}',
-            computer_hd = '{$this->getcomputer_hd()}',
-            computer_hd_type = '{$this->getcomputer_hd_type()}',
-            computer_state = '{$this->getcomputer_state()}',
-            computer_note = '{$this->getcomputer_note()}'
-            WHERE computer_id= '{$this->getcomputer_id()}'"
+            "UPDATE tb_call SET
+            user_two_id = '{$this->getuser_two_id()}',
+            user_three_id = '{$this->getuser_three_id()}',
+            call_issue = '{$this->getcall_issue()}',
+            call_sector = '{$this->getcall_sector()}',
+            call_departament = '{$this->getcall_departament()}',
+            call_caller = '{$this->getcall_caller()}'
+            WHERE call_id= '{$this->getcall_id()}'"
         );
     }
 

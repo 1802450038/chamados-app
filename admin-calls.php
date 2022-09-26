@@ -108,18 +108,21 @@ $app->get('/admin/call:idcall/decline', function ($id_call) {
 });
 
 
-// $app->get('/admin/call/update:id', function ($id) {
+$app->get('/admin/call/update:id', function ($id) {
 
-// 	User::verifyLogin();
+	User::verifyLogin();
 
-// 	$page = new PageAdmin();
+	$page = new PageAdmin();
 
-// 	$users = User::listAll();
+	$users = User::listAll();
 
-// 	$page->setTpl("call-update", array(
+	$call = Call::get($id);
 
-// 	));
-// });
+	$page->setTpl("call-update", array(
+		"users"=>$users,
+		"call"=> $call
+	));
+});
 
 
 $app->post('/admin/call/create', function () {
@@ -134,15 +137,24 @@ $app->post('/admin/call/create', function () {
 	exit;
 });
 
-// $app->post('/admin/call/update', function () {
+$app->post('/admin/call/update:id', function ($id) {
 
-// 	User::verifyLogin();
+	User::verifyLogin();
 
-// 	User::update($_POST);
+	$call = new Call();
+
+	$call->setData($call->get($id));
+
+	$call->setData($_POST);
+
+	$user_id = $call->getuser_one_id();
 	
-// 	header("location: /admin/calls");
-// 	exit;
-// });
+	$call->update();
+
+	
+	header("location: /admin/user/profile$user_id");
+	exit;
+});
 
 
 

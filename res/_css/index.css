@@ -198,3 +198,7 @@ body {
     border-radius: 0;
     background: #b0b0b0;
 }
+
+.hide-info {
+    display: none;
+}
