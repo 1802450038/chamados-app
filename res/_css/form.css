@@ -138,6 +138,18 @@
     font-size: 13pt;
 }
 
+.input-group i.togglePass {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    transform: translate(0%, -32px);
+    align-self: flex-end;
+    margin-right: 10px;
+    color: var(--white-g-l);
+}
+
 .input-group input:focus {
     background-color: white;
 }
@@ -146,6 +158,8 @@
     margin-bottom: 5px;
     color: var(--white-g-l);
 }
+
+
 
 .mandatory{
     color: red;

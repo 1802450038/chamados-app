@@ -128,6 +128,25 @@ class User extends Model
         }
     }
 
+    public function updateUserPassword()
+    {
+        if (strlen($this->getuser_password()) >= 8) {
+
+            if ($this->getuser_password() == $this->getuser_verify_password()) {
+                $this->setuser_password(User::getCriptoPassword($this->getuser_password()));
+                $sql = new Sql();
+                $sql->query("UPDATE tb_user SET 
+                user_password='{$this->getuser_password()}'
+                WHERE user_id='{$this->getuser_id()}'");
+            } else {
+                Message::throwMessage("Erro", "0", "As senhas devem ser iguais");
+
+            }
+        } else {
+            Message::throwMessage("Erro", "0", "A senha deve possuir no minimo 8 caracteres");
+        }
+    }
+
     // OK
     public function update()
     {
@@ -176,6 +195,8 @@ class User extends Model
 
         $sql->query("DELETE FROM tb_user  WHERE user_id='{$id}'");
     }
+
+
 
     public static function getCriptoPassword($password)
     {

@@ -123,3 +123,25 @@ $(document).ready(function(){
     link.href = id
 });
 
+
+function togglePasswordView() {
+    passwordField = document.getElementById("user_password");
+    passwordVerify = document.getElementById("user_verify_password");
+    toggleEye = document.getElementById("toggle-eye");
+    if(passwordField.type == "password"){
+        toggleEye.classList.remove("fa-eye-slash");
+        toggleEye.classList.add("fa-eye");
+        passwordField.type = "text";
+        if(passwordVerify){
+            passwordVerify.type = "text";
+        }
+    } else {
+        toggleEye.classList.add("fa-eye-slash");
+        toggleEye.classList.remove("fa-eye");
+        passwordField.type = "password";
+        if(passwordVerify){
+            passwordVerify.type = "password";
+        }
+    }
+    // console.log(passwordField.type);
+}

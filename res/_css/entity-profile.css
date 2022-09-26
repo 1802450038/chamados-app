@@ -81,7 +81,7 @@
 
 .info-box .info-title {
     color: var(--blue-l-2);
-    font-size: 14pt;
+    font-size: 18pt;
     margin: 0;
     padding: 0;
     text-transform: uppercase;
@@ -91,7 +91,30 @@
     color: var(--blue);
     margin: 0;
     padding: 0;
-    font-size: 12pt;
+    font-size: 16pt;
+}
+
+.info-box .info-link {
+    background-color: var(--blue);
+    width: fit-content;
+    padding: 5px 20px;
+    border-radius: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+.info-box .info-link:hover {
+    background-color: var(--blue-d-1);
+    width: fit-content;
+    padding: 5px 20px;
+    border-radius: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .new-element {

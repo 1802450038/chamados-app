@@ -17,6 +17,7 @@ class Os extends Model
         $sql = new Sql();
         $result = $sql->select("SELECT 
         o.os_id,
+        o.user_technical_one_id,
         o.os_defect,
         o.os_status,
         o.os_dt_register,
@@ -188,21 +189,14 @@ class Os extends Model
         $sql = new Sql();
 
         $sql->query(
-            "UPDATE tb_computer SET
-            computer_sector = '{$this->getcomputer_sector()}',
-            computer_patrimony = '{$this->getcomputer_patrimony()}',
-            computer_ip = '{$this->getcomputer_ip()}',
-            computer_user_name = '{$this->getcomputer_user_name()}',
-            computer_user_registration = '{$this->getcomputer_user_registration()}',
-            computer_soc = '{$this->getcomputer_soc()}',
-            computer_mem = '{$this->getcomputer_mem()}',
-            computer_video_card = '{$this->getcomputer_video_card()}',
-            computer_network_card = '{$this->getcomputer_network_card()}',
-            computer_hd = '{$this->getcomputer_hd()}',
-            computer_hd_type = '{$this->getcomputer_hd_type()}',
-            computer_state = '{$this->getcomputer_state()}',
-            computer_note = '{$this->getcomputer_note()}'
-            WHERE computer_id= '{$this->getcomputer_id()}'");   
+            "UPDATE tb_os SET
+            user_technical_two_id = '{$this->getuser_technical_two_id()}',
+            user_technical_three_id = '{$this->getuser_technical_three_id()}',
+            os_defect = '{$this->getos_defect()}',
+            os_fix = '{$this->getos_fix()}',
+            os_note = '{$this->getos_note()}',
+            os_status = '{$this->getos_status()}'
+            WHERE os_id= '{$this->getos_id()}'");   
     }
     // 
     public function updateStatus()

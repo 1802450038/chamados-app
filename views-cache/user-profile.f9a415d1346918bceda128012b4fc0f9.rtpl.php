@@ -42,6 +42,10 @@
                         <h3 class="info-title">Data de atualização</h3>
                         <h3 class="info-value"><?php echo date('Y-m-d',strtotime($user["user_dt_last_update"])); ?></h3>
                     </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Alterar Senha</h3>
+                        <a class="info-link" href="/admin/user/password-change<?php echo htmlspecialchars( $user["user_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">Atualizar</a>
+                    </div>
                 </div>
 
             </div>

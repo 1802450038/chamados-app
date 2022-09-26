@@ -32,7 +32,9 @@
                                 <td><?php echo htmlspecialchars( $value1["os_status"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                 <td><?php echo htmlspecialchars( $value1["os_dt_register"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                 <td>
+                                    <?php if( $value1["user_technical_one_id"] == $user_id ){ ?>
                                     <a href="/admin/os-computer/delete<?php echo htmlspecialchars( $value1["os_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
+                                    <?php } ?>
                                     <a href="/admin/os-computer/update<?php echo htmlspecialchars( $value1["os_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
                                     <a href="/admin/os-computer/profile<?php echo htmlspecialchars( $value1["os_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="small-action-btn view"><i class="fas fa-eye"></i></a>
                                 </td>

@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../res/_css/index.css">
+    <link rel="stylesheet" href="../../res/_css/form.css">
     <link rel="stylesheet" href="../../res/_css/response.css">
     <link rel="stylesheet" href="../../res/_css/simple-grid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Login Chamados-APP</title>
 </head>
 
@@ -33,6 +35,7 @@
                     <div class="box-input-group">
                         <label for="user_password" class="label-input">Senha</label>
                         <input type="password" class="text-input" id="user_password" name="user_password">
+                        <i id="toggle-eye" class="fas fa-eye-slash togglePass" onclick="togglePasswordView()"></i>
                     </div>
                     <div class="input-box-action">
                         <button class="done">Login</button>
@@ -43,5 +46,7 @@
         </div>
     </div>
 </body>
+<script src="../../res/_js/jquery-3.6.0.min.js"></script>
+<script src="../../res/_js/index.js"></script>
 
 </html>

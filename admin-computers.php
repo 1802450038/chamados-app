@@ -8,13 +8,11 @@ use cocho\Model\Os;
 
 $app->get('/admin/computers', function () {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
 	$computers = Computer::listAll();
-
-	// $users = User::listAll();
 
 	$page->setTpl("computers", array(
 		"computers"=>$computers
@@ -32,7 +30,7 @@ $app->get('/admin/computer/delete:id', function ($id) {
 
 $app->get('/admin/computer/create', function () {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
@@ -41,14 +39,13 @@ $app->get('/admin/computer/create', function () {
 
 $app->get('/admin/computer/update:id', function ($id) {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
 	$computer = new Computer;
 
 	$computer = $computer->get($id);
-	// $users = User::listAll();
 
 	$page->setTpl("computer-update", array(
 		"computer"=>$computer
@@ -57,7 +54,7 @@ $app->get('/admin/computer/update:id', function ($id) {
 
 $app->get('/admin/computer/profile:id', function ($id) {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
@@ -102,7 +99,7 @@ $app->post('/admin/computer/barcode', function () {
 
 $app->post('/admin/computer/create', function () {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$computer = new Computer();
 
@@ -117,7 +114,7 @@ $app->post('/admin/computer/create', function () {
 
 $app->post('/admin/computer/update:id', function ($id) {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$computer=  new Computer();
 

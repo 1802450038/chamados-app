@@ -38,6 +38,20 @@ $app->get('/admin/user/create', function () {
 	$page->setTpl("user-create");
 });
 
+$app->get('/admin/user/password-change:id', function ($id) {
+
+	User::verifyLogin();
+
+	$page = new PageAdmin();
+
+	$user = User::get($id);
+
+	$page->setTpl("user-password-change", array(
+		"user" => $user
+	));
+});
+
+
 $app->get('/admin/user/update:id', function ($id) {
 
 	User::verifyLogin();
@@ -121,6 +135,23 @@ $app->post('/admin/user/update:id', function ($id) {
 	$user->setData($_POST);
 
 	$user->update();
+
+	header("location: /admin/user/profile$id");
+	exit;
+});
+
+
+$app->post('/admin/user/password-change:id', function ($id) {
+
+	User::verifyLogin();
+
+	$user = new User();
+
+	$user->setData(User::get($id));
+
+	$user->setData($_POST);
+
+	$user->updateUserPassword();
 
 	header("location: /admin/user/profile$id");
 	exit;

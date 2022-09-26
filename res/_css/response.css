@@ -96,6 +96,20 @@
     color: var(--white-g-l);
     font-size: 13pt;
 }
+
+
+.box-input-group i.togglePass {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    transform: translate(0%, -32px);
+    align-self: flex-end;
+    margin-right: 10px;
+    color: var(--white-g-l);
+}
+
 .box-input-group input:focus {
     background-color: white;
 }

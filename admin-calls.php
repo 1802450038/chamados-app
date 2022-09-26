@@ -27,6 +27,7 @@ $app->get('/admin/calls', function () {
 
 $app->get('/admin/call/delete:id', function ($id) {
 	
+	Call::delete($id);
 
 	header("location: /admin/calls");
 	exit;

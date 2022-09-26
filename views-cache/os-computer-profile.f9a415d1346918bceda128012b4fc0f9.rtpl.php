@@ -81,6 +81,7 @@
         </div>
 
     </div>
+    <?php if( $os["user_technical_one_id"] == $user_id ){ ?>
     <div class="list-body">
         <div class="list-body-content">
             <div class="list-body-middle">
@@ -92,14 +93,6 @@
                 </div>
                 <div class="content-box" style="box-shadow: none; margin-top:0">
                     <form method="post" action="/admin/os-computer/status<?php echo htmlspecialchars( $os["os_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="form-group" enctype="multipart/form-data" style="padding-top: 0;">
-                        <div class="input-group">
-                            <label for="user_technical_one_id" class="label-input">1º Tecnico Responsavel <span class="mandatory">*</span></label>
-                            <select type="text" class="text-input" id="user_technical_one_id" name="user_technical_one_id">
-                                <?php $counter1=-1;  if( isset($tecs) && ( is_array($tecs) || $tecs instanceof Traversable ) && sizeof($tecs) ) foreach( $tecs as $key1 => $value1 ){ $counter1++; ?>
-                                <option value="<?php echo htmlspecialchars( $value1["user_id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["user_name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
                         <div class="input-group">
                             <label for="user_technical_two_id" class="label-input">2º Tecnico Responsavel <span class="mandatory">*</span></label>
                             <select type="text" class="text-input" id="user_technical_two_id" name="user_technical_two_id">
@@ -166,4 +159,5 @@
             </div>
         </div>
     </div>
+    <?php } ?>
 </div>
