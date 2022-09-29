@@ -25,6 +25,33 @@ $app->get('/admin/calls', function () {
 	));
 });
 
+
+
+$app->get('/admin/get-auto-calls', function () {
+
+	$calls = Call::listAll();
+
+	echo json_encode($calls);
+});
+
+$app->get('/admin/auto-calls', function (){
+
+	User::verifyLogin();
+
+	$page = new PageAdmin();
+
+	$calls = Call::listAll();
+
+	$id_user = $_SESSION[User::SESSION]["user_id"];
+	$is_admin = $_SESSION[User::SESSION]["user_is_admin"];
+
+	$page->setTpl("calls-auto", array(
+		"calls" => $calls,
+		"user" => $id_user,
+		"is_admin" => $is_admin
+	));
+});
+
 $app->get('/admin/call/delete:id', function ($id) {
 	
 	Call::delete($id);

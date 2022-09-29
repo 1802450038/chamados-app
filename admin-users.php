@@ -3,6 +3,7 @@
 namespace cocho;
 
 use cocho\Model\Call;
+use cocho\Model\Message;
 use cocho\Model\Os;
 use cocho\Model\User;
 
@@ -156,3 +157,33 @@ $app->post('/admin/user/password-change:id', function ($id) {
 	header("location: /admin/user/profile$id");
 	exit;
 });
+
+
+$app->post('/forgot-password', function () {
+
+
+	echo "aaaaaaaa";
+
+	
+
+	if($user = User::getByEmail($_POST["user_email"]) == 0){
+		Message::throwMessage("Erro","0","Usuario não encontrado");
+	} else {
+		Message::throwMessage("Sucesso","1","Email enviado com sucesso !");
+	}
+
+	// var_dump($user);
+	// User::verifyLogin();
+
+	// $user = new User();
+
+	// $user->setData(User::get($id));
+
+	// $user->setData($_POST);
+
+	// $user->updateUserPassword();
+
+	// header("location: /admin/user/profile$id");
+	// exit;
+});
+

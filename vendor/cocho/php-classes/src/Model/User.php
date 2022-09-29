@@ -8,7 +8,6 @@ use cocho\DB\Sql;
 
 class User extends Model
 {
-
     const SESSION = "User";
     const SECRET = "cavalinhopocoto";
     const SECRET_IV = "pedepano";
@@ -16,7 +15,7 @@ class User extends Model
     const ERROR_REGISTER = "ErrorRegister";
     const SUCCESS = "Sucesss";
 
-
+    // OK
     public static function login($login, $password)
     {
 
@@ -41,6 +40,7 @@ class User extends Model
         }
     }
 
+    // OK
     public function updateUserSession($id)
     {
         if ((int)$id == (int)$_SESSION[User::SESSION]["user_id"]) {
@@ -48,6 +48,7 @@ class User extends Model
         }
     }
 
+    // OK
     public static function verifyLogin()
     {
 
@@ -61,6 +62,7 @@ class User extends Model
         }
     }
 
+    // OK
     public static function logout()
     {
         $_SESSION[User::SESSION] = null;
@@ -79,6 +81,7 @@ class User extends Model
             return 0;
         }
     }
+
     // OK
     public static function listForTemplate()
     {
@@ -92,6 +95,7 @@ class User extends Model
             return 0;
         }
     }
+
     // OK
     public function create()
     {
@@ -128,6 +132,7 @@ class User extends Model
         }
     }
 
+    // OK
     public function updateUserPassword()
     {
         if (strlen($this->getuser_password()) >= 8) {
@@ -140,7 +145,6 @@ class User extends Model
                 WHERE user_id='{$this->getuser_id()}'");
             } else {
                 Message::throwMessage("Erro", "0", "As senhas devem ser iguais");
-
             }
         } else {
             Message::throwMessage("Erro", "0", "A senha deve possuir no minimo 8 caracteres");
@@ -161,12 +165,24 @@ class User extends Model
         WHERE user_id='{$this->getuser_id()}'");
     }
 
-
     // OK
     public static  function get($id)
     {
         $sql = new Sql();
         $result = $sql->select("SELECT * FROM tb_user WHERE user_id = '$id'");
+
+        if ($result) {
+            return $result[0];
+        } else {
+            return 0;
+        }
+    }
+
+    // OK
+    public static  function getByEmail($email)
+    {
+        $sql = new Sql();
+        $result = $sql->select("SELECT * FROM tb_user WHERE user_email = '$email'");
 
         if ($result) {
             return $result[0];
@@ -196,8 +212,7 @@ class User extends Model
         $sql->query("DELETE FROM tb_user  WHERE user_id='{$id}'");
     }
 
-
-
+    // OK
     public static function getCriptoPassword($password)
     {
         $cripto = password_hash($password, PASSWORD_DEFAULT, [
@@ -205,5 +220,10 @@ class User extends Model
         ]);
 
         return $cripto;
+    }
+
+    // OK
+    public static function sendRecoveryEmail(){
+
     }
 }

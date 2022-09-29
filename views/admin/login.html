@@ -40,6 +40,9 @@
                     <div class="input-box-action">
                         <button class="done">Login</button>
                     </div>
+                    <div class="input-box-action">
+                        <a href="forgot-password" class="action">Esqueci a senha</a>
+                    </div>
                 </form>
             </div>
 
