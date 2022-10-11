@@ -1,0 +1,50 @@
+<title>Logs</title>
+
+<div class="content-body">
+    <div class="list-body" style="margin-top: -20px;">
+        <div class="list-body-content">
+            <div class="list-body-top">
+                <div class="list-category-title">
+                    <h3 class="list-title">Logs</h3>
+                </div>
+                <div class="list-category-sub-title">
+                    <p class="list-sub-title">lista de registros</p>
+                </div>
+            </div>
+            <div class="list-body-middle">
+                <div class="list-table-body">
+                    <table>
+                        <thead>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Operação</th>
+                            <th>Entidade</th>
+                            <th>Hora</th>
+                            <th>Data</th>
+                            <th>Ação</th>
+                        </thead>
+                        <tbody>
+                            {loop="$logs"}
+                            <tr>
+                                <td>{$value.log_id}</td>
+                                <td>{$value.user_name}</td>
+                                <td>{$value.log_operation}</td>
+                                <td>{$value.log_entity}</td>
+                                <td>{function="date('H:m',strtotime($value.log_dt_register))"}</td>
+                                <td>{function="date('d/m/y',strtotime($value.log_dt_register))"}</td>
+                                <td>
+                                    <a href="/admin/log/view{$value.log_id}" class="small-action-btn view"><i
+                                            class="fas fa-eye"></i></a>
+                                </td>
+                            </tr>
+                            {/loop}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</html>

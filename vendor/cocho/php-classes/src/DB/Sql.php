@@ -4,9 +4,9 @@ namespace cocho\DB;
 
 class Sql {
 
-	const HOSTNAME = "www.gabrielbellagamba.com";
-	const USERNAME = "gabr6180_tecnico";
-	const PASSWORD = "info020";
+	const HOSTNAME = "localhost";
+	const USERNAME = "root";
+	const PASSWORD = "";
 	const DBNAME = "gabr6180_pref";
 
 	private $conn;

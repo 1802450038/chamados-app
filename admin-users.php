@@ -41,7 +41,7 @@ $app->get('/admin/user/create', function () {
 
 $app->get('/admin/user/password-change:id', function ($id) {
 
-	User::verifyLogin();
+	// User::verifyLogin();
 
 	$page = new PageAdmin();
 

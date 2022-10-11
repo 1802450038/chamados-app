@@ -14,7 +14,7 @@ class Computer extends Model
     {
 
         $sql = new Sql();
-        $result = $sql->select("SELECT * FROM tb_computer ORDER BY computer_dt_register DESC");
+        $result = $sql->select("SELECT * FROM tb_computer WHERE is_active = '1' ORDER BY computer_dt_register DESC");
 
         if ($result) {
             return $result;
@@ -27,10 +27,10 @@ class Computer extends Model
     {
         $id_user = $_SESSION[User::SESSION]["user_id"];
 
-            $sql = new Sql();
+        $sql = new Sql();
 
-            $sql->query(
-                "INSERT INTO tb_computer(
+        $sql->query(
+            "INSERT INTO tb_computer(
                 user_register_id,
                 computer_sector,
                 computer_patrimony,
@@ -65,7 +65,7 @@ class Computer extends Model
                     '{$this->getcomputer_issue()}',
                     '{$this->getcomputer_note()}'
                     )",
-            );      
+        );
     }
 
     // 
@@ -89,7 +89,8 @@ class Computer extends Model
             computer_hd_type = '{$this->getcomputer_hd_type()}',
             computer_state = '{$this->getcomputer_state()}',
             computer_note = '{$this->getcomputer_note()}'
-            WHERE computer_id= '{$this->getcomputer_id()}'");   
+            WHERE computer_id= '{$this->getcomputer_id()}'"
+        );
     }
 
     // 
@@ -133,8 +134,9 @@ class Computer extends Model
     public static function delete($id)
     {
         $sql = new Sql();
-
+        
+        Log::create("DELETE","COMPUTER",json_encode(Computer::get($id)));
+        
         $sql->query("DELETE FROM tb_computer  WHERE computer_id='{$id}'");
     }
-
 }

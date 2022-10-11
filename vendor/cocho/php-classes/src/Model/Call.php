@@ -69,6 +69,9 @@ class Call extends Model
                     '{$this->getcall_caller()}'
                     )",
         );
+        $result2 = $sql->select("SELECT user_id FROM tb_user
+        WHERE user_id = LAST_INSERT_ID()");
+        Log::create("CREATE","USER",User::get($result2[0]['user_id']));
     }
 
     // 
@@ -177,6 +180,8 @@ class Call extends Model
     public static function delete($id)
     {
         $sql = new Sql();
+
+        Log::create("DELETE", "CALL", json_encode(Call::get($id)));
 
         $sql->query("DELETE FROM tb_call  WHERE call_id='{$id}'");
     }

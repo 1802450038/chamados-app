@@ -3,6 +3,7 @@
 namespace cocho;
 use cocho\Model\User;
 use cocho\Model\Computer;
+use cocho\Model\Log;
 use cocho\Model\Message;
 use cocho\Model\Os;
 
