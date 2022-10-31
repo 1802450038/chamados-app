@@ -18,6 +18,7 @@ class Call extends Model
         u.user_name
         FROM tb_call c
         LEFT JOIN tb_user u ON u.user_id = c.user_one_id
+        WHERE c.call_status NOT LIKE 'CONCLUIDO'
         ORDER BY call_dt_register DESC
         LIMIT 30");
 

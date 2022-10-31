@@ -32,10 +32,24 @@ foreach ($calls as $key => $value) {
             <?php echo $value["call_issue"] ?>
         </td>
 
-        <td><button class="small-action-btn view"> 
+        <td>
+        <?php
+            if($value['user_name']){ 
+        ?>
+            <button class="small-action-btn view"> 
             <?php echo $value['user_name']; ?> 
             <i class="fas fa-check"></i>
         </button>
+        <?php
+            } else {
+        ?>
+             <button class="small-action-btn delete"> 
+            Aberto
+             <i class="fas fa-xmark"></i>
+        </button>
+        <?php
+            }
+        ?>
         </td>
 
         <td>
