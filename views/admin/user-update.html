@@ -18,6 +18,7 @@
                     <label for="user_login" class="label-input">Login <span class="mandatory">*</span></label>
                     <input type="text" class="text-input" id="user_login" name="user_login" value="{$user.user_login}">
                 </div>
+                {if="$user.user_is_admin == '1'"}
                 <div class="input-group">
                     <label for="user_type" class="label-input">Tipo de usuario<span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_type" name="user_type">
@@ -28,6 +29,7 @@
                         <option value="estagiario-atendimento">Estagiario atendimento</option>
                     </select>
                 </div>
+
                 <div class="input-group">
                     <label for="user_is_admin" class="label-input">Administrador<span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_is_admin" name="user_is_admin">
@@ -42,6 +44,7 @@
                         <option value="0">NÃO</option>
                     </select>
                 </div>
+                {/if}
                 <div class="form-mandatory">
                     <p><span class="mandatory">*</span> Campos obrigatorios</p>
                 </div>

@@ -81,6 +81,7 @@
         </div>
 
     </div>
+    {if="$os.os_status != 'CONCLUIDO'"}
     {if="$os.user_technical_one_id == $user_id"}
     <div class="list-body">
         <div class="list-body-content">
@@ -94,7 +95,7 @@
                 <div class="content-box" style="box-shadow: none; margin-top:0">
                     <form method="post" action="/admin/os-computer/status{$os.os_id}" class="form-group" enctype="multipart/form-data" style="padding-top: 0;">
                         <div class="input-group">
-                            <label for="user_technical_two_id" class="label-input">2º Tecnico Responsavel <span class="mandatory">*</span></label>
+                            <label for="user_technical_two_id" class="label-input">2º Tecnico Responsavel</label>
                             <select type="text" class="text-input" id="user_technical_two_id" name="user_technical_two_id">
                                 {if="$os.tec2 == null"}
                                     <option value="0">Não informado</option>
@@ -110,7 +111,7 @@
                             </select>
                         </div>
                         <div class="input-group">
-                            <label for="user_technical_three_id" class="label-input">3º Tecnico Responsavel <span class="mandatory">*</span></label>
+                            <label for="user_technical_three_id" class="label-input">3º Tecnico Responsavel</label>
                             <select type="text" class="text-input" id="user_technical_three_id" name="user_technical_three_id">
                                 {if="$os.tec3 == null"}
                                     <option value="0">Não informado</option>
@@ -126,15 +127,11 @@
                             </select>
                         </div>
                         <div class="input-group">
-                            <label for="os_defect" class="label-input">Defeito <span class="mandatory">*</span></label>
-                            <input type="text" class="text-input" id="os_defect" name="os_defect" value="{$os.os_defect}">
-                        </div>
-                        <div class="input-group">
                             <label for="os_fix" class="label-input">Reparo <span class="mandatory">*</span></label>
                             <input type="text" class="text-input" id="os_fix" name="os_fix" value="{$os.os_fix}">
                         </div>
                         <div class="input-group">
-                            <label for="os_note" class="label-input">Observação <span class="mandatory">*</span></label>
+                            <label for="os_note" class="label-input">Observação</label>
                             <input type="text" class="text-input" id="os_note" name="os_note" value="{$os.os_note}">
                         </div>  
                         <div class="input-group">
@@ -159,5 +156,6 @@
             </div>
         </div>
     </div>
+    {/if}
     {/if}
 </div>

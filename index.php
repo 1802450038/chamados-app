@@ -3,7 +3,6 @@
 use cocho\Model\User;
 use cocho\PageAdmin;
 
-
 session_start();
 require_once("vendor/autoload.php");
 
@@ -15,12 +14,12 @@ $app->config('debug', true);
 
 
 require_once("functions.php");
+
 require_once("admin-user-actions.php");
 require_once("admin-users.php");
 require_once("admin-computers.php");
 require_once("admin-os-computers.php");
 require_once("admin-calls.php");
-require_once("admin-test.php");
 require_once("admin-logs.php");
 
 
@@ -45,11 +44,16 @@ $app->get('/admin', function () {
 	$user_name = $_SESSION[User::SESSION]["user_name"];
 	$user_id = $_SESSION[User::SESSION]["user_id"];
 	$is_admin = $_SESSION[User::SESSION]["user_is_admin"];
+	$user_super_admin = $_SESSION[User::SESSION]["user_super_admin"];
+
+
+	// $server->run();
 
 	$page->setTpl("index", array(
 		"user_id"=>$user_id,
 		"user_name"=>$user_name,
-		"is_admin"=>$is_admin
+		"is_admin"=>$is_admin,
+		"user_super_admin"=>$user_super_admin
 	));
 
 });
@@ -83,9 +87,6 @@ $app->get('/forgot-password', function () {
 	$page->setTpl("forgot");
 
 });
-
-
-
 
 
 $app->run();

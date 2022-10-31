@@ -40,7 +40,7 @@ class User extends Model
         }
     }
 
-    // OK
+    // OK 
     public function updateUserSession($id)
     {
         if ((int)$id == (int)$_SESSION[User::SESSION]["user_id"]) {
@@ -123,6 +123,7 @@ class User extends Model
             $results2 = $sql->select("SELECT user_id FROM tb_user
             WHERE user_id = LAST_INSERT_ID()");
             if ($results2) {
+                Log::create("CREATE", "USER", json_encode(User::get($results2[0]['user_id'])));
                 return $results2[0]['user_id'];
             } else {
                 Message::throwMessage("Erro", "0", "Erro ao adicionar o usuario");
@@ -143,6 +144,7 @@ class User extends Model
                 $sql->query("UPDATE tb_user SET 
                 user_password='{$this->getuser_password()}'
                 WHERE user_id='{$this->getuser_id()}'");
+                Log::create("UPDATE PASSWORD", "USER", json_encode(User::get($this->getuser_id())));
             } else {
                 Message::throwMessage("Erro", "0", "As senhas devem ser iguais");
             }
@@ -155,7 +157,7 @@ class User extends Model
     public function update()
     {
         $sql = new Sql();
-
+        
         $sql->query("UPDATE tb_user SET 
         user_name='{$this->getuser_name()}',
         user_email='{$this->getuser_email()}',
@@ -163,6 +165,7 @@ class User extends Model
         user_type='{$this->getuser_type()}',
         user_is_admin='{$this->getuser_is_admin()}'
         WHERE user_id='{$this->getuser_id()}'");
+        Log::create("UPDATE", "USER", json_encode($this->getValues()));
     }
 
     // OK
@@ -209,6 +212,7 @@ class User extends Model
     {
         $sql = new Sql();
 
+        Log::create("DELETE", "USER", json_encode(User::get($id)));
         $sql->query("DELETE FROM tb_user  WHERE user_id='{$id}'");
     }
 
@@ -223,7 +227,7 @@ class User extends Model
     }
 
     // OK
-    public static function sendRecoveryEmail(){
-
+    public static function sendRecoveryEmail()
+    {
     }
 }

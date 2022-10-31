@@ -6,53 +6,81 @@ use cocho\Model\Call;
 use cocho\Model\User;
 
 
-
 $app->get('/admin/calls', function () {
 
 	User::verifyLogin();
 
 	$page = new PageAdmin();
 
-	$calls = Call::listAll();
-
-	$id_user = $_SESSION[User::SESSION]["user_id"];
-	$is_admin = $_SESSION[User::SESSION]["user_is_admin"];
-
-	$page->setTpl("calls", array(
-		"calls" => $calls,
-		"user" => $id_user,
-		"is_admin" => $is_admin
-	));
+	$page->setTpl("calls-live");
 });
 
+$app->get('/admin/calls/live', function () {
 
-
-$app->get('/admin/get-auto-calls', function () {
-
-	$calls = Call::listAll();
-
-	echo json_encode($calls);
+	$page = new PageAdmin([
+		"header" => false,
+		"footer" => false
+	]);
+	$page->setTpl("calls-live-view");
 });
 
-$app->get('/admin/auto-calls', function (){
+$app->get('/admin/calls-history', function () {
 
 	User::verifyLogin();
 
-	$page = new PageAdmin();
-
-	$calls = Call::listAll();
-
-	$id_user = $_SESSION[User::SESSION]["user_id"];
+	$user_name = $_SESSION[User::SESSION]["user_name"];
+	$user_id = $_SESSION[User::SESSION]["user_id"];
 	$is_admin = $_SESSION[User::SESSION]["user_is_admin"];
 
-	$page->setTpl("calls-auto", array(
-		"calls" => $calls,
-		"user" => $id_user,
-		"is_admin" => $is_admin
+
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+	if ($search != '') {
+
+		$pagination = Call::getPageSearch($search, $page);
+	} else {
+
+		$pagination = Call::getPage($page);
+	}
+
+	$pages = [];
+
+	$total = $pagination['pages'];
+
+	$extra = 2;
+
+	if($page == 1) {
+		$extra = 5;
+	}
+
+	for ($x = $page - 3; $x < $page + $extra; $x++) {
+		if ($x >= 0 && $x < $total) {
+
+			array_push($pages, [
+				'href' => '/admin/calls-history?' . http_build_query([
+					'page' => $x +1,
+					'search' => $search
+				]),
+				'text' => $x + 1
+			]);
+		}
+	}
+
+	$page = new PageAdmin();
+
+	$page->setTpl("calls", array(
+		"calls" => $pagination['data'],
+		"search" => $search,
+		"pages" => $pages,
+		"user" => $user_id
 	));
 });
 
+
 $app->get('/admin/call/delete:id', function ($id) {
+	
+	User::verifyLogin();
 	
 	Call::delete($id);
 
@@ -155,6 +183,8 @@ $app->get('/admin/call/update:id', function ($id) {
 
 $app->post('/admin/call/create', function () {
 
+	User::verifyLogin();
+	
 	$call = new Call();
 
 	$call->setData($_POST);
@@ -174,17 +204,10 @@ $app->post('/admin/call/update:id', function ($id) {
 	$call->setData($call->get($id));
 
 	$call->setData($_POST);
-
-	$user_id = $call->getuser_one_id();
 	
 	$call->update();
 
 	
-	header("location: /admin/user/profile$user_id");
+	header("location: /admin/calls");
 	exit;
 });
-
-
-
-
-?>

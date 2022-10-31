@@ -1,0 +1,84 @@
+<title>Chamados</title>
+
+<div class="content-body">
+    <div class="list-body" style="margin-top: -20px;">
+        <div class="list-body-content">
+            <div class="list-body-top">
+                <div class="list-category-title">
+                    <h3 class="list-title">Chamados</h3>
+                </div>
+                <div class="list-category-sub-title">
+                    <p class="list-sub-title">lista de chamados <span id="time">23/12 - 15:49 </span></p>
+                </div>
+            </div>
+            <div class="list-body-middle">
+                <div class="list-table-body">
+                    <table>
+                        <thead>
+                            <th>ID</th>
+                            <th>Setor</th>
+                            <th>Departamento</th>
+                            <th>Problema</th>
+                            <th>Status</th>
+                            <th>Hora</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </thead>
+                        <tbody id="table-content">
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="new-element">
+                    <a href="./call/create" class="new-element-button">
+                        <button>
+                            Incluir novo
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script>
+function loadXMLDoc() {
+  var xhttp = new XMLHttpRequest()
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        table = document.getElementById("table-content")
+        table.innerHTML = this.responseText;
+
+
+        time = document.getElementById("time");
+
+        const date = new Date();
+
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let hour = date.getHours();
+        let min = date.getMinutes()<10?'0':'' + date.getMinutes();
+
+        // This arrangement can be altered based on how we want the date's format to appear.
+        let currentDate = `${day}/${month}/${year} ${hour}:${min}`;
+        time.innerHTML = currentDate;
+    }
+  };
+  xhttp.open("GET", "../../admin-live-calls.php", true);
+  xhttp.send();
+ 
+}
+setInterval(function(){
+	loadXMLDoc();
+	// 1sec
+},5000);
+
+window.onload = loadXMLDoc;
+</script>
+
+</html>

@@ -12,12 +12,47 @@ $app->get('/admin/logs', function () {
 
 	User::verifyLogin();
 
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+	if ($search != '') {
+
+		$pagination = Log::getPageSearch($search, $page);
+	} else {
+
+		$pagination = Log::getPage($page);
+	}
+
+	$pages = [];
+
+	$total = $pagination['pages'];
+
+	$extra = 2;
+
+	if($page == 1) {
+		$extra = 5;
+	}
+
+	for ($x = $page - 3; $x < $page + $extra; $x++) {
+		if ($x >= 0 && $x < $total) {
+
+			array_push($pages, [
+				'href' => '/admin/logs?' . http_build_query([
+					'page' => $x +1,
+					'search' => $search
+				]),
+				'text' => $x + 1
+			]);
+		}
+	}
+
 	$page = new PageAdmin();
 
-	$logs = Log::listAll();
 
 	$page->setTpl("logs", array(
-		"logs"=>$logs
+		"logs" => $pagination['data'],
+		"search" => $search,
+		"pages" => $pages
 	));
 });
 
@@ -44,18 +79,6 @@ $app->get('/admin/log/view:id', function ($id) {
 		"log"=>$log
 	));
 });
-
-
-$app->post('/admin/test', function () {
-
-	// User::verifyLogin();
-
-	
-	header("location: /admin/test");
-	exit;
-});
-
-
 
 
 ?>

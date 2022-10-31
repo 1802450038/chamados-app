@@ -28,6 +28,8 @@
                 <div class="card-bottom"><a class="card-buttom" href="admin/computers">Gerenciar</a></div>
             </div>
         </div>      
+
+        {if="$is_admin == 1"}
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
@@ -41,6 +43,7 @@
                 <div class="card-bottom"><a class="card-buttom" href="admin/os-computers">Gerenciar</a></div>
             </div>
         </div>
+        {/if}
 
         {if="$is_admin == 1"}
         <div class="card-body">
@@ -88,6 +91,7 @@
             </div>
         </div>
 
+        {if="$user_super_admin == 1"}
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
@@ -101,7 +105,35 @@
                 <div class="card-bottom"><a class="card-buttom" href="admin/logs">Gerenciar</a></div>
             </div>
         </div>
-
+        {/if}
+        {if="$is_admin == 1"}
+        <div class="card-body">
+            <div class="card-bg"></div>
+            <div class="card-content">
+                <div class="card-ico"><span><i class="fas fa-phone-volume"></i></span></div>
+                <div class="card-title">
+                    <h3>Historico de chamados</h3>
+                </div>
+                <div class="card-middle">
+                    <p>Buscar Chamados</p>
+                </div>
+                <div class="card-bottom"><a class="card-buttom" href="admin/calls-history">Gerenciar</a></div>
+            </div>
+        </div>
+        {/if}
+        <div class="card-body">
+            <div class="card-bg"></div>
+            <div class="card-content">
+                <div class="card-ico"><span><i class="fas fa-tv"></i></span></div>
+                <div class="card-title">
+                    <h3>Chamados Tela</h3>
+                </div>
+                <div class="card-middle">
+                    <p>Visualizar Chamados na tela</p>
+                </div>
+                <div class="card-bottom"><a class="card-buttom" href="admin/calls/live">Gerenciar</a></div>
+            </div>
+        </div>
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">

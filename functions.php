@@ -2,6 +2,7 @@
 
 use cocho\Model\User;
 
+
 function getUserId()
 {
     $user_id = $_SESSION[User::SESSION]["user_id"];

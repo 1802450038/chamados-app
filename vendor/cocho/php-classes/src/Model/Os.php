@@ -2,10 +2,8 @@
 
 namespace cocho\Model;
 
-use cocho\DB\Postman;
 use \cocho\Model;
 use cocho\DB\Sql;
-use Error;
 
 class Os extends Model
 {
@@ -32,6 +30,7 @@ class Os extends Model
         LEFT JOIN tb_user t2 ON t2.user_id = o.user_technical_two_id
         LEFT JOIN tb_user t3 ON t2.user_id = o.user_technical_three_id
         LEFT JOIN tb_computer c ON c.computer_id = o.computer_id
+        ORDER BY o.os_dt_register DESC
         ");
 
         if ($result) {
@@ -41,11 +40,11 @@ class Os extends Model
         }
     }
 
-  // 
-  public static  function get($id)
-  {
-      $sql = new Sql();
-      $result = $sql->select("SELECT 
+    // 
+    public static  function get($id)
+    {
+        $sql = new Sql();
+        $result = $sql->select("SELECT 
       o.*,
       u.user_name,
       t1.user_name AS tec1,
@@ -60,12 +59,12 @@ class Os extends Model
       LEFT JOIN tb_computer c ON c.computer_id = o.computer_id
       WHERE o.os_id = $id");
 
-      if ($result) {
-          return $result[0];
-      } else {
-          return 0;
-      }
-  }
+        if ($result) {
+            return $result[0];
+        } else {
+            return 0;
+        }
+    }
 
     // 
     public static  function getByComputerId($id)
@@ -127,39 +126,37 @@ class Os extends Model
     {
         $id_user = $_SESSION[User::SESSION]["user_id"];
 
-        if(!$this->getuser_technical_one_id()){
-            Message::throwMessage("Erro","0","Um tecnico deve ser selecionado");
+        if (!$this->getuser_technical_one_id()) {
+            Message::throwMessage("Erro", "0", "Um tecnico deve ser selecionado");
         }
-        if(!$this->getcomputer_id()){
-            Message::throwMessage("Erro","0","Um computador deve ser selecionado");
+        if (!$this->getcomputer_id()) {
+            Message::throwMessage("Erro", "0", "Um computador deve ser selecionado");
         }
 
-        if(!$this->getuser_technical_two_id()){
+        if (!$this->getos_defect()) {
+            Message::throwMessage("Erro", "0", "O defeito deve ser informado");
+        }
+
+        if (!$this->getuser_technical_two_id()) {
             $this->setuser_technical_two_id("0");
         }
-        if(!$this->getuser_technical_three_id()){
+        if (!$this->getuser_technical_three_id()) {
             $this->setuser_technical_three_id("0");
         }
-        if(!$this->getos_defect()){
-            $this->setos_defect("NÃO INFORMADO");
-        }
-        if(!$this->getos_defect()){
-            $this->setos_defect("NÃO INFORMADO");
-        }
-        if(!$this->getos_fix()){
+        if (!$this->getos_fix()) {
             $this->setos_fix("NÃO INFORMADO");
         }
-        if(!$this->getos_note()){
+        if (!$this->getos_note()) {
             $this->setos_note("NÃO INFORMADO");
         }
-        if(!$this->getos_status()){
+        if (!$this->getos_status()) {
             $this->setos_status("ABERTO");
-        }        
+        }
 
-            $sql = new Sql();
+        $sql = new Sql();
 
-            $sql->query(
-                "INSERT INTO tb_os_computer(
+        $sql->query(
+            "INSERT INTO tb_os_computer(
                 user_id,
                 computer_id,
                 user_technical_one_id,
@@ -180,7 +177,10 @@ class Os extends Model
                     '{$this->getos_note()}',
                     '{$this->getos_status()}'
                     )",
-            );      
+        );
+        $result2 = $sql->select("SELECT os_id FROM tb_os_computer
+            WHERE os_id = LAST_INSERT_ID()");
+        Log::create("CREATE", "OS", json_encode(Os::get($result2[0]['os_id'])));
     }
 
     // 
@@ -188,41 +188,62 @@ class Os extends Model
     {
         $sql = new Sql();
 
+        if (!$this->getos_defect() || $this->getos_defect() == "NÃO INFORMADO") {
+            Message::throwMessage("Erro", "0", "O defeito deve ser informado");
+        }
+
         $sql->query(
-            "UPDATE tb_os SET
+            "UPDATE tb_os_computer SET
             user_technical_two_id = '{$this->getuser_technical_two_id()}',
             user_technical_three_id = '{$this->getuser_technical_three_id()}',
             os_defect = '{$this->getos_defect()}',
             os_fix = '{$this->getos_fix()}',
             os_note = '{$this->getos_note()}',
             os_status = '{$this->getos_status()}'
-            WHERE os_id= '{$this->getos_id()}'");   
+            WHERE os_id= '{$this->getos_id()}'"
+        );
+
+        Log::create("UPDATE", "OS", json_encode(Os::get($this->getos_id())));
     }
     // 
     public function updateStatus()
     {
         $sql = new Sql();
 
+        if (!$this->getos_fix() || $this->getos_fix() == "NÃO INFORMADO") {
+            Message::throwMessage("Erro", "0", "O reparo deve ser informado");
+        }
+
+        if (!$this->getuser_technical_two_id()) {
+            $this->setuser_technical_two_id("0");
+        }
+        if (!$this->getuser_technical_three_id()) {
+            $this->setuser_technical_three_id("0");
+        }
+        
+
         $sql->query(
             "UPDATE tb_os_computer SET
-            user_technical_one_id = '{$this->getuser_technical_one_id()}',
             user_technical_two_id = '{$this->getuser_technical_two_id()}',
             user_technical_three_id = '{$this->getuser_technical_three_id()}',
-            os_defect = '{$this->getos_defect()}',
             os_fix = '{$this->getos_fix()}',
             os_note = '{$this->getos_note()}',
             os_status = '{$this->getos_status()}'
-            WHERE os_id= '{$this->getos_id()}'");   
+            WHERE os_id= '{$this->getos_id()}'"
+        );
+
+        Log::create("UPDATE STATUS", "OS", json_encode(Os::get($this->getos_id())));
     }
 
-  
+
 
     // 
     public static function delete($id)
     {
         $sql = new Sql();
 
+        Log::create("DELETE", "OS", json_encode(Os::get($id)));
+
         $sql->query("DELETE FROM tb_os_computer  WHERE os_id='{$id}'");
     }
-
 }

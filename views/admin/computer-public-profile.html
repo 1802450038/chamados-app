@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../res/_css/index.css">
+    <link rel="stylesheet" href="../../res/_css/menu-bar.css">
+    <link rel="stylesheet" href="../../res/_css/simple-grid.min.css">
+    <link rel="stylesheet" href="../../res/_css/form.css">
+    <link rel="stylesheet" href="../../res/_css/entity-list.css">
+    <link rel="stylesheet" href="../../res/_css/table.css">
+    <link rel="stylesheet" href="../../res/_css/card.css">
+    <link rel="stylesheet" href="../../res/_css/entity-profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="header">
+
+        <div class="logo">
+            <a href="/admin">
+                <img src="../../res/_assets/_contentimg/logo_mobile.png" alt="" srcset="" class="logo-img">
+                
+            </a>
+        </div>
+
+        <div class="logo-mobile">
+            <a href="/admin">
+                <img src="../../res/_assets/_contentimg/logo_branca.png" alt="" srcset="" class="logo-img">
+                
+            </a>
+        </div>
+        <div class="title">
+            <h1 class="title-page">Chamados</h1>
+            <h3 class="sub-title-page">App</h3>
+        </div>
+    </div>
+
+<title>Perfil do Computador</title>
+<div class="content-body">
+    <div class="entity-profile-card">
+        <div class="entity-profile-card-middle card-category">
+            <div class="entity-info sub-card-category">
+                <div class="row card-category-title">
+                    <h3>Computador</h3>
+                </div>
+                <div class="info-items">
+                    <div class="info-box">
+                        <h3 class="info-title">Patrimonio</h3>
+                        <h3 class="info-value">{$computer.computer_patrimony}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Setor</h3>
+                        <h3 class="info-value">{$computer.computer_sector}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">IP</h3>
+                        <h3 class="info-value">{$computer.computer_ip}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Nome de usuario</h3>
+                        <h3 class="info-value">{$computer.computer_user_name}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Matricula de usuario</h3>
+                        <h3 class="info-value">{$computer.computer_user_registration}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Marca</h3>
+                        <h3 class="info-value">{$computer.computer_brand}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Processador</h3>
+                        <h3 class="info-value">{$computer.computer_soc}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Memoria</h3>
+                        <h3 class="info-value">{$computer.computer_mem} Gb</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Placa de video</h3>
+                        <h3 class="info-value">
+                            {if="$computer.computer_video_card == '1'"}
+                            SIM
+                            {else}
+                            NÃO
+                            {/if}
+                        </h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Placa de rede</h3>
+                        <h3 class="info-value">
+                            {if="$computer.computer_network_card == '1'"}
+                            SIM
+                            {else}
+                            NÃO
+                            {/if}
+                        </h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">HDD</h3>
+                        <h3 class="info-value">
+                            {if="$computer.computer_network_card == '1'"}
+                            SIM
+                            {else}
+                            NÃO
+                            {/if}
+                        </h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Tipo de disco</h3>
+                        <h3 class="info-value">{$computer.computer_hd_type}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Observação</h3>
+                        <h3 class="info-value">{$computer.computer_note}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Registrado por</h3>
+                        <h3 class="info-value">{$computer.userRegister}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Estado</h3>
+                        <h3 class="info-value">{$computer.computer_state}</h3>
+                    </div>
+                    <div class="info-box">
+                        <h3 class="info-title">Data de registro</h3>
+                        <h3 class="info-value">{function="date('Y-m-d',strtotime($computer.computer_dt_register))"}</h3>
+                    </div>
+
+                    <div class="info-box">
+                        <h3 class="info-title">Data de atualização</h3>
+                        <h3 class="info-value">{function="date('Y-m-d',strtotime($computer.computer_dt_last_update))"}</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="list-body">
+        <div class="list-body-content">
+            <div class="list-body-middle">
+                <div class="list-category-title">
+                    <h3 class="list-title">OS</h3>
+                </div>
+                <div class="list-category-sub-title">
+                    <p class="list-sub-title">Lista de ordens de serviço</p>
+                </div>
+                <div class="list-table-body">
+                    <table>
+                        <thead>
+                            <th>ID</th>
+                            <th>Responsável</th>
+                            <th>Defeito</th>
+                            <th>Status</th>
+                            <th>Data registro</th>
+                        </thead>
+                        <tbody>
+                            {loop="$os"}
+                            <tr>
+                                <td>{$value.os_id}</td>
+                                <td>{$value.tec1}</td>
+                                <td>{$value.os_defect}</td>
+                                <td>{$value.os_status}</td>
+                                <td>{$value.os_dt_register}</td>
+                            </tr>
+                            {/loop}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+</div>

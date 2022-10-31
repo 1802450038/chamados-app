@@ -3,13 +3,21 @@
 <div class="content-body">
     <div class="list-body" style="margin-top: -20px;">
         <div class="list-body-content">
-            <div class="list-body-top">
-                <div class="list-category-title">
-                    <h3 class="list-title">Logs</h3>
+            <div class="list-body-top-search">
+                <div class="list-body-top-left">
+                    <div class="list-category-title">
+                        <h3 class="list-title">Logs</h3>
+                    </div>
+                    <div class="list-category-sub-title">
+                        <p class="list-sub-title">lista de registros</p>
+                    </div>
                 </div>
-                <div class="list-category-sub-title">
-                    <p class="list-sub-title">lista de registros</p>
-                </div>
+                <div class="list-body-top-right">
+                        <form  class="input-button-container">
+                            <input placeholder="Nome" name="search" id="search">
+                            <button class="input-button">Buscar <i class="fas fa-magnifying-glass"></i></button>
+                        </form>
+                </div>    
             </div>
             <div class="list-body-middle">
                 <div class="list-table-body">
@@ -40,6 +48,14 @@
                             {/loop}
                         </tbody>
                     </table>
+                </div>
+                <div class="paginator">
+                    <div class="paginator-row">
+                        {loop="$pages"}
+                        <a href="{$value.href}" class="paginator-item"><div>{$value.text}</div></a>
+                        {/loop}
+                        
+                    </div>
                 </div>
             </div>
         </div>

@@ -113,9 +113,6 @@ $app->get('/admin/os-computer/update:id', function ($id) {
 	));
 });
 
-
-
-
 $app->post('/admin/os-computer/create', function () {
 
 	User::verifyLogin();

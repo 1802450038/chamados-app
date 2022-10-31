@@ -18,7 +18,8 @@ class Call extends Model
         u.user_name
         FROM tb_call c
         LEFT JOIN tb_user u ON u.user_id = c.user_one_id
-        ORDER BY call_dt_register DESC");
+        ORDER BY call_dt_register DESC
+        LIMIT 30");
 
         if ($result) {
             return $result;
@@ -26,6 +27,62 @@ class Call extends Model
             return 0;
         }
     }
+
+    public static function getPage($page = 1, $itemsPerPage = 20)
+	{
+
+		$start = ($page - 1) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT 
+            SQL_CALC_FOUND_ROWS 
+            c.*,
+            u.user_name
+			FROM tb_call c
+            LEFT JOIN tb_user u ON u.user_id = c.user_one_id
+			ORDER BY call_dt_register DESC
+			LIMIT $start, $itemsPerPage;
+		");
+
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+		return [
+			'data'=>$results,
+			'total'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+
+	}
+
+    public static function getPageSearch($search, $page = 1, $itemsPerPage = 20)
+	{
+
+		$start = ($page - 1) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_computer
+			WHERE computer_patrimony LIKE :search AND is_active = '1'
+			ORDER BY computer_dt_register DESC
+			LIMIT $start, $itemsPerPage;
+		", [
+			':search'=>'%'.$search.'%'
+		]);
+
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+		return [
+			'data'=>$results,
+			'total'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+
+	}
+
+
     // OK
     public function create()
     {
@@ -69,9 +126,9 @@ class Call extends Model
                     '{$this->getcall_caller()}'
                     )",
         );
-        $result2 = $sql->select("SELECT user_id FROM tb_user
-        WHERE user_id = LAST_INSERT_ID()");
-        Log::create("CREATE","USER",User::get($result2[0]['user_id']));
+        $result2 = $sql->select("SELECT call_id FROM tb_call
+        WHERE call_id = LAST_INSERT_ID()");
+        Log::create("CREATE","CALL",json_encode(Call::get($result2[0]['call_id'])));
     }
 
     // 
@@ -79,6 +136,8 @@ class Call extends Model
     {
         $sql = new Sql();
 
+        Log::create("FINISH","CALL",json_encode(Call::get($id_call)));
+        
         $sql->query(
             "UPDATE tb_call SET
             call_status = 'CONCLUIDO'
@@ -95,11 +154,14 @@ class Call extends Model
             user_one_id = '{$id_user}'
           WHERE call_id= '{$id_call}'"
         );
+        Log::create("SUBSCRIBE","CALL",json_encode(Call::get($id_call)));
     }
     // 
     public static function unsubscribe($id_call)
     {
         $sql = new Sql();
+
+        Log::create("UNSUBSCRIBE","CALL",json_encode(Call::get($id_call)));
 
         $sql->query(
             "UPDATE tb_call SET
@@ -113,6 +175,8 @@ class Call extends Model
     {
         $sql = new Sql();
 
+        Log::create("UPDATE","CALL",json_encode(Call::get($this->getcall_id())));
+        
         $sql->query(
             "UPDATE tb_call SET
             user_two_id = '{$this->getuser_two_id()}',
@@ -123,6 +187,7 @@ class Call extends Model
             call_caller = '{$this->getcall_caller()}'
             WHERE call_id= '{$this->getcall_id()}'"
         );
+        
     }
 
      public static function get($id)
@@ -182,7 +247,7 @@ class Call extends Model
         $sql = new Sql();
 
         Log::create("DELETE", "CALL", json_encode(Call::get($id)));
-
+        
         $sql->query("DELETE FROM tb_call  WHERE call_id='{$id}'");
     }
 }

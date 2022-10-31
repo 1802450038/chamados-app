@@ -4,7 +4,15 @@
         <div class="entity-profile-card-middle card-category">
             <div class="entity-info sub-card-category">
                 <div class="row card-category-title">
-                    <h3>Usuario</h3>
+                    <h3><img src="../../res/_assets/_defaultimg/user.jpg" alt="">{$user.user_name}</h3> 
+
+                    <div class="profile-actions">
+                        {if="$user.user_id == $user_id"}
+                        <a class="profile-action-btn update" href="/admin/user/update{$user.user_id}"><i class="fas fa-pen-to-square"></i> Editar</a>
+                        <a class="profile-action-btn more" href="/admin/user/password-change{$user.user_id}"><i class="fas fa-user-lock"></i> Alterar</a>
+                        {/if}
+                    </div>
+
                 </div>
                 <div class="info-items">
                     <div class="info-box">
@@ -41,10 +49,6 @@
                     <div class="info-box">
                         <h3 class="info-title">Data de atualização</h3>
                         <h3 class="info-value">{function="date('Y-m-d',strtotime($user.user_dt_last_update))"}</h3>
-                    </div>
-                    <div class="info-box">
-                        <h3 class="info-title">Alterar Senha</h3>
-                        <a class="info-link" href="/admin/user/password-change{$user.user_id}">Atualizar</a>
                     </div>
                 </div>
 

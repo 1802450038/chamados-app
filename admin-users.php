@@ -24,6 +24,8 @@ $app->get('/admin/users', function () {
 
 $app->get('/admin/user/delete:id', function ($id) {
 
+	User::verifyLogin();
+
 	User::delete($id);
 
 	header("location: /admin/users");
@@ -41,7 +43,7 @@ $app->get('/admin/user/create', function () {
 
 $app->get('/admin/user/password-change:id', function ($id) {
 
-	// User::verifyLogin();
+	User::verifyLogin();
 
 	$page = new PageAdmin();
 
@@ -82,11 +84,15 @@ $app->get('/admin/user/profile:id', function ($id) {
 	$user_id = $_SESSION[User::SESSION]["user_id"];
 	$is_admin = $_SESSION[User::SESSION]["user_is_admin"];
 
-		foreach ($calls as $index => $call) {
-			$calls[$index]["user_name"] = $call["tec1"];
+		if ($calls){
+			foreach ($calls as $index => $call) {
+				$calls[$index]["user_name"] = $call["tec1"];
+			}
 		}
-		foreach ($oss as $index => $os) {
-			$oss[$index]["user_name"] = $os["tec1"];
+		if ($oss){
+			foreach ($oss as $index => $os) {
+				$oss[$index]["user_name"] = $os["tec1"];
+			}
 		}
 
 	$page->setTpl("user-profile", array(
@@ -118,12 +124,13 @@ $app->post('/admin/user/create', function () {
 	$user = new User();
 
 	$user->setData($_POST);
-
+	
 	$id = $user->create();
 
 	header("location: /admin/user/profile$id");
 	exit;
 });
+
 
 $app->post('/admin/user/update:id', function ($id) {
 
