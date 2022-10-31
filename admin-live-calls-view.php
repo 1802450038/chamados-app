@@ -14,7 +14,7 @@ $calls = Call::listAll();
 ?>
 
 <?php
-
+if($calls){
 foreach ($calls as $key => $value) {
 ?>
 
@@ -62,5 +62,7 @@ foreach ($calls as $key => $value) {
 
 
 <?php
+}} else {
+    echo "";
 }
 ?>
