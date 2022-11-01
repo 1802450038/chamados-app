@@ -136,6 +136,10 @@ class Computer extends Model
         if(!$this->getcomputer_note()){
             $this->setcomputer_note("Não informado");
         }
+
+        if(!$this->getcomputer_state()){
+            $this->setcomputer_state("EM ANALISE");
+        }
        
 
         $sql->query(
@@ -170,7 +174,7 @@ class Computer extends Model
                     '{$this->getcomputer_network_card()}',
                     '{$this->getcomputer_hd()}',
                     '{$this->getcomputer_hd_type()}',
-                    'EM AVALIAÇÃO',
+                    '{$this->getcomputer_state()}',
                     '{$this->getcomputer_issue()}',
                     '{$this->getcomputer_note()}'
                     )",
