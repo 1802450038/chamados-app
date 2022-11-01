@@ -118,11 +118,14 @@ $app->get('/admin/computer/profile:id', function ($id) {
 
 	$os = Os::getByComputerId($id);
 
+	$user_id = $user_id = $_SESSION[User::SESSION]["user_id"];
+
 	$computer["userRegister"] = $userRegister = User::getUserName($computer["user_register_id"]);
 
 	$page->setTpl("computer-profile", array(
 		"computer" => $computer,
-		"os" => $os
+		"os" => $os,
+		"user_id" => $user_id
 	));
 });
 
@@ -205,7 +208,19 @@ $app->post('/admin/computer/create', function () {
 
 	$computer->setData($_POST);
 
-	$computer->create();
+	$computer_id = Computer::getIdByPatrimony($_POST['computer_patrimony'])["computer_id"];
+
+	
+	if($computer_id > 0){
+		
+		header("location: /admin/os-computer/create$computer_id");
+		exit;
+		
+	} else {
+		$computer->create();
+	}
+	
+
 
 	header("location: /admin/computers");
 	exit;

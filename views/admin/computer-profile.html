@@ -129,7 +129,9 @@
                                 <td>{$value.os_dt_register}</td>
                                 <td>
                                     <a href="/admin/os-computer/profile{$value.os_id}" class="small-action-btn view"><i class="fas fa-eye"></i></a>
+                                    {if="$user_id == $value.tec1"}
                                     <a href="/admin/os-computer/delete{$value.os_id}" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
+                                    {/if}
                                 </td>
                             </tr>
                             {/loop}
