@@ -233,7 +233,8 @@ class Call extends Model
         WHERE c.user_one_id = {$id} 
         OR c.user_two_id = {$id} 
         OR c.user_three_id = {$id}
-        ORDER BY call_dt_register DESC");
+        ORDER BY call_dt_register DESC
+        LIMIT 40");
 
         if ($result) {
             return $result;

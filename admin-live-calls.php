@@ -19,6 +19,7 @@ $calls = Call::listAll();
 ?>
 
 <?php
+if($calls){
 foreach ($calls as $key => $value) {
 ?>
 
@@ -100,7 +101,8 @@ foreach ($calls as $key => $value) {
 
     </tr>
 
-
-<?php
+    <?php
+}} else {
+    echo "";
 }
 ?>

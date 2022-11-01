@@ -112,7 +112,8 @@ class Os extends Model
         WHERE o.user_technical_one_id = {$id}
         OR o.user_technical_two_id = {$id}
         OR o.user_technical_three_id = {$id}
-        ORDER BY os_dt_register DESC");
+        ORDER BY os_dt_register DESC
+        LIMIT 40");
 
         if ($result) {
             return $result;
