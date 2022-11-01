@@ -37,7 +37,9 @@
                                 <td>{$value.call_id}</td>
                                 <td>{$value.call_sector}</td>
                                 <td>{$value.call_departament}</td>
-                                <td>{$value.call_issue}</td>
+                                <td>
+                                    {$value.call_issue}
+                                </td>
                                 {if="$value.user_name"}
                                         {if="$value.user_one_id == $user"}
                                         <td><a href="/admin/call{$value.call_id}/decline"

@@ -168,13 +168,13 @@
   overflow-x: auto;
 }
 
-.list-table-body table tr td {
+/* .list-table-body table tr td {
   white-space: nowrap;
 }
 
 .list-table-body table tr td.wrap {
   white-space: normal;
-}
+} */
 
 .new-element {
   margin-top: -20px;
