@@ -127,9 +127,7 @@ class Os extends Model
     {
         $id_user = $_SESSION[User::SESSION]["user_id"];
 
-        if (!$this->getuser_technical_one_id()) {
-            Message::throwMessage("Erro", "0", "Um tecnico deve ser selecionado");
-        }
+
         if (!$this->getcomputer_id()) {
             Message::throwMessage("Erro", "0", "Um computador deve ser selecionado");
         }
@@ -137,7 +135,9 @@ class Os extends Model
         if (!$this->getos_defect()) {
             Message::throwMessage("Erro", "0", "O defeito deve ser informado");
         }
-
+        if (!$this->getuser_technical_one_id()) {
+            $this->setuser_techinical_one_id("0");
+        }
         if (!$this->getuser_technical_two_id()) {
             $this->setuser_technical_two_id("0");
         }
@@ -193,8 +193,13 @@ class Os extends Model
             Message::throwMessage("Erro", "0", "O defeito deve ser informado");
         }
 
+        if (!$this->getuser_technical_one_id() || $this->getuser_technical_one_id() == "0") {
+            Message::throwMessage("Erro", "0", "O 1º Tecnico Responsavel deve ser informado");
+        }
+
         $sql->query(
             "UPDATE tb_os_computer SET
+            user_technical_one_id = '{$this->getuser_technical_one_id()}',
             user_technical_two_id = '{$this->getuser_technical_two_id()}',
             user_technical_three_id = '{$this->getuser_technical_three_id()}',
             os_defect = '{$this->getos_defect()}',

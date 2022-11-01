@@ -6,12 +6,32 @@
         </div>
         <div class="content-box">
             <form method="post" action="/admin/os-computer/update{$os.os_id}" class="form-group" enctype="multipart/form-data" style="padding-top: 0;">
+               {if="$os.user_technical_one_id == '0'"}
+                <div class="input-group">
+                    <label for="user_technical_one_id" class="label-input">1º Tecnico Responsavel</label>
+                    <select type="text" class="text-input" id="user_technical_one_id" name="user_technical_one_id">
+                        {if="$os.tec1 == null"}
+                            <option value="0">Não informado</option>
+                            {loop="$tecs"}
+                            <option value="{$value.user_id}">{$value.user_name}</option>
+                            {/loop}
+                        {else}
+                            <option value="{$os.user_technical_one_id}">{$os.tec1}</option>
+                            {loop="$tecs"}
+                            <option value="{$value.user_id}">{$value.user_name}</option>
+                            {/loop}
+                        {/if}
+                    </select>
+                </div>
+               {else}
                 <div class="input-group">
                     <label for="user_technical_one_id" class="label-input">1º Tecnico Responsavel</label>
                     <select type="text" class="text-input" id="user_technical_one_id" name="user_technical_one_id">
                         <option value="{$os.user_technical_one_id}">{$os.tec1}</option>
                     </select>
                 </div>
+                {/if}
+        
                 <div class="input-group">
                     <label for="user_technical_two_id" class="label-input">2º Tecnico Responsavel</label>
                     <select type="text" class="text-input" id="user_technical_two_id" name="user_technical_two_id">
