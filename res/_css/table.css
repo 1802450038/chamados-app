@@ -20,6 +20,15 @@ table tbody td {
     transition: all .3s ease-in-out;
     max-width: 400px;
     width: auto;
+  
+}
+
+table tbody tr td:last-child{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 10px;
 }
 
 table tbody td .small-action-btn {

@@ -9,9 +9,18 @@
 
                 <div class="input-group">
                     <label for="user_one_id" class="label-input">1º Tecnico Responsavel</span></label>
+                    {if="!$call.user_one_id"}
+                    <select type="text" class="text-input" id="user_one_id" name="user_one_id">
+                        <option value="0">Nenhum</option>
+                        {loop="$users"}
+                        <option value="{$value.user_id}">{$value.user_name}</option>
+                        {/loop}
+                    </select>
+                    {else}
                     <select type="text" class="text-input" id="user_one_id" name="user_one_id">
                         <option value="{$call.user_one_id}">{$call.tec1}</option>
                     </select>
+                    {/if}
                 </div>
                 <div class="input-group">
                     <label for="user_two_id" class="label-input">2º Tecnico Responsavel</span></label>

