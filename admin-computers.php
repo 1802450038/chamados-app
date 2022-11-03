@@ -87,8 +87,6 @@ $app->get('/admin/computer/create', function () {
 
 	$user_type = $user_type = $_SESSION[User::SESSION]["user_type"];
 
-	var_dump($user_type);
-
 	$page->setTpl("computer-create", array(
 		"user_type"=>$user_type
 	));
