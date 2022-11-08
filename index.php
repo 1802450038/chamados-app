@@ -76,6 +76,20 @@ $app->get("/admin/message", function () {
 	));
 });
 
+$app->get("/admin/test", function () {
+
+	$page = new PageAdmin([
+		"header" => false,
+		"footer" => false
+	]);
+
+
+	$page->setTpl("test", array(
+	
+	));
+});
+
+
 
 $app->get('/forgot-password', function () {
 

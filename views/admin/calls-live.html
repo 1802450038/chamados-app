@@ -46,6 +46,31 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
 <script>
+
+let numOfCalls = 0
+let lastNumOfCalls = 0;
+
+function alertNewItem(num){
+    if(numOfCalls == 0){
+        numOfCalls = num;
+    } else {
+        if(numOfCalls < num){
+            Notification.requestPermission().then(perm => {
+            if(perm === "granted"){
+                new Notification("Cahamdo Novo")
+                body: "Tem um chamado novo"
+            }
+        });
+            numOfCalls = num;
+        }
+    }
+}
+
+function countItems(response){
+    return response.split("<tr>").length - 1;
+
+}
+
 function loadXMLDoc() {
   var xhttp = new XMLHttpRequest()
   xhttp.onreadystatechange = function() {
@@ -67,10 +92,15 @@ function loadXMLDoc() {
         // This arrangement can be altered based on how we want the date's format to appear.
         let currentDate = `${day}/${month}/${year} ${hour}:${min}`;
         time.innerHTML = currentDate;
+
+        alertNewItem(countItems(this.response));
+
     }
   };
   xhttp.open("GET", "../../admin-live-calls.php", true);
   xhttp.send();
+
+  
  
 }
 setInterval(function(){

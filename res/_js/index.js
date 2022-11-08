@@ -32,65 +32,65 @@ function photoPreview(elem) {
     photoPreview.classList.add("filled");
 }
 
-function ValidaCPF() {
-    var RegraValida = document.getElementById("RegraValida").value;
-    var cpfValido = /^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/;
-    if (cpfValido.test(RegraValida) == true) {
-        console.log("CPF Válido");
-    } else {
-        console.log("CPF Inválido");
-    }
-} -
+// function ValidaCPF() {
+//     var RegraValida = document.getElementById("RegraValida").value;
+//     var cpfValido = /^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/;
+//     if (cpfValido.test(RegraValida) == true) {
+//         console.log("CPF Válido");
+//     } else {
+//         console.log("CPF Inválido");
+//     }
+// }
 
-    jQuery("input.cpf")
-        .mask("999.999.999-99")
-        .focusout(function (event) {
-            var target, cpf, element;
-            target = (event.currentTarget) ? event.currentTarget : event.srcElement;
-            cpf = target.value.replace(/\D/g, '');
-            element = $(target);
-            element.unmask();
+//     jQuery("input.cpf")
+//         .mask("999.999.999-99")
+//         .focusout(function (event) {
+//             var target, cpf, element;
+//             target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+//             cpf = target.value.replace(/\D/g, '');
+//             element = $(target);
+//             element.unmask();
 
-            element.mask("999.999.999-99");
+//             element.mask("999.999.999-99");
 
-        });
+//         });
 
-$("input.renda").maskMoney({
-    prefix: 'R$ ',
-    allowNegative: true,
-    thousands: '.',
-    decimal: ',',
-    affixesStay: true
-});
+// $("input.renda").maskMoney({
+//     prefix: 'R$ ',
+//     allowNegative: true,
+//     thousands: '.',
+//     decimal: ',',
+//     affixesStay: true
+// });
 
 
 
-jQuery("input.telefone")
-    .mask("(99) 9999-9999?9")
-    .focusout(function (event) {
-        var target, phone, element;
-        target = (event.currentTarget) ? event.currentTarget : event.srcElement;
-        phone = target.value.replace(/\D/g, '');
-        element = $(target);
-        element.unmask();
-        if (phone.length > 10) {
-            element.mask("(99) 99999-999?9");
-        } else {
-            element.mask("(99) 9999-9999?9");
-        }
-    });
+// jQuery("input.telefone")
+//     .mask("(99) 9999-9999?9")
+//     .focusout(function (event) {
+//         var target, phone, element;
+//         target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+//         phone = target.value.replace(/\D/g, '');
+//         element = $(target);
+//         element.unmask();
+//         if (phone.length > 10) {
+//             element.mask("(99) 99999-999?9");
+//         } else {
+//             element.mask("(99) 9999-9999?9");
+//         }
+//     });
 
-jQuery("input.residencial")
-    .mask("(99) 9999-9999")
-    .focusout(function (event) {
-        var target, phone, element;
-        target = (event.currentTarget) ? event.currentTarget : event.srcElement;
-        phone = target.value.replace(/\D/g, '');
-        element = $(target);
-        element.unmask();
+// jQuery("input.residencial")
+//     .mask("(99) 9999-9999")
+//     .focusout(function (event) {
+//         var target, phone, element;
+//         target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+//         phone = target.value.replace(/\D/g, '');
+//         element = $(target);
+//         element.unmask();
 
-        element.mask("(99) 9999-9999");
-    });
+//         element.mask("(99) 9999-9999");
+//     });
 
 
 function toggleCheck(receviedElement) {
@@ -117,11 +117,11 @@ function toggleCheck(receviedElement) {
     });
 }
 
-$(document).ready(function(){
-    id = document.getElementById("hide-info").innerText;
-    link = document.getElementById("user-link");
-    link.href = id
-});
+// $(document).ready(function(){
+//     id = document.getElementById("hide-info").innerText;
+//     link = document.getElementById("user-link");
+//     link.href = id
+// });
 
 
 function togglePasswordView() {
@@ -144,4 +144,20 @@ function togglePasswordView() {
         }
     }
     // console.log(passwordField.type);
+}
+
+function notfyAgent(){
+    
+
+    const button = document.getElementById('send');
+
+    
+    button.addEventListener("click", ()=> {
+        Notification.requestPermission().then(perm => {
+            if(perm === "granted"){
+                new Notification("Cahamdo Novo")
+                body: "Tem um chamado novo"
+            }
+        });
+    })
 }
