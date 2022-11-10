@@ -180,6 +180,7 @@ class Call extends Model
         
         $sql->query(
             "UPDATE tb_call SET
+            user_one_id = '{$this->getuser_one_id()}',
             user_two_id = '{$this->getuser_two_id()}',
             user_three_id = '{$this->getuser_three_id()}',
             call_issue = '{$this->getcall_issue()}',

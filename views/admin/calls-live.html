@@ -57,10 +57,9 @@ function alertNewItem(num){
         if(numOfCalls < num){
             Notification.requestPermission().then(perm => {
             if(perm === "granted"){
-                new Notification("Cahamdo Novo")
-                body: "Tem um chamado novo"
+                new Notification("Chamdo Novo")
             }
-        });
+        })
             numOfCalls = num;
         }
     }

@@ -10,6 +10,8 @@ require_once("vendor/autoload.php");
 $user_name = $_SESSION[User::SESSION]["user_name"];
 $user_id = $_SESSION[User::SESSION]["user_id"];
 $is_admin = $_SESSION[User::SESSION]["user_is_admin"];
+$user_type = $_SESSION[User::SESSION]["user_type"];
+
 
 $calls = Call::listAll();
 
@@ -79,10 +81,22 @@ foreach ($calls as $key => $value) {
         </td>
 
         <td>
+        <?php
+            
+            if ($user_type == "atendimento" && $value["user_one_id"] != 0 || $user_id == $value["user_one_id"]) {
+            ?>
+                
+                <a <?php echo "href='/admin/call" . $value["call_id"] . "/sec-done". $value["user_one_id"] . "'" ?>
+                                            onclick="return confirm('Deseja realmente finalizar este chamado ?')"
+                                            class="small-action-btn confirm"><i class="fas fa-check"></i></a>
+            <?php
+            }
+            ?>
+
             <?php
             if ($value["user_one_id"] == 0) {
             ?>
-                <a <?php echo "href='/admin/call/delete" . $value["call_id"] . "'"; ?> onclick="return confirm('Deseja realmente aceitar essa solicitação?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
+                <a <?php echo "href='/admin/call/delete" . $value["call_id"] . "'"; ?> onclick="return confirm('Deseja realmente deletar essa solicitação?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
             <?php
             }
             ?>

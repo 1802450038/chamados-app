@@ -117,11 +117,11 @@ function toggleCheck(receviedElement) {
     });
 }
 
-// $(document).ready(function(){
-//     id = document.getElementById("hide-info").innerText;
-//     link = document.getElementById("user-link");
-//     link.href = id
-// });
+$(document).ready(function(){
+    id = document.getElementById("hide-info").innerText;
+    link = document.getElementById("user-link");
+    link.href = id
+});
 
 
 function togglePasswordView() {
@@ -155,8 +155,7 @@ function notfyAgent(){
     button.addEventListener("click", ()=> {
         Notification.requestPermission().then(perm => {
             if(perm === "granted"){
-                new Notification("Cahamdo Novo")
-                body: "Tem um chamado novo"
+                new Notification("Chamdo Novo")
             }
         });
     })

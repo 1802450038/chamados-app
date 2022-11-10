@@ -129,6 +129,16 @@ $app->get('/admin/call:idcall/done:iduser', function ($id_call, $id_user) {
 	exit;
 });
 
+$app->get('/admin/call:idcall/sec-done:iduser', function ($id_call, $id_user) {
+
+	User::verifyLogin();	
+
+	Call::finish($id_call);
+
+	header("location: /admin/calls");
+	exit;
+});
+
 $app->get('/admin/callview:idcall/accept:iduser', function ($id_call, $id_user) {
 
 	User::verifyLogin();	
