@@ -31,10 +31,8 @@
                                 <td>{$value.os_dt_register}</td>
                                 <td>
                                     {if="$value.os_status != 'CONCLUIDO'"}
-                                        {if="$value.user_technical_one_id == $user_id"}
                                         <a href="/admin/os-computer/delete{$value.os_id}" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
                                         <a href="/admin/os-computer/update{$value.os_id}" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
-                                        {/if}
                                         {if="$value.user_technical_one_id == 0"}
                                         <a href="/admin/os-computer/delete{$value.os_id}" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
                                         <a href="/admin/os-computer/update{$value.os_id}" class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
