@@ -124,7 +124,7 @@
 }
 
 .card-category-title h3 {
-    font-size: 20pt;
+    font-size: 13pt;
     padding-left: 30px;
     color: var(--white-g-l);
     padding-bottom: 10px;
@@ -293,6 +293,10 @@
     .entity-profile-card {
         width: 80%;
     }
+    .card-category-title h3 {
+        font-size: 20pt;
+    }
+
     .info-items {
         display: flex;
         flex-wrap: wrap;

@@ -90,7 +90,7 @@ class Computer extends Model
             Message::throwMessage("Erro","0","O patrimonio deve ser informado");
         }
         if(!$this->getcomputer_issue()){
-            Message::throwMessage("Erro","0","O defeito deve ser informado");
+            $this->setcomputer_issue("Não informado");
         }
 
         if(!$this->getcomputer_ip()){
