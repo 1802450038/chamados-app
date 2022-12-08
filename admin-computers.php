@@ -14,6 +14,8 @@ $app->get("/admin/computers", function () {
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
+	$tecs = User::listAll();
+
 	if ($search != '') {
 
 		$pagination = Computer::getPageSearch($search, $page);
@@ -50,7 +52,8 @@ $app->get("/admin/computers", function () {
 	$page->setTpl("computers", [
 		"computers" => $pagination['data'],
 		"search" => $search,
-		"pages" => $pages
+		"pages" => $pages,
+		"tecs" => $tecs
 	]);
 });
 
@@ -63,8 +66,11 @@ $app->get('/admin/computers', function () {
 
 	$computers = Computer::listAll();
 
+	$tecs = User::listAll();
+
 	$page->setTpl("computers", array(
-		"computers" => $computers
+		"computers" => $computers,
+		"tecs" => $tecs
 
 	));
 });
@@ -205,7 +211,7 @@ $app->post('/admin/computer/public-barcode', function () {
 
 
 $app->post('/admin/computer/create', function () {
-
+ 
 	User::verifyLogin();
 
 	$computer = new Computer();

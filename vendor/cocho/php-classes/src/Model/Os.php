@@ -135,8 +135,8 @@ class Os extends Model
         if (!$this->getos_defect()) {
             Message::throwMessage("Erro", "0", "O defeito deve ser informado");
         }
-        if (!$this->getuser_technical_one_id()) {
-            $this->setuser_techinical_one_id("0");
+        if (!$this->getuser_technical_one_id() || $this->getuser_technical_one_id() == "0") {
+            Message::throwMessage("Erro", "0", "O tecnico deve ser selecionado");
         }
         if (!$this->getuser_technical_two_id()) {
             $this->setuser_technical_two_id("0");

@@ -128,6 +128,23 @@ $app->post('/admin/os-computer/create', function () {
 });
 
 
+$app->post('/admin/os-computer/create-quick', function () {
+
+	User::verifyLogin();
+
+	$os = new Os();
+
+	$os->setData($_POST);
+
+	$os->create();
+
+
+
+	header("location: /admin/computers"); 
+	exit;
+	// var_dump("hello");
+});
+
 $app->post('/admin/os-computer/create-id:id', function ($computer_id) {
 
 	User::verifyLogin();

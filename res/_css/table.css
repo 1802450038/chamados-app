@@ -41,6 +41,8 @@ table tbody td .small-action-btn {
     font-size: 14pt;
     box-shadow: var(--box-shadow-2);
     width: max-content;
+    outline: none;
+    border: none;
 }
     table tbody td .small-action-btn i{
         color: var(--white-b);
