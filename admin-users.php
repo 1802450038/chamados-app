@@ -84,9 +84,9 @@ $app->get('/admin/user/profile:id', function ($id) {
 	$user_id = $_SESSION[User::SESSION]["user_id"];
 	$is_admin = $_SESSION[User::SESSION]["user_is_admin"];
 
-		if ($calls){
-			foreach ($calls as $index => $call) {
-				$calls[$index]["user_name"] = $call["tec1"];
+		if ($calls['data']){
+			foreach ($calls['data'] as $index => $call) {
+				$calls['data'][$index]["user_name"] = $call["tec1"];
 			}
 		}
 		if ($oss){
@@ -100,7 +100,7 @@ $app->get('/admin/user/profile:id', function ($id) {
 		"user_name" => $user_name,
 		"is_admin" => $is_admin,
 		"user" => $user,
-		"calls" => $calls,
+		"calls" => $calls['data'],
 		"os" => $oss
 	));
 });

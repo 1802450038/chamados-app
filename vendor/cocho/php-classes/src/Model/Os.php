@@ -96,7 +96,8 @@ class Os extends Model
     public static  function getByUserId($id)
     {
         $sql = new Sql();
-        $result = $sql->select("SELECT 
+        $result = $sql->select("SELECT
+        SQL_CALC_FOUND_ROWS 
         o.*,
         u.user_name AS user,
         t1.user_name AS tec1,
@@ -113,7 +114,11 @@ class Os extends Model
         OR o.user_technical_two_id = {$id}
         OR o.user_technical_three_id = {$id}
         ORDER BY os_dt_register DESC
-        LIMIT 40");
+        LIMIT 15");
+        
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+        
 
         if ($result) {
             return $result;
@@ -135,8 +140,11 @@ class Os extends Model
         if (!$this->getos_defect()) {
             Message::throwMessage("Erro", "0", "O defeito deve ser informado");
         }
-        if (!$this->getuser_technical_one_id() || $this->getuser_technical_one_id() == "0") {
-            Message::throwMessage("Erro", "0", "O tecnico deve ser selecionado");
+        // if (!$this->getuser_technical_one_id() || $this->getuser_technical_one_id() == "0") {
+        //     Message::throwMessage("Erro", "0", "O tecnico deve ser selecionado");
+        // }
+        if (!$this->getuser_technical_one_id()) {
+            $this->setuser_technical_one_id("0");
         }
         if (!$this->getuser_technical_two_id()) {
             $this->setuser_technical_two_id("0");
@@ -226,7 +234,7 @@ class Os extends Model
         if (!$this->getuser_technical_three_id()) {
             $this->setuser_technical_three_id("0");
         }
-        
+
 
         $sql->query(
             "UPDATE tb_os_computer SET

@@ -8,7 +8,7 @@
             <form method="post" action="/admin/os-computer/create-id{$computer.computer_id}" class="form-group" enctype="multipart/form-data">
 
                 <div class="input-group">
-                    <label for="user_technical_one_id" class="label-input">1º Tecnico Responsavel <span class="mandatory">*</span></label>
+                    <label for="user_technical_one_id" class="label-input">1º Tecnico Responsavel</label>
                     <select type="text" class="text-input" id="user_technical_one_id" name="user_technical_one_id">
                         {loop="$tecs"}
                         <option value="{$value.user_id}">{$value.user_name}</option>
