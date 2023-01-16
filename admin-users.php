@@ -63,8 +63,11 @@ $app->get('/admin/user/update:id', function ($id) {
 
 	$user = User::get($id);
 
+	$is_super = $_SESSION[User::SESSION]['user_super_admin'];
+
 	$page->setTpl("user-update", array(
-		"user" => $user
+		"user" => $user,
+		"super" => $is_super
 	));
 });
 
@@ -83,32 +86,56 @@ $app->get('/admin/user/profile:id', function ($id) {
 	$user_name = $_SESSION[User::SESSION]["user_name"];
 	$user_id = $_SESSION[User::SESSION]["user_id"];
 	$is_admin = $_SESSION[User::SESSION]["user_is_admin"];
+	$is_super = $_SESSION[User::SESSION]['user_super_admin'];
 
-		if ($calls['data']){
-			foreach ($calls['data'] as $index => $call) {
-				$calls['data'][$index]["user_name"] = $call["tec1"];
-			}
+	if ($calls > 0) {
+		foreach ($calls['data'] as $index => $call) {
+			$calls['data'][$index]["user_name"] = $call["tec1"];
 		}
-		if ($oss){
-			foreach ($oss as $index => $os) {
-				$oss[$index]["user_name"] = $os["tec1"];
-			}
+	} else {
+		$calls = [
+			'data' => "",
+			'total' => 0,
+			'totalCount' => 0,
+			'percent'=> 0
+		];
+	}
+
+	if ($oss > 0) {
+		foreach ($oss['data'] as $index => $os) {
+			$oss['data'][$index]["user_name"] = $os["tec1"];
 		}
+	} else {
+		$oss = [
+			'data'=>"",
+			'total'=>0,
+			'totalCount'=>0,
+			'percent'=> 0
+		];
+	}
+
 
 	$page->setTpl("user-profile", array(
 		"user_id" => $user_id,
 		"user_name" => $user_name,
 		"is_admin" => $is_admin,
+		"super" => $is_super,
 		"user" => $user,
 		"calls" => $calls['data'],
-		"os" => $oss
+		"os" => $oss['data'],
+		"totalOs"=>$oss['total'],
+		"totalCountOs"=> $oss['totalCount'],
+		"percentOs"=> $oss['percent'],
+		"totalCall"=>$calls['total'],
+		"totalCountCall"=> $calls['totalCount'],
+		"percentCall"=> $calls['percent']
 	));
 });
 
 
 $app->get('/admin/user/call:idcall/decline:iduser', function ($id_call, $id_user) {
 
-	User::verifyLogin();	
+	User::verifyLogin();
 
 	Call::unsubscribe($id_call);
 
@@ -124,7 +151,7 @@ $app->post('/admin/user/create', function () {
 	$user = new User();
 
 	$user->setData($_POST);
-	
+
 	$id = $user->create();
 
 	header("location: /admin/user/profile$id");
@@ -171,12 +198,12 @@ $app->post('/forgot-password', function () {
 
 	echo "aaaaaaaa";
 
-	
 
-	if($user = User::getByEmail($_POST["user_email"]) == 0){
-		Message::throwMessage("Erro","0","Usuario não encontrado");
+
+	if ($user = User::getByEmail($_POST["user_email"]) == 0) {
+		Message::throwMessage("Erro", "0", "Usuario não encontrado");
 	} else {
-		Message::throwMessage("Sucesso","1","Email enviado com sucesso !");
+		Message::throwMessage("Sucesso", "1", "Email enviado com sucesso !");
 	}
 
 	// var_dump($user);
@@ -193,4 +220,3 @@ $app->post('/forgot-password', function () {
 	// header("location: /admin/user/profile$id");
 	// exit;
 });
-

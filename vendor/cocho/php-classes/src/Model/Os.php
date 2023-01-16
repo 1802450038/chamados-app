@@ -116,12 +116,24 @@ class Os extends Model
         ORDER BY os_dt_register DESC
         LIMIT 15");
         
-        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS totalOsUser;");
 
+        $totalCount = $sql->select("SELECT COUNT(*) from tb_os_computer;");
         
+        $percent = 0;
+
+        $UserOss = ((int)$resultTotal[0]['totalOsUser']);
+        $SystemOss = ((int)$totalCount[0]['COUNT(*)']);
+
+        $percent = ($UserOss *100) / $SystemOss;
 
         if ($result) {
-            return $result;
+            return [
+                'data'=>$result,
+                'total'=>$UserOss,
+                'totalCount'=>$SystemOss,
+                'percent'=>$percent
+            ];
         } else {
             return 0;
         }
@@ -140,9 +152,7 @@ class Os extends Model
         if (!$this->getos_defect()) {
             Message::throwMessage("Erro", "0", "O defeito deve ser informado");
         }
-        // if (!$this->getuser_technical_one_id() || $this->getuser_technical_one_id() == "0") {
-        //     Message::throwMessage("Erro", "0", "O tecnico deve ser selecionado");
-        // }
+
         if (!$this->getuser_technical_one_id()) {
             $this->setuser_technical_one_id("0");
         }

@@ -235,17 +235,23 @@ class Call extends Model
         ORDER BY call_dt_register DESC
         LIMIT 15");
 
-
         $resultTotal = $sql->select("SELECT FOUND_ROWS() AS totalCallUser;");
 
+        $totalCount = $sql->select("SELECT COUNT(*) from tb_call;");
 
+        $percent = 0;
 
-        // $result["totalCallUser"] = $resultTotal;
+        $UserCall = ((int)$resultTotal[0]['totalCallUser']);
+        $SystemCall = ((int)$totalCount[0]['COUNT(*)']);
+
+        $percent = ($UserCall *100) / $SystemCall;
 
         if ($result) {
             return [
                 'data'=>$result,
-                'total'=>$resultTotal
+                'total'=>$UserCall,
+                'totalCount'=>$SystemCall,
+                'percent'=>$percent
             ];
         } else {
             return 0;

@@ -6,10 +6,17 @@
                 <div class="row card-category-title">
                     <h3><img src="../../res/_assets/_defaultimg/user.jpg" alt="">{$user.user_name}</h3> 
 
-                    <div class="profile-actions">
-                        {if="$user.user_id == $user_id"}
+                    <div class="profile-actions">                    
+                        {if="$super == '1'"}
                         <a class="profile-action-btn update" href="/admin/user/update{$user.user_id}"><i class="fas fa-pen-to-square"></i> Editar</a>
-                        <a class="profile-action-btn more" href="/admin/user/password-change{$user.user_id}"><i class="fas fa-user-lock"></i> Alterar</a>
+                        {if="$user.user_id == $user_id"}
+                            <a class="profile-action-btn more" href="/admin/user/password-change{$user.user_id}"><i class="fas fa-user-lock"></i> Alterar</a>
+                            {/if}
+                        {else}
+                            {if="$user.user_id == $user_id"}
+                            <a class="profile-action-btn update" href="/admin/user/update{$user.user_id}"><i class="fas fa-pen-to-square"></i> Editar</a>
+                            <a class="profile-action-btn more" href="/admin/user/password-change{$user.user_id}"><i class="fas fa-user-lock"></i> Alterar</a>
+                            {/if}
                         {/if}
                     </div>
 
@@ -51,7 +58,31 @@
                         <h3 class="info-value">{function="date('Y-m-d',strtotime($user.user_dt_last_update))"}</h3>
                     </div>
                 </div>
-
+                <div class="info-stats">
+                    <div class="graph-line">
+                        <div class="graph-title">
+                            <span>Total de chamados no sistema</span>
+                        </div>
+                        <div class="graph-bar">
+                            <div class="bar-value" style="width: {$percentCall}%;"></div>
+                        </div>
+                        <div class="graph-legend">
+                            <span>{$totalCall} de {$totalCountCall}</span>
+                        </div>
+                    </div>
+                    <div class="graph-line">
+                        <div class="graph-title">
+                            <span>Total de OS no sistema</span>
+                        </div>
+                        <div class="graph-bar">
+                            <div class="bar-value" style="width: {$percentOs}%;"></div>
+                            
+                        </div>
+                        <div class="graph-legend">
+                            <span>{$totalOs} de {$totalCountOs}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

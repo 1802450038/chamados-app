@@ -18,7 +18,7 @@
                     <label for="user_login" class="label-input">Login <span class="mandatory">*</span></label>
                     <input type="text" class="text-input" id="user_login" name="user_login" value="{$user.user_login}">
                 </div>
-                {if="$user.user_is_admin == '1'"}
+                {if="$super == '1'"}
                 <div class="input-group">
                     <label for="user_type" class="label-input">Tipo de usuario<span class="mandatory">*</span></label>
                     <select type="text" class="text-input" id="user_type" name="user_type">

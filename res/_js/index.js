@@ -143,7 +143,6 @@ function togglePasswordView() {
             passwordVerify.type = "password";
         }
     }
-    // console.log(passwordField.type);
 }
 
 function notfyAgent(){

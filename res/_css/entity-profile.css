@@ -121,7 +121,7 @@
     border-radius: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 .card-category-title h3 {
@@ -288,6 +288,61 @@
 
 .list-message {
     padding-left: 30px;
+}
+
+
+.info-stats {
+    display:  flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction:column;
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+.graph-line {
+    width: calc(100% - 30px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 10px;
+    padding-bottom: 20px;
+}
+
+.info-stats .graph-title span{
+    color: var(--blue-l-2);
+    font-size: 18pt;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.info-stats .graph-legend span{
+    color: var(--blue);
+    margin: 0;
+    padding: 0;
+    font-size: 16pt;
+}
+
+
+
+.info-stats .graph-bar {
+    width: 100%;
+    border: 1px solid var(--blue-l-1);
+    height: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-3);
+    overflow: hidden;
+}
+
+.graph-bar .bar-value{
+    height: 100%;
+    background-color: var(--blue-l-1);
 }
 
 @media (min-width: 600px) {
