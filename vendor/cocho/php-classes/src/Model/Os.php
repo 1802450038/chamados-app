@@ -125,7 +125,7 @@ class Os extends Model
         $UserOss = ((int)$resultTotal[0]['totalOsUser']);
         $SystemOss = ((int)$totalCount[0]['COUNT(*)']);
 
-        $percent = ($UserOss *100) / $SystemOss;
+        $percent = ceil(($UserOss *100) / $SystemOss);
 
         if ($result) {
             return [

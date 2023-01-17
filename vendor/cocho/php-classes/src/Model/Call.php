@@ -244,7 +244,7 @@ class Call extends Model
         $UserCall = ((int)$resultTotal[0]['totalCallUser']);
         $SystemCall = ((int)$totalCount[0]['COUNT(*)']);
 
-        $percent = ($UserCall *100) / $SystemCall;
+        $percent = ceil(($UserCall *100) / $SystemCall);
 
         if ($result) {
             return [
