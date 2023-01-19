@@ -23,14 +23,7 @@ function toggleCollapse(elem) {
 
 }
 
-function photoPreview(elem) {
 
-    let fileName = elem.target.files[0]["name"]
-    let label = elem.path[1].children[1].innerText = fileName;
-    let photoPreview = elem.path[1].children[0];
-    photoPreview.src = URL.createObjectURL(elem.target.files[0])
-    photoPreview.classList.add("filled");
-}
 
 // function ValidaCPF() {
 //     var RegraValida = document.getElementById("RegraValida").value;
@@ -145,17 +138,45 @@ function togglePasswordView() {
     }
 }
 
-function notfyAgent(){
-    
+function uploadFile(elem){
+    var fileName = elem.value.split("\\");
+    var finalName = fileName[fileName.length -1]
+    var filePlace = document.getElementById("value-file")
+    var group = document.getElementById("upload-group")
+    group.classList.add("onfile");
+    filePlace.innerText = finalName
 
-    const button = document.getElementById('send');
-
+    var imgTemp = document.getElementById("img-temp");
+    console.log(elem.target.files);
+    // imgTemp.src = URL.createObjectURL(elem.target.files[0]);
     
-    button.addEventListener("click", ()=> {
-        Notification.requestPermission().then(perm => {
-            if(perm === "granted"){
-                new Notification("Chamdo Novo")
-            }
-        });
-    })
 }
+
+function resetUpload(elem) {
+    var group = document.getElementById("upload-group")
+    group.classList.remove("onfile");
+}
+
+
+const previewImage = (event) => {
+    
+    const imageFiles = event.target.files;
+    
+    const imageFilesLength = imageFiles.length;
+
+    if (imageFilesLength > 0) {
+        const imageSrc = URL.createObjectURL(imageFiles[0]);
+        console.log(imageSrc);
+        const imagePreviewElement = document.querySelector("#img-temp");
+        imagePreviewElement.src = imageSrc;
+    }
+};
+
+// function photoPreview(elem) {
+
+//     let fileName = elem.target.files[0]["name"]
+//     let label = elem.path[1].children[1].innerText = fileName;
+//     let photoPreview = elem.path[1].children[0];
+//     photoPreview.src = URL.createObjectURL(elem.target.files[0])
+//     photoPreview.classList.add("filled");
+// }

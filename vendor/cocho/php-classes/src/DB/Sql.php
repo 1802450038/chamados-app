@@ -6,9 +6,13 @@ use PDO;
 
 class Sql {
 
-	const HOSTNAME = "www.gabrielbellagamba.com";
-	const USERNAME = "gabr6180_tecnico";
-	const PASSWORD = "info020";
+	// const HOSTNAME = "www.gabrielbellagamba.com";
+	// const USERNAME = "gabr6180_tecnico";
+	// const PASSWORD = "info020";
+	// const DBNAME = "gabr6180_pref";
+	const HOSTNAME = "localhost";
+	const USERNAME = "root";
+	const PASSWORD = "";
 	const DBNAME = "gabr6180_pref";
 
 	private $conn;
@@ -21,6 +25,8 @@ class Sql {
 			Sql::USERNAME,
 			Sql::PASSWORD
 		);
+
+		$this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 
 	}
 
@@ -45,20 +51,31 @@ class Sql {
 	{
 
 		$stmt = $this->conn->prepare($rawQuery);
+		// $this->setParams($stmt, $params);
 
-		$this->setParams($stmt, $params);
+		if (!$stmt) {
+			echo "\nPDO::errorInfo():\n";
+			print_r($this->conn->errorInfo());
+		} else {
+			echo "good";
 
-		$stmt->execute();
+			$stmt->execute();
+			return $this->conn->lastInsertId("returned_id");
+		}
 	}
 
 	public function select($rawQuery, $params = array()):array
 	{
 
 		$stmt = $this->conn->prepare($rawQuery);
+		// $this->setParams($stmt, $params);
 
-		$this->setParams($stmt, $params);
-
-		$stmt->execute();
+		if (!$stmt) {
+			echo "\nPDO::errorInfo():\n";
+			print_r($this->conn->errorInfo());
+		} else {
+			$stmt->execute();
+		}
 
 
 		return $stmt->fetchAll(\PDO::FETCH_ASSOC);

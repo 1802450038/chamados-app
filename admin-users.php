@@ -152,9 +152,9 @@ $app->post('/admin/user/create', function () {
 
 	$user->setData($_POST);
 
-	$id = $user->create();
+	$user->create();
 
-	header("location: /admin/user/profile$id");
+	header("location: /admin/users");
 	exit;
 });
 
@@ -169,11 +169,19 @@ $app->post('/admin/user/update:id', function ($id) {
 
 	$user->setData($_POST);
 
+	if($_FILES['fileUpload']['name'] == ''){
+		$user->checkphoto(); 
+	} else {
+		$user->setPhoto($_FILES);
+	}
+	
 	$user->update();
 
 	header("location: /admin/user/profile$id");
 	exit;
 });
+
+
 
 
 $app->post('/admin/user/password-change:id', function ($id) {

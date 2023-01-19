@@ -4,8 +4,11 @@
         <div class="entity-profile-card-middle card-category">
             <div class="entity-info sub-card-category">
                 <div class="row card-category-title">
+                    {if="$user.user_profile_picture != NULL"}
+                    <h3><img src="{$user.user_profile_picture}" alt="">{$user.user_name}</h3> 
+                    {else}
                     <h3><img src="../../res/_assets/_defaultimg/user.jpg" alt="">{$user.user_name}</h3> 
-
+                    {/if}
                     <div class="profile-actions">                    
                         {if="$super == '1'"}
                         <a class="profile-action-btn update" href="/admin/user/update{$user.user_id}"><i class="fas fa-pen-to-square"></i> Editar</a>
@@ -15,8 +18,8 @@
                         {else}
                             {if="$user.user_id == $user_id"}
                             <a class="profile-action-btn update" href="/admin/user/update{$user.user_id}"><i class="fas fa-pen-to-square"></i> Editar</a>
-                            <a class="profile-action-btn more" href="/admin/user/password-change{$user.user_id}"><i class="fas fa-user-lock"></i> Alterar</a>
                             {/if}
+                            <a class="profile-action-btn more" href="/admin/user/password-change{$user.user_id}"><i class="fas fa-user-lock"></i> Alterar</a>
                         {/if}
                     </div>
 

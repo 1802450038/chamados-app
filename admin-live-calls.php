@@ -27,13 +27,7 @@ foreach ($calls as $key => $value) {
 
     <tr>
         <td>
-            <?php echo $value["call_id"] ?>
-        </td>
-        <td>
-            <?php echo $value["call_sector"] ?>
-        </td>
-        <td>
-            <?php echo $value["call_departament"] ?>
+            <?php echo $value["call_sector"] .  " - " .$value["call_departament"] ?>
         </td>
         <td>
             <?php echo $value["call_issue"] ?>
@@ -53,8 +47,12 @@ foreach ($calls as $key => $value) {
                     </td>
                 <?php } else { ?>
                     <td>
-                        <button class="small-action-btn view"> <?php echo $value['user_name']; ?>
-                            <i class="fas fa-check"></i>
+                        <button class="small-action-btn view with-img"> 
+                            <?php echo $value['user_name']; ?>
+                            <?php if ($value['user_profile_picture']) { ?>
+                                    <div class="btn-img"><img <?php echo "src= '". $value['user_profile_picture']."';" ?> > </div>
+                            <?php }
+                            ?>
                         </button>
                     </td>
                 <?php } ?>
@@ -74,9 +72,6 @@ foreach ($calls as $key => $value) {
 
         <td>
             <?php echo date('H:m', strtotime($value['call_dt_register'])); ?>
-        </td>
-
-        <td>
             <?php echo date('d/m/y', strtotime($value['call_dt_register'])); ?>
         </td>
 
@@ -108,8 +103,6 @@ foreach ($calls as $key => $value) {
             }
             ?>
             <a <?php echo "href='/admin/call/view" . $value["call_id"] . "'"; ?> class="small-action-btn view"><i class="fas fa-eye"></i></a>
-
-
         </td>
 
 

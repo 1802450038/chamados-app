@@ -103,7 +103,7 @@ class User extends Model
             $this->setuser_password(User::getCriptoPassword($this->getuser_password()));
             $sql = new Sql();
 
-            $sql->query(
+            $res = $sql->query(
                 "INSERT INTO tb_user(
                 user_name,
                 user_email,
@@ -120,11 +120,9 @@ class User extends Model
                     '{$this->getuser_is_admin()}'
                     )",
             );
-            $results2 = $sql->select("SELECT user_id FROM tb_user
-            WHERE user_id = LAST_INSERT_ID()");
-            if ($results2) {
-                Log::create("CREATE", "USER", json_encode(User::get($results2[0]['user_id'])));
-                return $results2[0]['user_id'];
+            if ($res != '0') {
+                Log::create("CREATE", "USER", json_encode(User::get($res)));
+                return $res;
             } else {
                 Message::throwMessage("Erro", "0", "Erro ao adicionar o usuario");
             }
@@ -163,7 +161,8 @@ class User extends Model
         user_email='{$this->getuser_email()}',
         user_login='{$this->getuser_login()}',
         user_type='{$this->getuser_type()}',
-        user_is_admin='{$this->getuser_is_admin()}'
+        user_is_admin='{$this->getuser_is_admin()}',
+        user_profile_picture='{$this->getuser_profile_picture()}'
         WHERE user_id='{$this->getuser_id()}'");
         Log::create("UPDATE", "USER", json_encode($this->getValues()));
     }
@@ -224,10 +223,64 @@ class User extends Model
         ]);
 
         return $cripto;
+        // ../../res/_assets/_defaultimg/user.jpg
     }
 
     // OK
     public static function sendRecoveryEmail()
     {
+    }
+
+    public function checkphoto()
+    {
+        if (file_exists(
+            $_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .
+            "res" . DIRECTORY_SEPARATOR .
+            "_assets" . DIRECTORY_SEPARATOR .
+            "_userimg" . DIRECTORY_SEPARATOR .
+            $this->getuser_id() . $this->getuser_login() . ".jpg"
+        )) {
+            $url = "/res/_assets/_userimg/"  .  $this->getuser_id() . $this->getuser_login() . ".jpg";
+        } else {
+            $url = "/res/_assets/_defaultimg/user.jpg";
+        }
+        $this->setuser_profile_picture($url);
+        return $url;
+    }
+
+    public function setPhoto($photo)
+    {
+
+        $extension = explode('.', $photo['fileUpload']['name']);
+        $extension = end($extension);
+
+        switch ($extension) {
+
+            case "jpg":
+            case "jpeg":
+                $image = imagecreatefromjpeg($photo['fileUpload']["tmp_name"]);
+                break;
+
+            case "gif":
+                $image = imagecreatefromgif($photo['fileUpload']["tmp_name"]);
+                break;
+
+            case "png":
+                $image = imagecreatefrompng($photo['fileUpload']["tmp_name"]);
+                break;
+        }
+
+        $dist =  $_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .
+        "res" . DIRECTORY_SEPARATOR .
+        "_assets" . DIRECTORY_SEPARATOR .
+        "_userimg" . DIRECTORY_SEPARATOR .
+        $this->getuser_id() . $this->getuser_login() .
+         ".jpg";
+
+        imagejpeg($image, $dist);
+
+        imagedestroy($image);
+
+        $this->checkphoto();
     }
 }

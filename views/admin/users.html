@@ -14,6 +14,7 @@
                 <div class="list-table-body">
                     <table>
                         <thead>
+                            <th>Foto</th>
                             <th>Login</th>
                             <th>Email</th>
                             <th>Ação</th>
@@ -21,6 +22,15 @@
                         <tbody>
                             {loop="$users"}
                             <tr>
+                                <td>
+                                    <div class="table-photo">
+                                        {if="$value.user_profile_picture"}
+                                            <img src="{$value.user_profile_picture}" alt="">
+                                        {else}
+                                            <img src="../../res/_assets/_defaultimg/user.jpg" alt="">
+                                        {/if}
+                                    </div>
+                                </td>
                                 <td>{$value.user_name}</td>
                                 <td>{$value.user_email}</td>
                                 <td>

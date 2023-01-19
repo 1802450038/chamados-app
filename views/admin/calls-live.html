@@ -15,12 +15,9 @@
                 <div class="list-table-body">
                     <table>
                         <thead>
-                            <th>ID</th>
-                            <th>Setor</th>
-                            <th>Departamento</th>
+                            <th>Local</th>
                             <th>Problema</th>
                             <th>Status</th>
-                            <th>Hora</th>
                             <th>Data</th>
                             <th>Ações</th>
                         </thead>
@@ -50,20 +47,6 @@
 let numOfCalls = 0
 let lastNumOfCalls = 0;
 
-function alertNewItem(num){
-    if(numOfCalls == 0){
-        numOfCalls = num;
-    } else {
-        if(numOfCalls < num){
-            Notification.requestPermission().then(perm => {
-            if(perm === "granted"){
-                new Notification("Chamdo Novo")
-            }
-        })
-            numOfCalls = num;
-        }
-    }
-}
 
 function countItems(response){
     return response.split("<tr>").length - 1;
@@ -92,8 +75,6 @@ function loadXMLDoc() {
         let currentDate = `${day}/${month}/${year} ${hour}:${min}`;
         time.innerHTML = currentDate;
 
-        alertNewItem(countItems(this.response));
-
     }
   };
   xhttp.open("GET", "../../admin-live-calls.php", true);
@@ -104,7 +85,7 @@ function loadXMLDoc() {
 }
 setInterval(function(){
 	loadXMLDoc();
-	// 1sec
+	// 5sec
 },5000);
 
 window.onload = loadXMLDoc;

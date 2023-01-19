@@ -15,7 +15,8 @@ class Call extends Model
         $sql = new Sql();
         $result = $sql->select("SELECT 
         c.*,
-        u.user_name
+        u.user_name,
+        u.user_profile_picture
         FROM tb_call c
         LEFT JOIN tb_user u ON u.user_id = c.user_one_id
         WHERE c.call_status NOT LIKE 'CONCLUIDO'
@@ -39,7 +40,8 @@ class Call extends Model
         $results = $sql->select("SELECT 
             SQL_CALC_FOUND_ROWS 
             c.*,
-            u.user_name
+            u.user_name,
+            u.user_profile_picture
 			FROM tb_call c
             LEFT JOIN tb_user u ON u.user_id = c.user_one_id
 			ORDER BY call_dt_register DESC
@@ -104,7 +106,7 @@ class Call extends Model
             $this->setcall_caller("Não informado");
         }
 
-        $sql->query(
+        $res = $sql->query(
             "INSERT INTO tb_call(
                 user_id,
                 user_one_id,
@@ -125,9 +127,7 @@ class Call extends Model
                     '{$this->getcall_caller()}'
                     )",
         );
-        $result2 = $sql->select("SELECT call_id FROM tb_call
-        WHERE call_id = LAST_INSERT_ID()");
-        Log::create("CREATE", "CALL", json_encode(Call::get($result2[0]['call_id'])));
+        Log::create("CREATE", "CALL", json_encode(Call::get($res)));
     }
 
     // 
@@ -195,6 +195,7 @@ class Call extends Model
         $result = $sql->select("SELECT 
         c.*,
         u.user_name AS user,
+        u.user_profile_picture AS photo,
         t1.user_name AS tec1,
         t2.user_name AS tec2,
         t3.user_name AS tec3

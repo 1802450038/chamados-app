@@ -69,6 +69,8 @@ $app->get('/admin/calls-history', function () {
 
 	$page = new PageAdmin();
 
+	
+
 	$page->setTpl("calls", array(
 		"calls" => $pagination['data'],
 		"search" => $search,
@@ -201,8 +203,8 @@ $app->post('/admin/call/create', function () {
 
 	$call->create();
 
-	header("location: /admin/calls");
-	exit;
+	// header("location: /admin/calls");
+	// exit;
 });
 
 

@@ -6,6 +6,22 @@
         </div>
         <div class="content-box">
             <form method="post" action="/admin/user/update{$user.user_id}" class="form-group" enctype="multipart/form-data">
+               <div class="input-image">
+                <div class="preview">
+                    {if="$user.user_profile_picture != NULL"}
+                        <img id="img-temp" src="{$user.user_profile_picture}" alt="">
+                    {else}
+                        <img id="img-temp" src="../../res/_assets/_defaultimg/user.jpg" alt="">
+                    {/if}
+                </div>
+                <div class="actions">
+                    <div class="upload-group" id="upload-group">
+                        <label class="file-label" for="file-upload">Enviar Arquivo <i class="fas fa-upload"></i></label>
+                        <input class="file-upload"  type="file" name="fileUpload" id="file-upload" onchange="previewImage(event);" accept="image/*">
+                    </div>
+                </div>
+               </div>
+               
                 <div class="input-group">
                     <label for="user_name" class="label-input">Nome <span class="mandatory">*</span></label>
                     <input type="text" class="text-input" id="user_name" name="user_name" value="{$user.user_name}">

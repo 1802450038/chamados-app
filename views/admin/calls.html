@@ -24,10 +24,11 @@
 
                     <table>
                         <thead>
-                            <th>Patrimonio</th>
-                            <th>Setor</th>
+                            <th>Id</th>
+                            <th>Local</th>
+                            <th>Problema</th>
                             <th>Estado</th>
-                            <th>Data registro</th>
+                            <th>Data</th>
                             <th>Ação</th>
                         </thead>
                         <tbody>
@@ -35,8 +36,7 @@
                                 {loop="$calls"}
                                 <tr>
                                 <td>{$value.call_id}</td>
-                                <td>{$value.call_sector}</td>
-                                <td>{$value.call_departament}</td>
+                                <td>{$value.call_sector} - {$value.call_departament}</td>
                                 <td>
                                     {$value.call_issue}
                                 </td>
@@ -46,8 +46,16 @@
                                                 onclick="return confirm('Deseja realmente cancelar a inscrição?')"
                                                 class="small-action-btn delete">Cancelar</a></td>
                                         {else}
-                                        <td><button class="small-action-btn view">{$value.user_name} <i class="fas fa-check">
-                                                </i></button></td>
+                                        <td>
+                                            <button class="small-action-btn view with-img">
+                                                {$value.user_name}
+                                                {if="$value.user_profile_picture"}
+                                                <div class="btn-img"><img src="{$value.user_profile_picture}" alt=""></div>
+                                                {else}
+                                                <img src="../../res/_assets/_defaultimg/user.jpg" alt="">
+                                                {/if}
+                                            </button>
+                                        </td>
                                         {/if}
                                 {else}
                                 <td><a href="/admin/call{$value.call_id}/accept{$user}"
@@ -55,10 +63,7 @@
                                         class="small-action-btn done">Aceitar</a></td>
                                 {/if}
                                 <td>{function="date('H:m',strtotime($value.call_dt_register))"}</td>
-                                <td>
-                                    
-                                            
-                                </td>
+                     
 
                                 <td>
                                         {if="$value.user_one_id == 0"}
