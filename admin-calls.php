@@ -203,8 +203,8 @@ $app->post('/admin/call/create', function () {
 
 	$call->create();
 
-	// header("location: /admin/calls");
-	// exit;
+	header("location: /admin/calls");
+	exit;
 });
 
 
