@@ -1,0 +1,29 @@
+<title>Registrar Entrega</title>
+<div class="content-body">
+    <div class="register-box">
+        <div class="title-box">
+            <h3>Registrar entrega</h3>
+        </div>
+        <div class="content-box">
+            <form method="post" action="/admin/delivery/create" class="form-group" enctype="multipart/form-data">
+                <div class="input-group">
+                    <label for="delivery_addressee" class="label-input">Nome completo destinarario<span class="mandatory">*</span></label>
+                    <input type="text" class="text-input" id="delivery_addressee" name="delivery_addressee">
+                </div>
+                <div class="input-group">
+                    <label for="computer_patrimony" class="label-input">Patrimonio, pode usar o leitor <i class="fas fa-barcode" style="color:rgb(122, 132, 171); padding-left: 5px; font-size: 10pt;"></i> <span class="mandatory">*</span></label>
+                    <input type="text" class="text-input" id="computer_patrimony" name="computer_patrimony">
+                </div>
+                <div class="form-mandatory">
+                    <p><span class="mandatory">*</span> Campos obrigatorios</p>
+                </div>
+                <div class="form-action">
+                    <button class="action-reset" type="reset" onclick="history.go(-1)">Cancelar</button>
+                    <button class="action-submit" type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+

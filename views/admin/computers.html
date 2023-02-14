@@ -12,9 +12,16 @@
                     </div>
                 </div>
                 <div class="list-body-top-right">
-                        <form  class="input-button-container">
-                            <input placeholder="Patrimonio" name="search" id="search">
-                            <button class="input-button">Buscar <i class="fas fa-magnifying-glass"></i></button>
+                        <form  class="input-top-search-group">
+                            <div class="group-item">
+                                <input placeholder="Patrimonio" name="patrimony" id="patrimony" value="{$patrimony}">
+                            </div>
+                            <div class="group-item">
+                                <input placeholder="Setor" name="sector" id="sector" value="{$sector}">
+                            </div>
+                            <div class="group-item action-item">
+                                <button class="input-button">Buscar <i class="fas fa-magnifying-glass"></i></button>
+                            </div>
                         </form>
                 </div>    
             </div>
@@ -146,13 +153,15 @@
 <script>
     function openModal(param){
         let modal = document.getElementById(param);
+        let nav = document.querySelector('.mobile-nav')
+        nav.classList.add('closed');
         modal.classList.add('open');
-        console.log("open");
     }
     function closeModal(param) {
         let modal = document.getElementById(param);
+        let nav = document.querySelector('.mobile-nav')
         modal.classList.remove('open');
-        console.log("close");
+        nav.classList.remove('closed');
     }
 </script>
 </html>

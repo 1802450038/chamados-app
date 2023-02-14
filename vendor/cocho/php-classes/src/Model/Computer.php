@@ -25,13 +25,13 @@ class Computer extends Model
 
 
     public static function getPage($page = 1, $itemsPerPage = 20)
-	{
+    {
 
-		$start = ($page - 1) * $itemsPerPage;
+        $start = ($page - 1) * $itemsPerPage;
 
-		$sql = new Sql();
+        $sql = new Sql();
 
-		$results = $sql->select("
+        $results = $sql->select("
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_computer
             WHERE is_active = '1' 
@@ -39,42 +39,57 @@ class Computer extends Model
 			LIMIT $start, $itemsPerPage;
 		");
 
-		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
-		return [
-			'data'=>$results,
-			'total'=>(int)$resultTotal[0]["nrtotal"],
-			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
-		];
+        return [
+            'data' => $results,
+            'total' => (int)$resultTotal[0]["nrtotal"],
+            'pages' => ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+        ];
+    }
 
-	}
+    public static function getPageSearch($patrimony, $sector, $page = 1, $itemsPerPage = 20)
+    {
 
-    public static function getPageSearch($search, $page = 1, $itemsPerPage = 20)
-	{
+        $start = ($page - 1) * $itemsPerPage;
 
-		$start = ($page - 1) * $itemsPerPage;
+        $sql = new Sql();
 
-		$sql = new Sql();
+        if ($patrimony && $sector) {
+            $results = $sql->select("
+                    SELECT SQL_CALC_FOUND_ROWS *
+                    FROM tb_computer
+                    WHERE computer_patrimony LIKE '%$patrimony%' AND
+                    computer_sector LIKE '%$sector%'
+                    ORDER BY computer_dt_register DESC
+                    LIMIT $start, $itemsPerPage;
+                ",);
+        } elseif ($patrimony) {
+                $results = $sql->select("
+                SELECT SQL_CALC_FOUND_ROWS *
+                FROM tb_computer
+                WHERE computer_patrimony LIKE '%$patrimony%' 
+                ORDER BY computer_dt_register DESC
+                LIMIT $start, $itemsPerPage;
+            ",);
+        } elseif ($sector) {
+                $results = $sql->select("
+                SELECT SQL_CALC_FOUND_ROWS *
+                FROM tb_computer
+                WHERE computer_sector LIKE '%$sector%'
+                ORDER BY computer_dt_register DESC
+                LIMIT $start, $itemsPerPage;
+            ",);
+        }
 
-		$results = $sql->select("
-			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_computer
-			WHERE computer_patrimony LIKE :search AND is_active = '1'
-			ORDER BY computer_dt_register DESC
-			LIMIT $start, $itemsPerPage;
-		", [
-			':search'=>'%'.$search.'%'
-		]);
+        $resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
 
-		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
-
-		return [
-			'data'=>$results,
-			'total'=>(int)$resultTotal[0]["nrtotal"],
-			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
-		];
-
-	}
+        return [
+            'data' => $results,
+            'total' => (int)$resultTotal[0]["nrtotal"],
+            'pages' => ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+        ];
+    }
 
     // OK
     public function create()
@@ -83,66 +98,66 @@ class Computer extends Model
 
         $sql = new Sql();
 
-        if(!$this->getcomputer_sector()){
-            Message::throwMessage("Erro","0","O setor deve ser informado");
+        if (!$this->getcomputer_sector()) {
+            Message::throwMessage("Erro", "0", "O setor deve ser informado");
         }
-        if(!$this->getcomputer_patrimony()){
-            Message::throwMessage("Erro","0","O patrimonio deve ser informado");
+        if (!$this->getcomputer_patrimony()) {
+            Message::throwMessage("Erro", "0", "O patrimonio deve ser informado");
         }
-        if(!$this->getcomputer_issue()){
+        if (!$this->getcomputer_issue()) {
             $this->setcomputer_issue("Não informado");
         }
 
-        if(!$this->getcomputer_ip()){
+        if (!$this->getcomputer_ip()) {
             $this->setcomputer_ip("Não informado");
         }
 
-        if(!$this->getcomputer_user_name()){
+        if (!$this->getcomputer_user_name()) {
             $this->setcomputer_user_name("Não informado");
         }
 
-        if(!$this->getcomputer_user_registration()){
+        if (!$this->getcomputer_user_registration()) {
             $this->setcomputer_user_registration("Não informado");
         }
 
-        if(!$this->getcomputer_brand()){
+        if (!$this->getcomputer_brand()) {
             $this->setcomputer_brand("Não informado");
         }
 
-        if(!$this->getcomputer_soc()){
+        if (!$this->getcomputer_soc()) {
             $this->setcomputer_soc("Não informado");
         }
 
-        if(!$this->getcomputer_mem()){
+        if (!$this->getcomputer_mem()) {
             $this->setcomputer_mem("Não informado");
         }
 
-        if(!$this->getcomputer_video_card()){
+        if (!$this->getcomputer_video_card()) {
             $this->setcomputer_video_card("Não informado");
         }
 
-        if(!$this->getcomputer_network_card()){
+        if (!$this->getcomputer_network_card()) {
             $this->setcomputer_network_card("Não informado");
         }
 
-        if(!$this->getcomputer_hd()){
+        if (!$this->getcomputer_hd()) {
             $this->setcomputer_hd("Não informado");
         }
 
-        if(!$this->getcomputer_hd_type()){
+        if (!$this->getcomputer_hd_type()) {
             $this->setcomputer_hd_type("Não informado");
         }
 
-        if(!$this->getcomputer_note()){
+        if (!$this->getcomputer_note()) {
             $this->setcomputer_note("Não informado");
         }
 
-        if(!$this->getcomputer_state()){
+        if (!$this->getcomputer_state()) {
             $this->setcomputer_state("EM ANALISE");
         }
-       
 
-        $sql->query(
+
+        $res = $sql->query(
             "INSERT INTO tb_computer(
                 user_register_id,
                 computer_sector,
@@ -179,9 +194,12 @@ class Computer extends Model
                     '{$this->getcomputer_note()}'
                     )",
         );
-        $result2 = $sql->select("SELECT computer_id FROM tb_computer
-        WHERE computer_id = LAST_INSERT_ID()");
-        Log::create("CREATE","COMPUTER",json_encode(Computer::get($result2[0]['computer_id'])));
+        if ($res != '0') {
+            Log::create("CREATE", "DELIVERY", json_encode(Computer::get($res)));
+            return "OK";
+        } else {
+            Message::throwMessage("Erro", "0", "Erro ao adicionar o computador");
+        }
     }
 
     // 
@@ -207,7 +225,7 @@ class Computer extends Model
             computer_note = '{$this->getcomputer_note()}'
             WHERE computer_id= '{$this->getcomputer_id()}'"
         );
-        Log::create("UPDATE","COMPUTER",json_encode(Computer::get($this->getcomputer_id())));
+        Log::create("UPDATE", "COMPUTER", json_encode(Computer::get($this->getcomputer_id())));
     }
 
     // 
@@ -229,7 +247,7 @@ class Computer extends Model
         $result = $sql->select("SELECT computer_patrimony FROM tb_computer WHERE computer_id = '$id'");
 
         if ($result) {
-            return $result[0];
+            return $result[0]['computer_patrimony'];
         } else {
             return 0;
         }
@@ -241,7 +259,7 @@ class Computer extends Model
         $result = $sql->select("SELECT computer_id FROM tb_computer WHERE computer_patrimony = '$patrimony'");
 
         if ($result) {
-            return $result[0];
+            return $result[0]['computer_id'];
         } else {
             return 0;
         }
@@ -251,9 +269,9 @@ class Computer extends Model
     public static function delete($id)
     {
         $sql = new Sql();
-        
-        Log::create("DELETE","COMPUTER",json_encode(Computer::get($id)));
-        
+
+        Log::create("DELETE", "COMPUTER", json_encode(Computer::get($id)));
+
         $sql->query("DELETE FROM tb_computer  WHERE computer_id='{$id}'");
     }
 }

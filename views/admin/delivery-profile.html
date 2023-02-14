@@ -1,0 +1,105 @@
+<title>Perfil da entrega</title>
+<div class="content-body">
+  <div class="entity-profile-card">
+    <div class="entity-profile-card-middle card-category">
+      <div class="entity-info sub-card-category">
+        <div class="row card-category-title">
+          <h3>Entrega</h3>
+        </div>
+        <div class="info-items">
+          <div class="info-box">
+            <h3 class="info-title">Patrimonio</h3>
+            <a class="info-link" href="/admin/computer/profile{$delivery.computer_id}"><h3 class="info-value">{$delivery.computer_patrimony} <i class="fas fa-desktop"></i></h3></a>
+          </div>
+          <div class="info-box">
+            <h3 class="info-title">Destinarario</h3>
+            <h3 class="info-value">{$delivery.delivery_addressee}</h3>
+          </div>
+          <div class="info-box">
+            <h3 class="info-title">Remetente</h3>
+            <h3 class="info-value">{$delivery.user_name}</h3>
+          </div>
+          <div class="info-box">
+            <h3 class="info-title">Data</h3>
+            <h3 class="info-value">{$delivery.delivery_dt_register}</h3>
+          </div>
+        </div>
+        <div class="row card-category-title">
+          <h3>Computador</h3>
+        </div>
+        <div class="info-items">
+          <div class="info-box">
+            <h3 class="info-title">Patrimonio</h3>
+            <h3 class="info-value">{$delivery.computer_patrimony}</h3>
+          </div>
+          <div class="info-box">
+            <h3 class="info-title">Setor</h3>
+            <h3 class="info-value">{$delivery.computer_sector}</h3>
+          </div>
+          <div class="info-box">
+            <h3 class="info-title">Marca</h3>
+            <h3 class="info-value">{$delivery.computer_brand}</h3>
+          </div>
+          <div class="info-box">
+            <h3 class="info-title">Observação</h3>
+            <h3 class="info-value">{$delivery.computer_note}</h3>
+          </div>
+          <div class="info-box">
+            <h3 class="info-title">Registrado por</h3>
+            <h3 class="info-value">{$delivery.user_name}</h3>
+          </div>
+          <div class="info-box">
+            <h3 class="info-title">Estado</h3>
+            <h3 class="info-value">{$delivery.computer_state}</h3>
+          </div>
+          <div class="info-box">
+            <h3 class="info-title">Data de registro</h3>
+            <h3 class="info-value">
+              {function="date('Y-m-d',strtotime($delivery.computer_dt_register))"}
+            </h3>
+          </div>
+          <div class="info-box">
+            <h3 class="info-title">Data de atualização</h3>
+            <h3 class="info-value">
+              {function="date('Y-m-d',strtotime($delivery.computer_dt_last_update))"}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="list-body">
+    <div class="list-body-content">
+      <div class="list-body-middle">
+        <div class="list-category-title">
+          <h3 class="list-title">OS</h3>
+        </div>
+        <div class="list-category-sub-title">
+          <p class="list-sub-title">Lista de ordens de serviço</p>
+        </div>
+        <div class="list-table-body">
+          <table>
+            <thead>
+              <th>ID</th>
+              <th>Responsável</th>
+              <th>Defeito</th>
+              <th>Status</th>
+              <th>Data registro</th>
+            </thead>
+            <tbody>
+              {loop="$os"}
+              <tr>
+                <td>{$value.os_id}</td>
+                <td>{$value.tec1}</td>
+                <td>{$value.os_defect}</td>
+                <td>{$value.os_status}</td>
+                <td>{$value.os_dt_register}</td>
+              </tr>
+              {/loop}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,3 +35,6 @@
     color: var(--white-g);
 }
 
+.mobile-nav.closed {
+    display: none;
+}

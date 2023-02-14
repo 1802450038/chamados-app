@@ -1,0 +1,94 @@
+<title>Entregas</title>
+<div class="content-body">
+    <div class="list-body">
+        <div class="list-body-content">
+            <div class="list-body-top-search">
+                <div class="list-body-top-left">
+                    <div class="list-category-title">
+                        <h3 class="list-title">Entregas</h3>
+                    </div>
+                    <div class="list-category-sub-title">
+                        <p class="list-sub-title">Lista de computadores entregues</p>
+                    </div>
+                </div>
+                <div class="list-body-top-right">
+                        <form  class="input-top-search-group">
+                            <div class="group-item">
+                                <input placeholder="Setor" name="sector" id="sector" value="{$sector}">
+                            </div>
+                            <div class="group-item">
+                                <input placeholder="Recebedor" name="addressee" id="addressee" value="{$addressee}">
+                            </div>
+                            <div class="group-item action-item">
+                                <button class="input-button">Buscar <i class="fas fa-magnifying-glass"></i></button>
+                            </div>
+                        </form>
+                </div>    
+            </div>
+            <div class="list-body-middle">
+                <div class="list-table-body">
+                    <table>
+                        <thead>
+                            <th>Patrimonio</th>
+                            <th>Setor</th>
+                            <th>Recebedor</th>
+                            <th>Entregador</th>
+                            <th>Data registro</th>
+                            <th>Ação</th>
+                        </thead>
+                        <tbody>
+                            {loop="$deliveries"}
+                            <tr>
+                                <td>{$value.computer_patrimony}</td>
+                                <td>{$value.computer_sector}</td>
+                                <td>{$value.delivery_addressee}</td>
+                                <td>{$value.user_name}</td>
+                                <td>{$value.delivery_dt_register}</td>
+                                <td>
+                                    
+                                    <a href="/admin/delivery/delete{$value.delivery_id}" onclick="return confirm('Deseja realmente excluir este registro?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
+                                    <a href="/admin/delivery/profile{$value.delivery_id}" class="small-action-btn view"><i class="fas fa-eye"></i></a>
+                                </td>
+                              
+                            </tr>
+                         
+                            {/loop}
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="new-element">
+                    <a href="./delivery/create" class="new-element-button">
+                        <button>
+                            Incluir novo
+                        </button>
+                    </a>
+                </div>
+                <div class="paginator">
+                    <div class="paginator-row">
+                        {loop="$pages"}
+                        <a href="{$value.href}" class="paginator-item"><div>{$value.text}</div></a>
+                        {/loop}
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="_js/jquery-3.6.0.min.js"></script>
+<script src="_js/index.js"></script>
+<script>
+    function openModal(param){
+        let modal = document.getElementById(param);
+        modal.classList.add('open');
+        console.log("open");
+    }
+    function closeModal(param) {
+        let modal = document.getElementById(param);
+        modal.classList.remove('open');
+        console.log("close");
+    }
+</script>
+</html>

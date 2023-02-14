@@ -10,6 +10,10 @@ class Sql {
 	const USERNAME = "gabr6180_tecnico";
 	const PASSWORD = "info020";
 	const DBNAME = "gabr6180_pref";
+	// const HOSTNAME = "192.168.0.120";
+	// const USERNAME = "root";
+	// const PASSWORD = "info020";
+	// const DBNAME = "gabr6180_pref";
 	// const HOSTNAME = "localhost";
 	// const USERNAME = "root";
 	// const PASSWORD = "";

@@ -20,8 +20,8 @@ require_once("admin-users.php");
 require_once("admin-computers.php");
 require_once("admin-os-computers.php");
 require_once("admin-calls.php");
+require_once("admin-deliveries.php");
 require_once("admin-logs.php");
-
 
 // require_once("functions.php");
 

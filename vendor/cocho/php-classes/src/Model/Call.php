@@ -5,6 +5,7 @@ namespace cocho\Model;
 use cocho\DB\Postman;
 use \cocho\Model;
 use cocho\DB\Sql;
+use DateTime;
 
 class Call extends Model
 {
@@ -106,6 +107,26 @@ class Call extends Model
             $this->setcall_caller("Não informado");
         }
 
+        // $date = new DateTime();
+
+        // $date = ;
+
+      
+
+        // var_dump($date);
+        
+
+        if (!$this->getcall_dt_prev()) {
+            $this->setcall_dt_prev(date('Y-m-d H:i:s'));
+        } else {
+            $this->setcall_dt_prev(date('Y-m-d H:i:s', strtotime($this->getcall_dt_prev())));
+        }
+
+        
+        
+
+        
+
         $res = $sql->query(
             "INSERT INTO tb_call(
                 user_id,
@@ -115,7 +136,8 @@ class Call extends Model
                 call_issue,
                 call_sector,
                 call_departament,
-                call_caller                
+                call_caller,
+                call_dt_prev                
                 ) VALUES(
                     '{$id_user}',
                     '{$this->getuser_one_id()}',
@@ -124,7 +146,8 @@ class Call extends Model
                     '{$this->getcall_issue()}',
                     '{$this->getcall_sector()}',
                     '{$this->getcall_departament()}',
-                    '{$this->getcall_caller()}'
+                    '{$this->getcall_caller()}',
+                    '{$this->getcall_dt_prev()}'
                     )",
         );
         Log::create("CREATE", "CALL", json_encode(Call::get($res)));
@@ -184,7 +207,8 @@ class Call extends Model
             call_issue = '{$this->getcall_issue()}',
             call_sector = '{$this->getcall_sector()}',
             call_departament = '{$this->getcall_departament()}',
-            call_caller = '{$this->getcall_caller()}'
+            call_caller = '{$this->getcall_caller()}',
+            call_dt_prev = '{$this->getcall_dt_prev()}'
             WHERE call_id= '{$this->getcall_id()}'"
         );
     }

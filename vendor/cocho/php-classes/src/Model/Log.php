@@ -15,7 +15,7 @@ class Log extends Model
         $result = $sql->select("SELECT 
         l.*,
         u.user_name 
-        FROM tb_log l
+        FROM tb_log lw
         LEFT JOIN tb_user u ON u.user_id = l.user_id
         ORDER BY log_dt_register DESC");
 

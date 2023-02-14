@@ -11,14 +11,14 @@ $app->get("/admin/computers", function () {
 
 	User::verifyLogin();
 
-	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+	$patrimony = (isset($_GET['patrimony'])) ? $_GET['patrimony'] : "";
+	$sector = (isset($_GET['sector'])) ? $_GET['sector'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
 	$tecs = User::listAll();
 
-	if ($search != '') {
-
-		$pagination = Computer::getPageSearch($search, $page);
+	if ($patrimony != '' || $sector != '') {
+		$pagination = Computer::getPageSearch($patrimony, $sector, $page);
 	} else {
 
 		$pagination = Computer::getPage($page);
@@ -40,7 +40,8 @@ $app->get("/admin/computers", function () {
 			array_push($pages, [
 				'href' => '/admin/computers?' . http_build_query([
 					'page' => $x +1,
-					'search' => $search
+					'patrimony' => $patrimony,
+					'sector' => $sector
 				]),
 				'text' => $x + 1
 			]);
@@ -51,7 +52,8 @@ $app->get("/admin/computers", function () {
 
 	$page->setTpl("computers", [
 		"computers" => $pagination['data'],
-		"search" => $search,
+		"patrimony" => $patrimony,
+		"sector" => $sector,
 		"pages" => $pages,
 		"tecs" => $tecs
 	]);
@@ -74,6 +76,7 @@ $app->get('/admin/computers', function () {
 
 	));
 });
+
 
 $app->get('/admin/computer/delete:id', function ($id) {
 
@@ -218,11 +221,10 @@ $app->post('/admin/computer/create', function () {
 
 	$computer->setData($_POST);
 
-	$computer_id = Computer::getIdByPatrimony($_POST['computer_patrimony'])["computer_id"];
+	$computer_id = Computer::getIdByPatrimony($_POST['computer_patrimony']);
 
 	
 	if($computer_id > 0){
-		
 		header("location: /admin/os-computer/create$computer_id");
 		exit;
 		
@@ -232,8 +234,8 @@ $app->post('/admin/computer/create', function () {
 	
 
 
-	header("location: /admin/computers");
-	exit;
+	// header("location: /admin/computers");
+	// exit;
 });
 
 $app->post('/admin/computer/update:id', function ($id) {

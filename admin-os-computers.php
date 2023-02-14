@@ -138,8 +138,6 @@ $app->post('/admin/os-computer/create-quick', function () {
 
 	$os->create();
 
-
-
 	header("location: /admin/computers"); 
 	exit;
 	// var_dump("hello");

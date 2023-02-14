@@ -169,6 +169,15 @@
     text-decoration: none;
 }
 
+.info-box .info-link .info-value {
+color:  white;
+}
+
+
+.info-box .info-link i{
+    color:  white;
+    padding-left: 5px;
+    }
 
 .info-box .info-link:hover {
     background-color: var(--blue-d-1);

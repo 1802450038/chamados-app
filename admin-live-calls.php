@@ -74,6 +74,9 @@ foreach ($calls as $key => $value) {
             <?php echo date('H:m', strtotime($value['call_dt_register'])); ?>
             <?php echo date('d/m/y', strtotime($value['call_dt_register'])); ?>
         </td>
+        <td>
+            <?php echo date('d/m/y', strtotime($value['call_dt_prev'])); ?>
+        </td>
 
         <td>
         <?php
