@@ -234,8 +234,8 @@ $app->post('/admin/computer/create', function () {
 	
 
 
-	// header("location: /admin/computers");
-	// exit;
+	header("location: /admin/computers");
+	exit;
 });
 
 $app->post('/admin/computer/update:id', function ($id) {
