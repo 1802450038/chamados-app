@@ -1,6 +1,5 @@
 <title>Inicio</title>
 <div class="content-body">
-
     <div class="cards-body">
         <div class="card-body">
             <div class="card-bg"></div>
@@ -40,8 +39,7 @@
                 </div>
                 <div class="card-bottom"><a class="card-buttom" href="admin/deliveries">Gerenciar</a></div>
             </div>
-        </div>  
-        
+        </div> 
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
@@ -55,8 +53,6 @@
                 <div class="card-bottom"><a class="card-buttom" href="admin/os-computers">Gerenciar</a></div>
             </div>
         </div>
-        
-
         {if="$is_admin == 1"}
         <div class="card-body">
             <div class="card-bg"></div>
@@ -72,8 +68,6 @@
             </div>
         </div>
         {/if}
-
-       
         <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
@@ -87,9 +81,7 @@
                 <div class="card-bottom"><a class="card-buttom" href="admin/user/profile{$user_id}">Gerenciar</a></div>
             </div>
         </div>
-
-
-        <div class="card-body">
+        <!-- <div class="card-body">
             <div class="card-bg"></div>
             <div class="card-content">
                 <div class="card-ico"><span><i class="fas fa-barcode"></i></span></div>
@@ -101,8 +93,7 @@
                 </div>
                 <div class="card-bottom"><a class="card-buttom" href="admin/computer/barcode">Buscar</a></div>
             </div>
-        </div>
-
+        </div> -->
         {if="$user_super_admin == 1"}
         <div class="card-body">
             <div class="card-bg"></div>
@@ -159,7 +150,5 @@
                 <div class="card-bottom"><a class="card-buttom" href="/logout">Sair</a></div>
             </div>
         </div>
-    
     </div>
-
 </div>
