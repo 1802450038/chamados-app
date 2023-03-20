@@ -49,6 +49,13 @@ let numOfCalls = 0
 let lastNumOfCalls = 0;
 
 
+function sendNotification(){
+        if(Notification.permission === "granted"){
+           const noti = new Notification("TESTEEEE",{
+            body: "testeee"
+           })
+        }
+    }
 
 
 function loadXMLDoc() {
@@ -76,13 +83,17 @@ function loadXMLDoc() {
   xhttp.open("GET", "../../admin-live-calls.php", true);
   xhttp.send();
 
-  
+  sendNotification();
  
 }
+
 setInterval(function(){
 	loadXMLDoc();
 	// 5sec
 },5000);
+
+
+
 
 window.onload = loadXMLDoc;
 </script>
