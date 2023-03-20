@@ -58,11 +58,11 @@
                     <p><span class="mandatory">*</span> Campos obrigatorios</p>
                 </div>
                 <div class="form-action">
-                    <button class="action-reset"  onclick="sendNotification()">_Cancelar_</button>
                     <button class="action-submit" type="submit" onclick="sendNotification()">Salvar</button>
                 </div>
             </form>
         </div>
+        <button class="action-reset"  onclick="sendNotification()">Teste</button>
         
     </div>
 </div>
@@ -70,11 +70,10 @@
 <script>
 
     function sendNotification(){
-        console.log("SEND");
-        console.log(Notification.permission);
         if(Notification.permission === "granted"){
-            console.log("FOi");
-            new Notification("Chamado NOVO !" )
+           const noti = new Notification("TESTEEEE",{
+            body: "testeee"
+           })
         }
     }
 </script>
