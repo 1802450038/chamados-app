@@ -58,26 +58,10 @@
                     <p><span class="mandatory">*</span> Campos obrigatorios</p>
                 </div>
                 <div class="form-action">
+                    <button class="action-reset" type="reset" onclick="history.go(-1)">Cancelar</button>
                     <button class="action-submit" type="submit" onclick="sendNotification()">Salvar</button>
                 </div>
             </form>
         </div>
-        <button class="action-reset"  onclick="sendNotification()">Teste</button>
-        
     </div>
 </div>
-
-<script>
-
-    function sendNotification(){
-        if(Notification.permission === "granted"){
-           const noti = new Notification("TESTEEEE",{
-            body: "testeee"
-           })
-        }
-    }
-
-    async function notify(){
-        
-    }
-</script>
