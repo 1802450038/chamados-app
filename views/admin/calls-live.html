@@ -49,10 +49,7 @@ let numOfCalls = 0
 let lastNumOfCalls = 0;
 
 
-function countItems(response){
-    return response.split("<tr>").length - 1;
 
-}
 
 function loadXMLDoc() {
   var xhttp = new XMLHttpRequest()
@@ -72,10 +69,8 @@ function loadXMLDoc() {
         let hour = date.getHours();
         let min = date.getMinutes()<10?'0':'' + date.getMinutes();
 
-        // This arrangement can be altered based on how we want the date's format to appear.
         let currentDate = `${day}/${month}/${year} ${hour}:${min}`;
         time.innerHTML = currentDate;
-
     }
   };
   xhttp.open("GET", "../../admin-live-calls.php", true);

@@ -58,11 +58,23 @@
                     <p><span class="mandatory">*</span> Campos obrigatorios</p>
                 </div>
                 <div class="form-action">
-                    <button class="action-reset" type="reset" onclick="history.go(-1)">Cancelar</button>
-                    <button class="action-submit" type="submit">Salvar</button>
+                    <button class="action-reset"  onclick="sendNotification()">Cancelar</button>
+                    <button class="action-submit" type="submit" onclick="sendNotification()">Salvar</button>
                 </div>
             </form>
         </div>
-
+        
     </div>
 </div>
+
+<script>
+
+    function sendNotification(){
+        console.log("SEND");
+        console.log(Notification.permission);
+        if(Notification.permission === "granted"){
+            console.log("FOi");
+            new Notification("Chamado NOVO !" )
+        }
+    }
+</script>
