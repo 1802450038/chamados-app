@@ -191,6 +191,7 @@ $app->get('/admin/computer/public-barcode', function () {
 $app->post('/admin/computer/barcode', function () {
 
 	$id = Computer::getIdByPatrimony($_POST['computer_patrimony']);
+	
 	if ($id != "0") {
 		$id = $id["computer_id"];
 		header("location: /admin/computer/profile$id");

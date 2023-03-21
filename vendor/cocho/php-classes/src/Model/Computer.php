@@ -256,7 +256,11 @@ class Computer extends Model
     public static  function getIdByPatrimony($patrimony)
     {
         $sql = new Sql();
-        $result = $sql->select("SELECT computer_id FROM tb_computer WHERE computer_patrimony = '$patrimony'");
+        $result = $sql->select("
+        SELECT computer_id FROM 
+        tb_computer 
+        WHERE computer_patrimony = '$patrimony'");
+
 
         if ($result) {
             return $result[0]['computer_id'];
