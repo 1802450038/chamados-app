@@ -261,7 +261,6 @@ class Computer extends Model
         tb_computer 
         WHERE computer_patrimony = '$patrimony'");
 
-
         if ($result) {
             return $result[0]['computer_id'];
         } else {
