@@ -195,7 +195,7 @@ class Computer extends Model
                     )",
         );
         if ($res != '0') {
-            Log::create("CREATE", "DELIVERY", json_encode(Computer::get($res)));
+            Log::create("CREATE", "COMPUTER", json_encode(Computer::get($res)));
             return "OK";
         } else {
             Message::throwMessage("Erro", "0", "Erro ao adicionar o computador");
