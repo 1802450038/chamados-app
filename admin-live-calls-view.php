@@ -20,9 +20,6 @@ foreach ($calls as $key => $value) {
 
     <tr>
         <td>
-            <?php echo $value["call_id"] ?>
-        </td>
-        <td>
             <?php echo $value["call_sector"] ?>
         </td>
         <td>

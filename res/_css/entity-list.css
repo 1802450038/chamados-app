@@ -133,6 +133,36 @@
   color: var(--blue-l-2);
   text-align: left;
 }
+.list-body-top .list-category-title  {
+  /* background-color: red; */
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+.list-body-top .list-category-title p,
+  .list-body-top .list-category-title span{
+  margin: 0;
+  padding: 0;
+}
+.list-body-top .list-category-title .clock{
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  padding-top: 40px;
+  /* background-color: red;s */
+}
+.list-body-top .list-category-title .clock #hour{
+  font-size: 26pt;
+  color: var(--white-g-l);
+}
+.list-body-top .list-category-title .clock #date{
+  font-size: 10pt;
+  color: var(--white-g-l);
+}
+
+
+
 
 .list-body-middle {
   margin-top: 20px;
