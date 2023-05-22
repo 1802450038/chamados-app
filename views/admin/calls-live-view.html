@@ -86,7 +86,11 @@
         crossorigin="anonymous"></script>
 
     <script>
-     
+
+        let numOfCalls = 0
+        let lastNumOfCalls = 0;
+        timeH = document.getElementById("hour");
+        timeD = document.getElementById("date");
 
         function notifyMe() {
             if (!("Notification" in window)) {
@@ -107,14 +111,9 @@
                     }
                 });
             }
-
-            // At last, if the user has denied notifications, and you
-            // want to be respectful there is no need to bother them anymore.
         }
 
 
-        let numOfCalls = 0
-        let lastNumOfCalls = 0;
 
 
         function countItems(response) {
@@ -129,6 +128,18 @@
 
         }
 
+        function getCurrentDate() {
+            const date = new Date();
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            let hour = date.getHours();
+            let min = date.getMinutes() < 10 ? '0' : '' + date.getMinutes();
+            let currentDate = `${day}/${month}/${year}`;
+            let currentHour = `${hour}:${min}`;
+            timeH.innerHTML = currentHour;
+            timeD.innerHTML = currentDate;
+        }
 
         function loadXMLDoc() {
             var xhttp = new XMLHttpRequest()
@@ -140,21 +151,15 @@
                     countItems(this.responseText)
 
 
+
                     let time = this.responseText.split("<")[14].split(" ")[12];
-                    timeH = document.getElementById("hour");
-                    timeD = document.getElementById("date");
-                    const date = new Date();
-                    let day = date.getDate();
-                    let month = date.getMonth() + 1;
-                    let year = date.getFullYear();
-                    let hour = date.getHours();
-                    let min = date.getMinutes() < 10 ? '0' : '' + date.getMinutes();
-                    let currentDate = `${day}/${month}/${year}`;
-                    let currentHour = `${hour}:${min}`;
-                    timeH.innerHTML = currentHour;
-                    timeD.innerHTML = currentDate;
+
+
                 }
+
             };
+            getCurrentDate()
+            
             xhttp.open("GET", "../../admin-live-calls-view.php", true);
             xhttp.send();
 
