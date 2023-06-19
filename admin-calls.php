@@ -17,6 +17,8 @@ $app->get('/admin/calls', function () {
 
 $app->get('/admin/calls/live', function () {
 
+	// User::verifyLogin();
+
 	$page = new PageAdmin([
 		"header" => false,
 		"footer" => false

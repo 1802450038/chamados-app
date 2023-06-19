@@ -169,7 +169,7 @@
   margin-bottom: 20px;
   background-color: var(--white-r);
   box-shadow: var(--box-shadow-2);
-  padding-top: 10px;
+  padding-top: 30px;
   padding-bottom: 10px;
   border-radius: 20px;
   display: flex;
@@ -177,7 +177,45 @@
   align-content: center;
   vertical-align: middle;
   justify-content: center;
+  position: relative;
+  /* background-color: red; */
 }
+
+.list-body-middle .action-button-create {
+  position: absolute;
+  top: 15px;
+  left: calc(100% - 30px);
+  transform: translate(-100%,0%);
+  z-index: 999;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  width: 180px;
+  margin-right: 30px;
+  /* width: 50px; */
+  
+}
+.list-body-middle .action-button-create a{
+  background-color: var(--green);
+  padding: 5px 15px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: var(--white-r);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 5px;
+}
+.list-body-middle .action-button-create a i{
+  color: var(--white-r);
+}
+
+
+
+
 
 .list-body-middle .list-category-title .list-title {
   padding-left: 30px;
@@ -225,8 +263,8 @@
 }
 
 .new-element button {
-  background-color: rgb(109, 255, 109);
-  border: 1px solid rgb(109, 255, 109);
+  background-color: var(--green);
+  border: 1px solid var(--green);
   box-shadow: var(--box-shadow-2);
   color: white;
   padding-top: 10px;
@@ -311,10 +349,12 @@ a.paginator-item {
   flex-direction: column;
   z-index: 2;
   /* overflow: hidden; */
+  
 }
 
 .os-modal.open .os-modal-body {
   min-width: 300px;
+
   padding: 30px;
   background-color: white;
   border: 1px solid var(--blue-l-1);
@@ -322,6 +362,7 @@ a.paginator-item {
   z-index: 99999;
   position: relative;
   overflow: hidden;
+
 }
 
 
@@ -362,6 +403,15 @@ a.paginator-item {
   font-size: 24pt;
 }
 
+
+
+@media (max-width: 600px) {
+  
+  .os-modal.open .os-modal-body {
+    width: 90%;
+    overflow-y: scroll;
+  }
+}  
 @media (min-width: 600px) {
   .list-body-content {
     width: 80%;
@@ -369,6 +419,10 @@ a.paginator-item {
   .new-element {
     width: 140px;
   }
+
+
+ 
+  
 }
 
 @media (min-width: 800px) {

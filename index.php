@@ -28,7 +28,7 @@ require_once("admin-logs.php");
 
 $app->get('/', function () {
 
-	User::verifyLogin();
+	User::verifyLogin();        
 
 	$page = new PageAdmin();
 
