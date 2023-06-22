@@ -33,20 +33,20 @@ $app->get('/admin/os-computer/delete:id', function ($id) {
 	header("location: /admin/os-computers");
 	exit;
 });
-
-$app->get('/admin/os-computer/create:id', function () {
+// 61805
+$app->get('/admin/os-computer/create:computerid', function ($computer_id) {
 
 	User::verifyLogin();
 
 	$page = new PageAdmin();
 
 	$tecs = User::listAll();
-	$computers = Computer::listAll();
+	$computer = Computer::get($computer_id);
 	$user_id = $_SESSION[User::SESSION]["user_id"];
 	$user_name = $_SESSION[User::SESSION]["user_name"];
 
-	$page->setTpl("os-computer-create", array(
-		"computers" => $computers,
+	$page->setTpl("os-computer-create-id", array(
+		"computer" => $computer,
 		"tecs" => $tecs,
 		"user_id" => $user_id,
 		"user_name" => $user_name

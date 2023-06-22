@@ -51,12 +51,15 @@ class User extends Model
     // OK
     public static function verifyLogin()
     {
-
+        
         if (
             !isset($_SESSION[User::SESSION])
             ||
+            !isset($_SESSION[User::SESSION]["user_id"])
+            ||
             !$_SESSION[User::SESSION]["user_id"]
         ) {
+            User::logout();
             header("Location:/login");
             exit;
         }

@@ -104,9 +104,6 @@ class Computer extends Model
         if (!$this->getcomputer_patrimony()) {
             Message::throwMessage("Erro", "0", "O patrimonio deve ser informado");
         }
-        if (!$this->getcomputer_issue()) {
-            $this->setcomputer_issue("Não informado");
-        }
 
         if (!$this->getcomputer_ip()) {
             $this->setcomputer_ip("Não informado");
@@ -151,6 +148,10 @@ class Computer extends Model
         if (!$this->getcomputer_note()) {
             $this->setcomputer_note("Não informado");
         }
+
+        // if (!$this->getcomputer_issue()) {
+            $this->setcomputer_note("Não informado");
+        // }
 
         if (!$this->getcomputer_state()) {
             $this->setcomputer_state("EM ANALISE");
