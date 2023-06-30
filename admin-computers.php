@@ -96,6 +96,7 @@ $app->get('/admin/computer/create', function () {
 
 	$user_type = $user_type = $_SESSION[User::SESSION]["user_type"];
 
+
 	$page->setTpl("computer-create", array(
 		"user_type"=>$user_type
 	));
@@ -214,17 +215,53 @@ $app->post('/admin/computer/public-barcode', function () {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $app->post('/admin/computer/create', function () {
  
 	User::verifyLogin();
 
+
 	$computer = new Computer();
 
+	// var_dump($_POST);
+	
+	if(!isset($_POST['computer_ip'])){
+		$_POST['computer_ip'] = '';
+		$_POST['computer_user_name'] = '';
+		$_POST['computer_user_registration'] = '';
+		$_POST['computer_brand'] = '';
+		$_POST['computer_soc'] = '';
+		$_POST['computer_mem'] = '';
+		$_POST['computer_video_card'] = '';
+		$_POST['computer_network_card'] = '';
+		$_POST['computer_hd'] = '';
+		$_POST['computer_hd_type'] = '';
+		$_POST['computer_state'] = '';
+	}
+	
+	
 	$computer->setData($_POST);
+	
 
 	$computer_id = Computer::getIdByPatrimony($_POST['computer_patrimony']);
 
 	
+
 	if($computer_id > 0){
 		header("location: /admin/os-computer/create$computer_id");
 		exit;

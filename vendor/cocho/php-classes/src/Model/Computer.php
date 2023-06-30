@@ -106,6 +106,7 @@ class Computer extends Model
         }
 
         if (!$this->getcomputer_ip()) {
+            
             $this->setcomputer_ip("Não informado");
         }
 
