@@ -41,7 +41,7 @@ foreach ($calls as $key => $value) {
 
 
             <?php if ($value['user_name']) { ?>
-                <?php if ($value['user_one_id'] == $user_id) { ?>
+                <?php if ($value['user_one_id'] == $user_id || $user_type == "atendimento") { ?>
                     <td>
                         <a <?php echo "href='/admin/call" . $value["call_id"] . "/decline'"; ?> onclick="return confirm('Deseja realmente cancelar a inscrição?')" class="small-action-btn delete">Cancelar</a>
                     </td>
