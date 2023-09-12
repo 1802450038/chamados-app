@@ -16,10 +16,6 @@ $calls = Call::listAll();
 <?php
 if ($calls) {
     foreach ($calls as $key => $value) {
-        // echo(explode(" ",$value['user_name'])[0][0] . explode(" ",$value['user_name'])[1][0]);
-        // echo(explode(" ",$value['user_name2'])[0][0] . explode(" ",$value['user_name2'])[1][0]);
-        // echo(explode(" ",$value['user_name3'])[0][0] . explode(" ",$value['user_name3'])[1][0]);
-        
 ?>
 
         <tr>
@@ -41,7 +37,7 @@ if ($calls) {
                         <div class="multi-users" style="display: flex; flex-direction: row; justify-content: center; column-gap: 5px;">
                          <button class="small-action-btn view with-img">
 
-                        <?php if ($value['user_profile_picture'] != "/res/_assets/_defaultimg") { ?>
+                        <?php if ($value['user_profile_picture'] != "/res/_assets/_defaultimg/user.jpg") { ?>
                             <div class="btn-img"><img <?php echo "src= '" . $value['user_profile_picture'] . "';"?>> </div>
                         <?php } else {?>
                            <?php echo(explode(" ",$value['user_name'])[0][0] . explode(" ",$value['user_name'])[1][0]); ?>
@@ -49,7 +45,7 @@ if ($calls) {
 
                         </button>
                         <button class="small-action-btn view with-img">
-                        <?php if ($value['user_profile_picture2']  != "/res/_assets/_defaultimg") { ?>
+                        <?php if ($value['user_profile_picture2']  != "/res/_assets/_defaultimg/user.jpg") { ?>
                             <div class="btn-img"><img <?php echo "src= '" . $value['user_profile_picture2'] . "';"?>> </div>
                         <?php } else {?>
                            <?php echo(explode(" ",$value['user_name2'])[0][0] . explode(" ",$value['user_name2'])[1][0]); ?>
@@ -57,7 +53,7 @@ if ($calls) {
 
                         </button>
                         <button class="small-action-btn view with-img">
-                        <?php if ($value['user_profile_picture3']  != "/res/_assets/_defaultimg") { ?>
+                        <?php if ($value['user_profile_picture3']  != "/res/_assets/_defaultimg/user.jpg") { ?>
                             <div class="btn-img"><img <?php echo "src= '" . $value['user_profile_picture3'] . "';"?>> </div>
                         <?php } else {?>
                            <?php echo(explode(" ",$value['user_name3'])[0][0] . explode(" ",$value['user_name3'])[1][0]); ?>
@@ -70,7 +66,7 @@ if ($calls) {
                 ?>
                          <div class="multi-users" style="display: flex; flex-direction: row; justify-content: center; column-gap: 5px;">
                         <button  class="small-action-btn view with-img">
-                        <?php if ($value['user_profile_picture']  != "/res/_assets/_defaultimg") { ?>
+                        <?php if ($value['user_profile_picture']  != "/res/_assets/_defaultimg/user.jpg") { ?>
                             <div class="btn-img"><img <?php echo "src= '" . $value['user_profile_picture'] . "';"?>> </div>
                         <?php } else {?>
                            <?php echo(explode(" ",$value['user_name'])[0][0] . explode(" ",$value['user_name'])[1][0]); ?>
@@ -78,7 +74,7 @@ if ($calls) {
 
                         </button>
                         <button  class="small-action-btn view with-img">
-                        <?php if ($value['user_profile_picture2']  != "/res/_assets/_defaultimg") { ?>
+                        <?php if ($value['user_profile_picture2']  != "/res/_assets/_defaultimg/user.jpg") { ?>
                             <div class="btn-img"><img <?php echo "src= '" . $value['user_profile_picture2'] . "';"?>> </div>
                         <?php } else {?>
                            <?php echo(explode(" ",$value['user_name2'])[0][0] . explode(" ",$value['user_name2'])[1][0]); ?>
@@ -91,7 +87,7 @@ if ($calls) {
                 ?>
                        <button style="margin: auto;" class="small-action-btn view with-img">
                         <?php echo $value['user_name']; ?>
-                        <?php if ($value['user_profile_picture']  != "/res/_assets/_defaultimg") { ?>
+                        <?php if ($value['user_profile_picture']  != "/res/_assets/_defaultimg/user.jpg") { ?>
                             <div class="btn-img"><img <?php echo "src= '" . $value['user_profile_picture'] . "';"?>> </div>
                         <?php } else {?>
                            <?php echo(explode(" ",$value['user_name'])[0][0] . explode(" ",$value['user_name'])[1][0]); ?>

@@ -24,7 +24,7 @@ $calls = Call::listAll();
 if($calls){
 foreach ($calls as $key => $value) {
 ?>
-
+    
     <tr>
         <td>
             <?php echo $value["call_sector"] .  " - " .$value["call_departament"] ?>
