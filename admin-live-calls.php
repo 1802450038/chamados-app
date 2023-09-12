@@ -15,15 +15,13 @@ $user_type = $_SESSION[User::SESSION]["user_type"];
 
 $calls = Call::listAll();
 
-
-
-
 ?>
 
 <?php
 if($calls){
 foreach ($calls as $key => $value) {
 ?>
+    
     
     <tr>
         <td>
@@ -92,19 +90,15 @@ foreach ($calls as $key => $value) {
             ?>
 
             <?php
-            if ($value["user_one_id"] == 0) {
+            if ($value["user_one_id"] == 0 || $is_admin) {
             ?>
                 <a <?php echo "href='/admin/call/delete" . $value["call_id"] . "'"; ?> onclick="return confirm('Deseja realmente deletar essa solicitação?')" class="small-action-btn delete"><i class="fas fa-trash-can"></i></a>
             <?php
             }
             ?>
-            <?php
-            if ($value["user_one_id"] == 0) {
-            ?>
-                <a <?php echo "href='/admin/call/update" . $value["call_id"] . "'"; ?> class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
-            <?php
-            }
-            ?>
+            
+            <a <?php echo "href='/admin/call/update" . $value["call_id"] . "'"; ?> class="small-action-btn update"><i class="fas fa-pen-to-square"></i></a>
+        
             <a <?php echo "href='/admin/call/view" . $value["call_id"] . "'"; ?> class="small-action-btn view"><i class="fas fa-eye"></i></a>
         </td>
 

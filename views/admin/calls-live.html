@@ -68,7 +68,7 @@ function loadXMLDoc() {
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
         let hour = date.getHours();
-        let min = date.getMinutes()<10?'0':'' + date.getMinutes();
+        let min = date.getMinutes()<10? '0' + date.getMinutes() :'' + date.getMinutes();
 
         let currentDate = `${day}/${month}/${year} ${hour}:${min}`;
         time.innerHTML = currentDate;
