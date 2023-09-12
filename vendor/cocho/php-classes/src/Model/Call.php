@@ -13,13 +13,32 @@ class Call extends Model
     // OK
     public static function listAll()
     {
+
+
+        // u.user_name AS user,
+        // u.user_profile_picture AS photo,
+        // t1.user_name AS tec1,
+        // t2.user_name AS tec2,
+        // t3.user_name AS tec3
+        // FROM tb_call c
+        // LEFT JOIN tb_user u ON u.user_id = c.user_id
+        // LEFT JOIN tb_user t1 ON t1.user_id = c.user_one_id
+        // LEFT JOIN tb_user t2 ON t2.user_id = c.user_two_id
+        // LEFT JOIN tb_user t3 ON t3.user_id = c.user_three_id
+
         $sql = new Sql();
         $result = $sql->select("SELECT 
         c.*,
         u.user_name,
-        u.user_profile_picture
+        u.user_profile_picture,
+        u2.user_name AS user_name2,
+        u2.user_profile_picture AS user_profile_picture2,
+        u3.user_name AS user_name3,
+        u3.user_profile_picture AS user_profile_picture3
         FROM tb_call c
         LEFT JOIN tb_user u ON u.user_id = c.user_one_id
+        LEFT JOIN tb_user u2 ON u2.user_id = c.user_two_id
+        LEFT JOIN tb_user u3 ON u3.user_id = c.user_three_id
         WHERE c.call_status NOT LIKE 'CONCLUIDO'
         ORDER BY call_dt_register DESC
         LIMIT 30");

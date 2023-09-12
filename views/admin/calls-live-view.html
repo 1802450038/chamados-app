@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="../../res/_css/card.css">
     <link rel="stylesheet" href="../../res/_css/entity-profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 </head>
 
 <body>
@@ -60,12 +59,11 @@
                     <div class="list-table-body">
                         <table>
                             <thead>
-                                <th>Setor</th>
-                                <th>Departamento</th>
+                                <th>Local</th>
+                                <th>Solicitante</th>
                                 <th>Problema</th>
                                 <th>Status</th>
                                 <th>Data</th>
-                                <th>Previsão</th>
                             </thead>
                             <tbody id="table-content">
 
@@ -92,35 +90,11 @@
         timeH = document.getElementById("hour");
         timeD = document.getElementById("date");
 
-        function notifyMe() {
-            if (!("Notification" in window)) {
-                // Check if the browser supports notifications
-                alert("This browser does not support desktop notification");
-            } else if (Notification.permission === "granted") {
-                // Check whether notification permissions have already been granted;
-                // if so, create a notification
-                const notification = new Notification("Guriiiis tem chamad");
-                // …
-            } else if (Notification.permission !== "denied") {
-                // We need to ask the user for permission
-                Notification.requestPermission().then((permission) => {
-                    // If the user accepts, let's create a notification
-                    if (permission === "granted") {
-                        const notification = new Notification("Guriiiis tem chamado");
-                        // …
-                    }
-                });
-            }
-        }
-
-
-
 
         function countItems(response) {
 
             let numOfCalls = response.split("<tr>").length - 1;
             if (numOfCalls > lastNumOfCalls) {
-                notifyMe()
                 lastNumOfCalls = numOfCalls
             } else if (numOfCalls < lastNumOfCalls) {
                 lastNumOfCalls = numOfCalls;
@@ -134,7 +108,7 @@
             let month = date.getMonth() + 1;
             let year = date.getFullYear();
             let hour = date.getHours();
-            let min = date.getMinutes() < 10 ? '0' : '' + date.getMinutes();
+            let min = date.getMinutes() < 10 ? '0' + date.getMinutes() : '' + date.getMinutes();
             let currentDate = `${day}/${month}/${year}`;
             let currentHour = `${hour}:${min}`;
             timeH.innerHTML = currentHour;
