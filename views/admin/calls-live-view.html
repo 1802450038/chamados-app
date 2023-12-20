@@ -40,8 +40,8 @@
         </div>
         <div class="countdown" style="background-color: #2836a6; width: 200px;" >
             <span style="color: #e4f2ff; font-size: 12pt;">
-                Tempo para o Liuqueta Ir
-                <div id="timer" style="color: #e4f2ff; font-size:  15pt; text-align: right;">
+                Tempo para o Liuqueta <i class="fas fa-"></i>
+                <div id="timer" style="color: #e4f2ff; font-size:  15pt; text-align: center;">
 
                 </div>
             </span>
@@ -126,9 +126,19 @@
 
         function calcTime(){
             const date = new Date();
-            let hour =  11 - date.getHours();
-            let min =  ((date.getMinutes() < 10 ? '0' + date.getMinutes() : '' + date.getMinutes()) - 60)*-1;
-            let currentHour = `${hour}:${min}`;
+            let hour = ''
+            let min = ''
+            let currentHour = ''
+            if(date.getHours < 12){
+                hour =  11 - date.getHours();
+                min =  ((date.getMinutes() < 10 ? '0' + date.getMinutes() : '' + date.getMinutes()) - 60)*-1;
+                currentHour = `Ir embora ${hour}:${min}`;
+            } else {
+                hour =   (date.getHours() -32) *-1;
+                min =  ((date.getMinutes() < 10 ? '0' + date.getMinutes() : '' + date.getMinutes()) - 60)*-1;
+                currentHour = `Voltar ${hour}:${min}`;
+            }
+            
             timeCount.innerHTML = currentHour
         }
 
@@ -139,7 +149,7 @@
                     table = document.getElementById("table-content")
                     table.innerHTML = this.responseText;
 
-                    let time = this.responseText.split("<")[14].split(" ")[12];
+                    // let time = this.responseText.split("<")[14].split(" ")[12];
 
 
                 }
